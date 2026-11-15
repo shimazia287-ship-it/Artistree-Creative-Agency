@@ -1,0 +1,310 @@
+@use '../../utils' as *;
+
+/* ===========================================================
+   Footer 14 — Photography Studio
+
+   Designed dark in light mode. Inverts to light-on-dark via
+   the --at-neutral-* token swap in dark mode (handled centrally
+   in components/_dark-mode.scss).
+   =========================================================== */
+
+.footer-14 {
+    background-color: var(--at-neutral-950);
+    color: var(--at-neutral-0);
+
+    /* Meta strip */
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px 32px;
+        padding: 16px 100px;
+        border-bottom: 1px solid var(--at-neutral-800);
+
+        @media #{$xxl} {
+            padding: 16px 60px;
+        }
+
+        @media #{$xl} {
+            padding: 16px 40px;
+        }
+
+        @media #{$lg},
+        #{$md} {
+            padding: 14px 30px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            padding: 12px 16px;
+            gap: 10px 20px;
+        }
+    }
+
+    &__meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--at-ff-body);
+        font-size: 11px;
+        line-height: 1;
+    }
+
+    &__meta-key {
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: var(--at-neutral-0);
+        text-transform: uppercase;
+    }
+
+    &__meta-val {
+        font-weight: 400;
+        letter-spacing: 0.4px;
+        color: var(--at-neutral-500);
+    }
+
+    /* Body */
+    &__body {
+        padding: 80px 100px 60px;
+
+        @media #{$xxl} {
+            padding: 72px 60px 56px;
+        }
+
+        @media #{$xl} {
+            padding: 64px 40px 48px;
+        }
+
+        @media #{$lg},
+        #{$md} {
+            padding: 56px 30px 40px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            padding: 40px 16px 32px;
+        }
+    }
+
+    /* Studios row */
+    &__studios {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        @media #{$sm},
+        #{$xs} {
+            grid-template-columns: 1fr;
+            margin: 32px 0 48px;
+            padding: 24px 0;
+        }
+    }
+
+    &__studio {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 24px;
+        border-left: 1px solid var(--at-neutral-800);
+
+        &:first-child {
+            padding-left: 0;
+            border-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            padding: 16px 0 !important;
+            border-left: 0 !important;
+            border-top: 1px solid var(--at-neutral-500);
+
+            &:first-child {
+                border-top: 0;
+                padding-top: 0 !important;
+            }
+        }
+    }
+
+    &__studio-head {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__studio-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--at-neutral-500);
+
+        &--active {
+            background-color: var(--at-theme-primary);
+        }
+    }
+
+    &__studio-name {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: -0.3px;
+        line-height: 1;
+        color: var(--at-neutral-0);
+    }
+
+    &__studio-addr {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.6;
+        letter-spacing: 0.2px;
+        color: var(--at-neutral-500);
+        font-style: normal;
+    }
+
+    &__studio-status {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 11px;
+        letter-spacing: 1.6px;
+        color: var(--at-neutral-500);
+
+        &--open {
+            color: var(--at-theme-primary);
+        }
+    }
+
+    /* Big brand */
+    &__bigbrand {
+        position: relative;
+        overflow: hidden;
+        padding-top: 100px;
+    }
+
+    &__bigbrand-text {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: clamp(54px, 11.5vw, 220px);
+        line-height: 0.95;
+        letter-spacing: -0.027em;
+        color: var(--at-neutral-0);
+        white-space: nowrap;
+    }
+
+    &__bigbrand-badge {
+        position: absolute;
+        top: 30%;
+        right: 6%;
+        display: inline-block;
+        padding: 5px 14px;
+        background: var(--at-theme-primary);
+        color: var(--at-neutral-900);
+        font-family: var(--at-ff-body);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.25;
+        letter-spacing: 0.04em;
+        transform: rotate(-8.36deg);
+        white-space: nowrap;
+
+        @media #{$lg},
+        #{$md} {
+            font-size: 12px;
+            padding: 4px 10px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            font-size: 10px;
+            padding: 3px 8px;
+            right: 4%;
+        }
+    }
+
+    /* Legal bar */
+    &__legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding: 24px 100px;
+        border-top: 1px solid var(--at-neutral-800);
+        flex-wrap: wrap;
+
+        @media #{$xxl} {
+            padding: 24px 60px;
+        }
+
+        @media #{$xl} {
+            padding: 24px 40px;
+        }
+
+        @media #{$lg},
+        #{$md} {
+            padding: 24px 30px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            padding: 20px 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+    }
+
+    &__copy {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 12px;
+        letter-spacing: 0.2px;
+        color: var(--at-neutral-500);
+    }
+
+    &__social,
+    &__policy {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    &__policy {
+        gap: 16px;
+    }
+
+    &__social {
+        a {
+            font-family: var(--at-ff-body);
+            font-weight: 500;
+            font-size: 12px;
+            letter-spacing: 0.2px;
+            color: var(--at-neutral-0);
+            text-decoration: none;
+            transition: opacity 0.25s ease;
+
+            &:hover {
+                opacity: 0.7;
+                color: var(--at-neutral-0);
+            }
+        }
+    }
+
+    &__policy {
+        a {
+            font-family: var(--at-ff-body);
+            font-weight: 400;
+            font-size: 12px;
+            letter-spacing: 0.2px;
+            color: var(--at-neutral-500);
+            text-decoration: none;
+            transition: color 0.25s ease;
+
+            &:hover {
+                color: var(--at-neutral-0);
+            }
+        }
+    }
+}

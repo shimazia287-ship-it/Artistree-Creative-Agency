@@ -1,0 +1,285 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Footer style 8 (Home 8)
+/*----------------------------------------*/
+
+.footer-8 {
+    padding-top: 40px;
+    background: #0f0f0f;
+    color: #fefefe;
+    position: relative;
+
+    &__bg {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        transform: translate(-50%, -50%);
+        width: 1920px;
+        height: 1012px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.9;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__container {
+        position: relative;
+        z-index: 1;
+        max-width: 1920px;
+        padding-left: clamp(20px, 5.5vw, 104px);
+        padding-right: clamp(20px, 5.5vw, 104px);
+    }
+
+    &__top {
+        padding-bottom: 26px;
+        border-bottom: 1px solid #212121;
+        margin-bottom: 44px;
+    }
+
+    &__nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px 32px;
+    }
+
+    &__nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: #b7b7b7;
+        text-decoration: none;
+        transition: color .28s ease, text-decoration-color .28s ease;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 6px;
+
+        &:hover {
+            color: #fefefe;
+            text-decoration-color: currentColor;
+
+            .footer-8__nav-arrow {
+                opacity: 1;
+                visibility: visible;
+                transform: translate(2px, -2px);
+            }
+        }
+
+        &.is-active {
+            color: #b7b7b7;
+            text-decoration-color: transparent;
+        }
+    }
+
+    &__nav-arrow {
+        width: 14px;
+        height: 13px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(0, 0);
+        transition: opacity .28s ease, transform .28s ease, visibility .28s ease;
+    }
+
+    &__mid {
+        padding-bottom: 38px;
+    }
+
+    &__contact {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.05em;
+        color: #fefefe;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color .25s ease;
+
+            &:hover {
+                color: var(--at-theme-primary);
+            }
+        }
+    }
+
+    &__address {
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: -0.05em;
+        color: #fefefe;
+    }
+
+    &__hours {
+        &-label {
+            opacity: 0.5;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        &-value {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: -0.05em;
+        }
+    }
+
+    &__socials {
+        max-width: 279px;
+        padding-top: 6px;
+    }
+
+    &__social-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        text-decoration: none;
+        color: #b7b7b7;
+        transition: color .25s ease, border-color .25s ease, transform .25s ease;
+
+        &:hover {
+            color: #fefefe;
+            border-color: rgba(255, 255, 255, 0.45);
+            transform: translateX(2px);
+        }
+
+        &.is-active {
+            color: #fefefe;
+        }
+
+        &.no-border {
+            border-bottom: 0;
+        }
+    }
+
+    &__social-left {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+    }
+
+    &__social-icon {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+    }
+
+    &__social-arrow {
+        width: 16px;
+        height: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(90deg);
+        opacity: 0.9;
+
+        img {
+            width: 15px;
+            height: 16px;
+        }
+    }
+
+    &__newsletter-title {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.05em;
+        color: #fefefe;
+    }
+
+    &__form {
+        display: grid;
+        gap: 8px;
+        max-width: 410px;
+    }
+
+    &__input {
+        height: 50px;
+        padding: 0 24px;
+        border-radius: 16px;
+        background: #1d1d1d;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #fefefe;
+        outline: none;
+
+        &::placeholder {
+            color: rgba(254, 254, 254, 0.5);
+        }
+
+        &:focus {
+            border-color: rgba(240, 70, 14, 0.65);
+        }
+    }
+
+    &__submit {
+        height: 50px;
+        border-radius: 16px;
+        background: #1d1d1d;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #fefefe;
+        font-size: 16px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: background .25s ease, border-color .25s ease, transform .25s ease;
+
+        img {
+            width: 14px;
+            height: 13px;
+            transform: translateY(-1px);
+        }
+
+        &:hover {
+            background: rgba(29, 29, 29, 0.75);
+            border-color: rgba(255, 255, 255, 0.14);
+            transform: translateY(-1px);
+            color: #fefefe;
+        }
+    }
+
+    &__bottom {
+        border-top: 1px solid #212121;
+        padding: 26px 0;
+    }
+
+    &__copy {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        opacity: 0.5;
+    }
+
+    &__policies {
+        a {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: rgba(254, 254, 254, 0.5);
+            text-decoration: none;
+            transition: color .25s ease;
+
+            &:hover {
+                color: #fefefe;
+            }
+        }
+    }
+}
+

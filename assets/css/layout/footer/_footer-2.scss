@@ -1,0 +1,54 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Footer Style 2
+/*----------------------------------------*/
+
+
+
+.footer-2-follow-label {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+}
+
+
+.footer-2-border {
+    border-top: 1px solid rgba(255, 255, 255, 0.30);
+
+}
+
+.footer-2-connect-title {
+    font-weight: 500;
+    font-size: 160px;
+    letter-spacing: -11px;
+    line-height: 1.1;
+
+    @media #{$xl,$lg,$md,$sm,$xs} {
+        letter-spacing: 0;
+        font-size: clamp(3rem, 4vw, 3rem);
+    }
+
+    @media #{$md} {
+        font-size: clamp(4rem, 4vw, 3rem);
+    }
+
+}
+
+.sale-off {
+    color: var(--at-neutral-900);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.506px;
+    display: inline-flex;
+    transform: rotate(-8.359deg);
+    padding: 4.265px 16px 3.264px 16px;
+    justify-content: center;
+    align-items: center;
+    background: var(--at-theme-primary);
+}
+
+.footer-3-logo {
+    transform: translateX(-30px);
+}
