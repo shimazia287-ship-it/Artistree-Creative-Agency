@@ -1,0 +1,72 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.2 Mobile Menu
+/*----------------------------------------*/
+
+
+.at-offcanvas-menu {
+    .at-megamenu-box li a {
+        font-weight: 400;
+    }
+
+    & ul {
+        list-style: none;
+
+        & li {
+            position: relative;
+
+            &>a {
+                padding: 7px 0;
+                display: block;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            &.active {
+                &>a {
+                    color: var(--at-common-black);
+
+                }
+
+                &>.at-menu-close {
+                    & i {
+                        top: 10px;
+                        @include at-transform(rotate(90deg));
+                    }
+                }
+            }
+
+            & .submenu {
+                display: none;
+
+                & .submenu {
+                    margin-left: 30px;
+                }
+            }
+        }
+    }
+
+    & .at-submenu>li>a {
+        padding: 8px 20px;
+        border-radius: 10px;
+        font-size: 16px;
+
+        &:hover {
+            background-color: #f8f8fb;
+            color: var(--at-common-black);
+        }
+    }
+}
+
+.at-menu-close {
+    position: absolute;
+    right: 7px;
+    top: 12px;
+
+    & i {
+        transition: all 0.3s;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
