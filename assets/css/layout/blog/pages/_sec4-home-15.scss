@@ -1,0 +1,292 @@
+@use '../../utils' as *;
+
+/* ===========================================================
+   Section 4 — Home 15 (Selected work)
+   =========================================================== */
+
+.sec-4-home-15 {
+    background-color: var(--at-neutral-0);
+
+    /* ---- Title bar ---- */
+    &__title-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 30px;
+        border: 1px solid var(--at-neutral-200);
+        border-radius: 16px;
+        background-color: var(--at-neutral-0);
+
+        @media #{$xl} {
+            padding: 26px;
+            margin-bottom: 72px;
+        }
+
+        @media #{$lg},
+        #{$md} {
+            padding: 24px;
+            margin-bottom: 56px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            padding: 20px;
+            margin-bottom: 40px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+        }
+    }
+
+    &__heading {
+        font-family: var(--at-ff-heading);
+        font-weight: 600;
+        font-size: 72px;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900);
+        margin: 0;
+
+        @media #{$xl} {
+            font-size: 60px;
+        }
+
+        @media #{$lg} {
+            font-size: 52px;
+        }
+
+        @media #{$md} {
+            font-size: 44px;
+        }
+
+        @media #{$sm} {
+            font-size: 38px;
+        }
+
+        @media #{$xs} {
+            font-size: 32px;
+        }
+    }
+
+    /* ---- Project cards stack ---- */
+    &__cards {
+        display: flex;
+        flex-direction: column;
+        gap: 92px;
+
+        @media #{$xl} {
+            gap: 72px;
+        }
+
+        @media #{$lg},
+        #{$md} {
+            gap: 56px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            gap: 40px;
+        }
+    }
+
+    &__card {
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1428 / 1011;
+        overflow: hidden;
+        border-radius: 16px;
+        background-color: var(--at-neutral-200);
+        text-decoration: none;
+
+        @media #{$xs} {
+            border-radius: 12px;
+            aspect-ratio: 4 / 5;
+        }
+
+        &:hover,
+        &:focus-visible {
+            color: inherit;
+        }
+    }
+
+    &__card-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    &__card-badge {
+        position: absolute;
+        top: 23px;
+        right: 23px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
+        border-radius: 20px;
+        background-color: var(--at-common-white);
+        color: var(--at-neutral-950);
+        font-family: var(--at-ff-body);
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    &__card-bar {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 21px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 0 45px;
+        height: 100px;
+        background-color: var(--at-neutral-0);
+        border-radius: 16px;
+        overflow: hidden;
+
+        @media #{$lg},
+        #{$md} {
+            padding: 0 32px;
+            height: 84px;
+        }
+
+        @media #{$sm} {
+            padding: 0 22px;
+            height: 72px;
+        }
+
+        @media #{$xs} {
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            padding: 0 16px;
+            height: 64px;
+            gap: 12px;
+        }
+    }
+
+    &__card-name {
+        font-family: var(--at-ff-heading);
+        font-weight: 600;
+        font-size: 64px;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900);
+        white-space: nowrap;
+
+        @media #{$xl} {
+            font-size: 56px;
+        }
+
+        @media #{$lg} {
+            font-size: 44px;
+        }
+
+        @media #{$md} {
+            font-size: 38px;
+        }
+
+        @media #{$sm} {
+            font-size: 30px;
+        }
+
+        @media #{$xs} {
+            font-size: 22px;
+        }
+    }
+
+    &__card-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--at-ff-body);
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: var(--at-neutral-900);
+        white-space: nowrap;
+        transition: opacity 0.3s ease;
+
+        svg {
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &__card:hover &__card-cta,
+    &__card:focus-visible &__card-cta {
+        opacity: 0.85;
+
+        svg {
+            transform: rotate(45deg);
+        }
+    }
+
+    /* ---- Repo strip ---- */
+    &__repos {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 32px;
+        padding: 0;
+
+        @media #{$xl} {
+            margin-top: 72px;
+        }
+
+        @media #{$lg},
+        #{$md} {
+            margin-top: 56px;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        @media #{$sm},
+        #{$xs} {
+            margin-top: 40px;
+            justify-content: center;
+            gap: 14px 20px;
+        }
+
+        a {
+            font-family: var(--at-ff-body);
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--at-neutral-900);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+
+            &:hover,
+            &:focus-visible {
+                color: var(--at-neutral-900);
+                opacity: 0.7;
+            }
+
+            @media #{$xs} {
+                font-size: 14px;
+            }
+        }
+    }
+}

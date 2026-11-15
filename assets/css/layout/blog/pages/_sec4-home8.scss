@@ -1,0 +1,164 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Home 8 — Section 4 (Services + Home 1 sec-4 GSAP hover stack)
+/*----------------------------------------*/
+
+.sec-4-home-8 {
+    background-color: var(--at-neutral-0);
+    border-top: 1px solid var(--at-neutral-100);
+    position: relative;
+
+    &__top {
+        width: 100%;
+    }
+
+    &__kicker {
+        font-size: 16px;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900);
+    }
+
+    &__kicker-icon {
+        display: inline-flex;
+        color: var(--at-neutral-900);
+        line-height: 0;
+    }
+
+    &__since {
+        color: var(--at-neutral-900);
+    }
+
+    &__card {
+        overflow: hidden;
+        padding-bottom: clamp(20px, 2vw, 28px);
+    }
+
+ // Taller preview (~410px image band)
+    &__img-stack {
+        height: 410px;
+        margin-bottom: clamp(16px, 1.8vw, 24px);
+
+        @media #{$sm,$xs} {
+            height: 300px;
+        }
+
+        .hover-image img {
+            border-radius: 0;
+        }
+    }
+
+    &__caption {
+        color: var(--at-neutral-950);
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+        padding-left: clamp(16px, 2vw, 24px);
+        padding-right: clamp(16px, 2vw, 24px);
+    }
+
+    &__deco {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: clamp(16px, 4vw, 48px);
+        position: absolute;
+        top: 60%;
+        left: 30%;
+
+        // Same cube stack as Home 1 sec-2; reset global translateY from _about.scss for this card
+        .at-about-svg-wrap {
+            transform: translateY(0);
+        }
+    }
+
+    &__list-wrap {
+        .at-service-item {
+            padding-top: 34px;
+            padding-bottom: 34px;
+            grid-template-columns: 80px 1fr 300px;
+            gap: 15px 45px;
+
+            @media #{$lg,$md} {
+                grid-template-columns: 70px 1fr 240px;
+                gap: 12px 24px;
+            }
+
+            @media #{$sm,$xs} {
+                grid-template-columns: 1fr;
+                padding-top: 24px;
+                padding-bottom: 24px;
+            }
+
+            .number {
+                font-size: 24px;
+                letter-spacing: -0.05em;
+            }
+
+            .content .title {
+                font-size: clamp(40px, 4.6vw, 72px);
+                line-height: 1.05;
+                letter-spacing: -0.05em;
+                opacity: 1;
+            }
+
+            .content .text {
+                opacity: 1;
+                max-height: none;
+                font-size: 20px;
+                font-weight: 500;
+                letter-spacing: -0.02em;
+                max-width: 480px;
+                color: var(--at-neutral-900);
+            }
+
+            .thumb img {
+                border-radius: 0;
+                max-width: 190px;
+                width: 190px;
+                height: 115px;
+                object-fit: cover;
+                transition: transform 0.35s ease, filter 0.35s ease;
+            }
+
+ // Default inactive row: muted index
+            &:not(.active):not(:hover) .number {
+                color: var(--at-neutral-500);
+                opacity: 0.3;
+            }
+
+            &.active .number,
+            &:hover .number {
+                color: var(--at-theme-primary);
+                opacity: 1;
+            }
+
+ // First row: larger thumbnail
+            &:first-child .thumb img,
+            &:first-child:hover .thumb img {
+                max-width: 284px;
+                width: 284px;
+                height: 174px;
+            }
+
+            // Rows 2–4: keep compact thumb even on hover
+            &:not(:first-child):hover .thumb img {
+                max-width: 190px;
+                width: 190px;
+                height: 115px;
+            }
+        }
+
+        // Hover on the whole <a> should animate the thumbnail image.
+        // This is scoped here (not nested inside img) to avoid incorrect "&" expansion.
+        a:hover .at-service-item .thumb {
+            overflow: hidden;
+        }
+
+        a:hover .at-service-item .thumb img {
+            transform: scale(1.06);
+            filter: brightness(1.08);
+            will-change: transform, filter;
+        }
+    }
+
+
+}

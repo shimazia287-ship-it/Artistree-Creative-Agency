@@ -1,0 +1,35 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-11-home-7 (Get in touch — contact form)
+/*----------------------------------------*/
+
+.sec-11-home-7 {
+    background: var(--at-neutral-50, #f2f2f2);
+
+    &__eyebrow {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+    }
+
+    &__title {
+        font-family: var(--at-heading-font);
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900, #1d1d1d);
+        max-width: 520px;
+    }
+
+    &__form {
+        max-width: 720px;
+
+        .sec-4-about-form__textarea {
+            min-height: 192px;
+            resize: vertical;
+        }
+    }
+}

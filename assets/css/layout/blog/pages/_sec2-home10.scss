@@ -1,0 +1,20 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-2-home-10 (Home 10 — Panoramic scene)
+/*----------------------------------------*/
+
+.sec-2-home-10 {
+    position: relative;
+    background: transparent;
+    // Up to 1440px (tablet through large laptop): shorter scene
+    height: 500px;
+
+    @media (min-width: 1441px) {
+        height: 750px;
+    }
+
+    &__img {
+        width: 100%;
+    }
+}

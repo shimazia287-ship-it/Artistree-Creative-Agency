@@ -1,0 +1,224 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.22 service css
+/*----------------------------------------*/
+.#{$theme-prifix}-service {
+    &-card {
+        max-height: 480px;
+        min-height: 480px;
+
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            min-height: 400px;
+        }
+
+        &.card-1 {
+            position: relative;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0.65;
+                background: linear-gradient(99deg, #000 5.05%, rgba(0, 0, 0, 0.44) 49.84%, #000 94.63%);
+                z-index: 0;
+            }
+        }
+
+        &.no-before {
+            &::before {
+                display: none;
+            }
+        }
+
+        &.card-2,
+        .card-4 {
+            background: var(--at-common-white);
+            margin-top: 120px;
+
+            @media #{$md,$sm,$xs} {
+                margin-top: 0;
+            }
+        }
+
+        &.card-3 {
+            background: #0f0f0f;
+        }
+        &.style-2 {
+            background: var(--at-neutral-0);
+            border: 1px solid var(--at-neutral-950);
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s;
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                border: 1px solid var(--at-neutral-950);
+                background: var(--at-neutral-0);
+                transition: all 0.5s;
+            }
+            &:hover {
+                transform: translate(5px, 5px);
+            }
+        }
+    }
+
+    &-item {
+        background-color: var(--at-neutral-0);
+        border-bottom: 1px solid var(--at-neutral-100);
+        padding-top: 21px;
+        padding-bottom: 29px;
+        display: grid;
+        align-items: center;
+        gap: 15px 30px;
+        grid-template-columns: 100px 1fr 280px;
+        pointer-events: auto;
+
+        @media #{$lg,$md,$sm,$xs} {
+            grid-template-columns: 70px 1fr 295px;
+        }
+
+        @media #{$xs} {
+            grid-template-columns: 1fr;
+        }
+
+        & .number {
+            color: var(--at-neutral-500);
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            letter-spacing: -1.8px;
+            opacity: 0.3;
+            transition: all 0.5s;
+        }
+
+        & .content {
+            & .title {
+                color: var(--at-neutral-900);
+                font-weight: 600;
+                opacity: 0.3;
+                transition: all 0.5s;
+                margin-bottom: 0;
+
+                @media #{$xl,$lg,$md,$sm,$xs} {
+                    font-size: 42px;
+                    line-height: 42px;
+                    letter-spacing: -2.4px;
+                }
+
+                @media screen and (max-width: 1725px) {
+                    font-size: 50px;
+                }
+            }
+
+            & .text {
+                opacity: 0;
+                max-height: 0px;
+                transition: all 0.5s;
+                max-width: 370px;
+                margin-bottom: 0;
+            }
+        }
+
+        & .thumb {
+            text-align: right;
+
+            img {
+                width: 100%;
+                max-width: 190px;
+                height: auto;
+                transition: all 0.5s;
+                border-radius: 8px;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &:hover {
+            & .number {
+                color: var(--at-theme-primary);
+                opacity: 1;
+            }
+
+            & .title {
+                opacity: 1;
+                transition: all 0.5s;
+            }
+
+            & .text {
+                opacity: 1;
+                max-height: 100px;
+                transition: all 0.5s;
+            }
+
+            & .thumb {
+                img {
+                    max-width: 284px;
+                }
+            }
+        }
+    }
+
+    &-content {
+        @media #{$xl,$lg,$md,$sm,$xs} {
+            margin-right: 0;
+        }
+    }
+
+    &-img {
+        &-wrapper {
+            height: 450px;
+
+            @media #{$md,$sm} {
+                height: 440px;
+            }
+
+            @media #{$xs} {
+                height: 300px;
+            }
+
+            &.image-container {
+                position: relative;
+                overflow: hidden;
+            }
+
+            & .hover-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+            }
+
+            & .hover-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+            }
+        }
+    }
+
+    &-list {
+        &-wrap {
+            @media #{$lg,$md,$sm,$xs} {
+                margin-left: 0;
+            }
+        }
+    }
+}

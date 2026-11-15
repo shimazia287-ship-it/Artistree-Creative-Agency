@@ -1,0 +1,126 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-4-home-7 (Our mission — dual reveal-text headline + locations)
+/*----------------------------------------*/
+
+.sec-4-home-7 {
+    &__eyebrow {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+    }
+
+    &__frame {
+        position: relative;
+        max-width: 319px;
+        aspect-ratio: 319 / 368;
+        margin-inline: auto;
+        overflow: hidden;
+    }
+
+    &__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    &__img--bg {
+        object-position: 65% center;
+        transform: scale(1.08);
+    }
+
+    &__img--helmet {
+        object-fit: cover;
+        object-position: 50% 18%;
+        width: 118%;
+        height: 128%;
+        left: -9%;
+        top: -6%;
+    }
+
+    &__title {
+        font-family: var(--at-heading-font);
+        font-size: clamp(2.25rem, 4vw, 4rem);
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.05em;
+        max-width: 1040px;
+    }
+
+ // Two inline `.reveal-text` spans → SplitText + scrub per phrase; colors match (950 / 300)
+    &__title-part {
+        display: inline;
+        font: inherit;
+        letter-spacing: inherit;
+        line-height: inherit;
+        vertical-align: baseline;
+    }
+
+    &__title-part--950 {
+        color: var(--at-neutral-950, #0f0f0f);
+    }
+
+    &__title-part--300 {
+        color: var(--at-neutral-300, #b7b7b7);
+    }
+
+    &__cta-btn {
+        border-radius: 50px 0 0 50px;
+        padding-inline: 27px;
+        min-height: 50px;
+    }
+
+    &__cta-circle {
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        background: #1D1D1D;
+        border-radius: 50%;
+        margin-left: 0;
+        text-decoration: none;
+        transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+
+        &:hover {
+            background: var(--at-theme-primary);
+            color: var(--at-common-white);
+            transform: translateY(-2px);
+        }
+    }
+
+    &__loc-title {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900, #1d1d1d);
+    }
+
+    &__loc-body {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-500, #585959);
+
+        @media (min-width: 992px) {
+            &--solo {
+                padding-top: 44px;
+            }
+        }
+    }
+
+    &__loc-strong {
+        font-weight: 500;
+        color: var(--at-neutral-900, #1d1d1d);
+        text-decoration: none;
+        transition: color 0.25s ease;
+
+        &:hover {
+            color: var(--at-theme-primary);
+        }
+    }
+}

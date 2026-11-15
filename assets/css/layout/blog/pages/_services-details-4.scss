@@ -1,0 +1,443 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Services Details 04 — UI/UX Agency
+/*----------------------------------------*/
+.sd4-page {
+    --sd4-ink: var(--at-neutral-900);
+    --sd4-soft: var(--at-neutral-500);
+    --sd4-line: var(--at-neutral-100);
+    --sd4-accent: var(--at-theme-primary);
+}
+
+.sd4-label {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sd4-soft);
+
+    &--light { color: rgba(255, 255, 255, 0.55); }
+}
+
+.sd4-crumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sd4-soft);
+    a { color: var(--sd4-ink); text-decoration: none; &:hover { color: var(--sd4-accent); } }
+}
+
+.sd4-chip {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sd4-accent);
+}
+
+.sd4-ghost {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sd4-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    &:hover { color: var(--sd4-accent); }
+}
+
+/* Hero */
+.sd4-hero {
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 36px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--sd4-line);
+    }
+
+    &__title {
+        margin: 0 0 28px;
+        font-family: var(--at-ff-heading);
+        font-size: clamp(42px, 8vw, 104px);
+        font-weight: 700;
+        line-height: 0.92;
+        letter-spacing: -0.045em;
+        color: var(--sd4-ink);
+    }
+
+    &__line {
+        display: block;
+        overflow: hidden;
+
+        &--fill {
+            -webkit-text-stroke: 1px var(--sd4-ink);
+            color: transparent;
+        }
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 24px 40px;
+        align-items: end;
+        margin-bottom: 48px;
+    }
+
+    &__lead {
+        max-width: 44ch;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.55;
+        color: var(--sd4-soft);
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 18px 24px;
+    }
+
+    &__gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    &__fig {
+        margin: 0;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+        background: var(--at-neutral-50);
+
+        &:nth-child(2) { margin-top: 32px; }
+        &:nth-child(3) { margin-top: 64px; }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+}
+
+/* Practice */
+.sd4-practice {
+    &__head { margin-bottom: 36px; }
+
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-size: clamp(28px, 3.6vw, 42px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--sd4-ink);
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+.sd4-pillar {
+    padding: 28px 22px;
+    border-top: 2px solid var(--sd4-ink);
+    background: var(--at-neutral-0);
+
+    &__i {
+        display: block;
+        margin-bottom: 28px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--sd4-accent);
+        font-variant-numeric: tabular-nums;
+    }
+
+    h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--sd4-ink);
+    }
+
+    p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: var(--sd4-soft);
+    }
+}
+
+/* Flow horizontal — always dark panel (light + dark mode) */
+.sd4-flow {
+    /* Fixed ink so dark-mode token flip cannot lighten this band */
+    background: #1d1d1d;
+    color: #f4f5f7;
+    overflow: hidden;
+
+    &__pin { padding: 90px 0 70px; }
+
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: #fefefe;
+        max-width: 18ch;
+    }
+
+    &__wrap { position: relative; overflow: hidden; }
+
+    &__progress {
+        height: 2px;
+        margin: 0 max(1.5rem, calc((100vw - 1320px) / 2 + 12px)) 32px;
+        background: rgba(255, 255, 255, 0.12);
+
+        i {
+            display: block;
+            width: 0%;
+            height: 100%;
+            background: var(--at-theme-primary);
+        }
+    }
+
+    &__track {
+        display: flex;
+        gap: 18px;
+        width: max-content;
+        padding-left: max(1.5rem, calc((100vw - 1320px) / 2 + 12px));
+        padding-right: 80px;
+        will-change: transform;
+    }
+
+    .sd4-label--light {
+        color: rgba(254, 254, 254, 0.55);
+
+        .sd4-label__num,
+        .sd4-kicker__num {
+            color: var(--at-theme-primary);
+        }
+    }
+}
+
+.sd4-node {
+    flex: 0 0 min(300px, 78vw);
+    min-height: 260px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--at-theme-primary);
+        margin-bottom: 24px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    h3 {
+        margin: 0 0 12px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: #fefefe;
+    }
+
+    p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.55;
+        color: rgba(254, 254, 254, 0.68);
+    }
+}
+
+/* Deliver */
+.sd4-deliver {
+    &__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 40px 56px;
+        align-items: center;
+    }
+
+    &__media {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+        background: var(--at-neutral-50);
+
+        img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    }
+
+    &__float {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        padding: 16px 18px;
+        background: var(--at-neutral-0);
+        border: 1px solid var(--sd4-line);
+        min-width: 140px;
+
+        span {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sd4-soft);
+            margin-bottom: 4px;
+        }
+
+        strong {
+            display: block;
+            font-family: var(--at-ff-heading);
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--sd4-ink);
+            font-variant-numeric: tabular-nums;
+        }
+
+        em {
+            font-style: normal;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--sd4-soft);
+        }
+    }
+
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-size: clamp(28px, 3.6vw, 42px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--sd4-ink);
+        max-width: 12ch;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--sd4-line);
+
+        li {
+            display: grid;
+            grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+            gap: 12px 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--sd4-line);
+        }
+
+        strong {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--sd4-ink);
+        }
+
+        span {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.45;
+            color: var(--sd4-soft);
+        }
+    }
+}
+
+/* CTA */
+.sd4-cta {
+    &__band {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+        gap: 28px 40px;
+        align-items: end;
+        padding: clamp(28px, 4vw, 48px);
+        border: 1px solid var(--sd4-line);
+        background: var(--at-neutral-50);
+    }
+
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-size: clamp(28px, 3.8vw, 44px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--sd4-ink);
+        max-width: 16ch;
+    }
+
+    &__side {
+        p {
+            margin: 0 0 20px;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.55;
+            color: var(--sd4-soft);
+        }
+    }
+}
+
+.sd4-next {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--sd4-line);
+
+    a {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--sd4-ink);
+        text-decoration: none;
+        &:hover { color: var(--sd4-accent); }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .sd4-hero {
+        &__row { grid-template-columns: 1fr; }
+        &__fig:nth-child(2),
+        &__fig:nth-child(3) { margin-top: 0; }
+    }
+
+    .sd4-practice__grid { grid-template-columns: 1fr 1fr; }
+
+    .sd4-deliver__grid,
+    .sd4-cta__band { grid-template-columns: 1fr; }
+
+    .sd4-flow__pin { padding: 72px 0 56px; }
+}
+
+@media only screen and (max-width: 767px) {
+    .sd4-hero__gallery { grid-template-columns: 1fr; }
+
+    .sd4-practice__grid { grid-template-columns: 1fr; }
+
+    .sd4-flow__track {
+        flex-direction: column;
+        width: 100%;
+        padding-right: max(1.5rem, calc((100vw - 1320px) / 2 + 12px));
+    }
+
+    .sd4-flow__progress { display: none; }
+
+    .sd4-node { flex: 1 1 auto; width: 100%; min-height: 0; }
+
+    .sd4-deliver__list li { grid-template-columns: 1fr; gap: 6px; }
+}

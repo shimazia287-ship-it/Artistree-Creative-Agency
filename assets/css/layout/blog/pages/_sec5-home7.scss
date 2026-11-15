@@ -1,0 +1,185 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-5-home-7 (Specialized services + accordion + throwable logos)
+/*----------------------------------------*/
+
+.sec-5-home-7 {
+    &__eyebrow {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+    }
+
+    &__title {
+        font-family: var(--at-heading-font);
+        font-size: clamp(2.25rem, 4.5vw, 4.5rem);
+        font-weight: 600;
+        line-height: 1.06;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900, #1d1d1d);
+        max-width: 560px;
+    }
+
+    &__cta-btn {
+        border-radius: 50px 0 0 50px;
+        padding-inline: 27px;
+        min-height: 50px;
+    }
+
+    &__cta-circle {
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        background: #1D1D1D;
+        border-radius: 50%;
+        margin-left: 0;
+        text-decoration: none;
+        transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+
+        &:hover {
+            background: var(--at-theme-primary);
+            color: var(--at-common-white);
+            transform: translateY(-2px);
+        }
+    }
+
+    &__photo {
+        max-width: 493px;
+        margin-inline: auto;
+        aspect-ratio: 493 / 582;
+        overflow: hidden;
+        background: var(--at-neutral-300, #b7b7b7);
+
+        img {
+            display: block;
+        }
+    }
+
+ // --- Accordion
+    &__accordion {
+        --sec5-acc-gap: 39px;
+    }
+
+    &__acc-item {
+        margin-bottom: var(--sec5-acc-gap);
+        background: transparent;
+        border: 0;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__acc-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-950, #0f0f0f);
+        background: var(--at-neutral-0, #fefefe);
+        border: solid var(--at-neutral-100, #dfdfdf);
+        border-width: 1px 0;
+        border-radius: 0;
+        box-shadow: none;
+
+        &::after {
+            display: none;
+        }
+
+        &:not(.collapsed) {
+            background: var(--at-neutral-100, #dfdfdf);
+            border-color: var(--at-neutral-100, #dfdfdf);
+            color: var(--at-neutral-950, #0f0f0f);
+            box-shadow: none;
+        }
+
+        &:focus {
+            box-shadow: none;
+            border-color: var(--at-neutral-100, #dfdfdf);
+        }
+
+        &.collapsed {
+            background: var(--at-neutral-0, #fefefe);
+        }
+    }
+
+    &__acc-title {
+        flex: 1 1 auto;
+        text-align: left;
+        min-width: 0;
+    }
+
+    &__acc-toggle {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 12px;
+        height: 12px;
+        color: var(--at-neutral-950, #0f0f0f);
+    }
+
+    &__acc-plus {
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    &__acc-btn:not(.collapsed) .sec-5-home-7__acc-plus {
+        transform: rotate(45deg);
+    }
+
+    &__acc-body {
+        padding: 0 10px 0;
+        border: 0;
+        background: transparent;
+    }
+
+    &__acc-text {
+        max-width: 420px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-950, #0f0f0f);
+    }
+
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10.5px 19px;
+        border-radius: 32px;
+        border: 1px solid var(--at-neutral-100, #dfdfdf);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: var(--at-neutral-900, #1d1d1d);
+    }
+
+    // --- Throwable area (scoped layout; physics from throwable.js)
+    &__throw {
+        .client-capsule-wrapper {
+            margin-top: 0;
+            height: 420px;
+
+            @media (min-width: 992px) {
+                height: 520px;
+            }
+
+            @media (min-width: 1400px) {
+                height: 580px;
+            }
+        }
+
+        .client-box--brand-h7 {
+            background-color: var(--at-theme-primary);
+        }
+    }
+}

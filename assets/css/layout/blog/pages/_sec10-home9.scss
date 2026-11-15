@@ -1,0 +1,47 @@
+@use '../../utils' as *;
+
+.home-9-contact-area {
+  .contact-title {
+    @media #{$md, $sm, $xs} {
+      font-size: var(--at-fz-font-3xl) !important;
+      letter-spacing: -1.5px !important;
+      line-height: 1.2 !important;
+    }
+  }
+
+  .home-9-contact-btn {
+    transition: all 0.3s ease;
+    &:hover {
+      transform: translateY(-3px);
+      .btn-icon {
+        background-color: var(--at-common-white) !important;
+        img {
+          filter: invert(1);
+        }
+      }
+    }
+    .btn-text {
+      background-color: var(--at-theme-primary);
+      transition: all 0.3s ease;
+    }
+    .btn-icon {
+      background-color: var(--at-theme-primary);
+      transition: all 0.3s ease;
+    }
+  }
+
+  .moving-gallery-wrap {
+    .moving-gallery {
+      ul.wrapper-gallery {
+        display: flex;
+        align-items: flex-end;
+        li {
+          margin: 0 15px;
+          img {
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}

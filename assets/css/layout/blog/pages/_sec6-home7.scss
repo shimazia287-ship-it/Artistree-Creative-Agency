@@ -1,0 +1,252 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-6-home-7 (The Process — Growth Engine)
+/*----------------------------------------*/
+
+.sec-6-home-7 {
+    position: relative;
+    border-top: 1px solid var(--at-neutral-100, #dfdfdf);
+
+    // --- Header ------------------------------------------------------------
+    &__eyebrow {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+
+        svg {
+            transition: transform .35s ease;
+        }
+
+        &:hover {
+            color: var(--at-theme-primary);
+
+            svg {
+                transform: translate(2px, -2px);
+            }
+        }
+    }
+
+    &__title {
+        font-family: var(--at-heading-font);
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: clamp(2.5rem, 5.5vw, 4.5rem); // 40px → 72px
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+    }
+
+    &__desc {
+        max-width: 494px;
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.45;
+        letter-spacing: -0.05em;
+
+        @media #{$lg,$md,$sm,$xs} {
+            font-size: 16px;
+            max-width: 100%;
+        }
+    }
+
+    // --- Waterfall staircase chips -----------------------------------------
+    //
+    // The four chips cascade both horizontally and vertically, each step
+    // shifting down 65px and starting from a different x% within the row.
+    // The widths/offsets are percentages of the container for fluid scaling
+    // on desktop; on < lg viewports we hide them (d-none d-lg-flex).
+    &__chips {
+        gap: 10px;
+        // Container must be as wide as the last chip's end so alignment works.
+        width: 100%;
+    }
+
+    &__chip {
+        display: inline-flex;
+        align-items: center;
+        height: 55px;
+        padding: 0 30px;
+        background: var(--at-neutral-950, #0f0f0f);
+        color: var(--at-neutral-0, #fefefe);
+        overflow: hidden;
+
+        // Subtle hover lift — makes the stepper feel interactive without
+        // stealing focus from the cards below.
+        transition: transform .35s ease, background .35s ease;
+
+        &:hover {
+            background: var(--at-theme-primary);
+            transform: translateX(4px);
+        }
+
+ // Percentages derived artboard:
+        //   chip-1: x  0,    w 345  → 0%     / 20.06%
+        //   chip-2: x 243,   w 515  → 14.13% / 29.94%
+        //   chip-3: x 619,   w 784  → 35.99% / 45.58%
+        //   chip-4: x 1108,  w 612  → 64.42% / 35.58%
+        &--1 {
+            margin-left: 0;
+            width: 20.06%;
+            min-width: 280px;
+        }
+
+        &--2 {
+            margin-left: 14.13%;
+            width: 29.94%;
+            min-width: 300px;
+        }
+
+        &--3 {
+            margin-left: 35.99%;
+            width: 45.58%;
+            min-width: 340px;
+        }
+
+        &--4 {
+            margin-left: 64.42%;
+            width: 35.58%;
+            min-width: 300px;
+        }
+    }
+
+    &__chip-text {
+        font-family: var(--at-heading-font);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    // --- Process cards -----------------------------------------------------
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+
+        @media #{$xl} {
+            gap: 24px;
+        }
+
+        @media #{$lg} {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        @media #{$md} {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media #{$sm,$xs} {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+
+    &__card-wrap {
+        min-width: 0;
+    }
+
+    &__card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        min-height: 487px;
+        padding: 51px 52px;
+        border: 1px solid var(--at-neutral-100, #dfdfdf);
+        border-radius: 8px;
+        background: var(--at-neutral-0, #fefefe);
+        overflow: hidden;
+        transition: border-color .4s ease, transform .4s ease, box-shadow .4s ease;
+
+        &:hover {
+            border-color: var(--at-neutral-300, #b7b7b7);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(15, 15, 15, 0.12);
+
+            .sec-6-home-7__card-media img {
+                transform: scale(1.06);
+            }
+        }
+
+        @media #{$xl,$lg} {
+            min-height: 440px;
+            padding: 40px 36px;
+        }
+
+        @media #{$md,$sm} {
+            min-height: 420px;
+            padding: 36px 32px;
+        }
+
+        @media #{$xs} {
+            min-height: auto;
+            padding: 32px 24px;
+        }
+    }
+
+    &__card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+        margin-bottom: 24px;
+    }
+
+    &__card-num {
+        font-family: var(--at-heading-font);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-300, #b7b7b7);
+    }
+
+    &__card-title {
+        font-family: var(--at-heading-font);
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900, #1d1d1d);
+    }
+
+    &__card-desc {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-900, #1d1d1d);
+    }
+
+    &__card-media {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 305 / 185;
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--at-neutral-100, #dfdfdf);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0%);
+            transition: transform .6s ease, filter .4s ease;
+        }
+
+        &:hover {
+            img {
+
+                filter: grayscale(100%);
+                transition: transform .6s ease, filter .4s ease;
+            }
+        }
+    }
+}

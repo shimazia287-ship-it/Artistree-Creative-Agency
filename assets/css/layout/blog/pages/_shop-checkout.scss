@@ -1,0 +1,360 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Shop checkout – Billing Details & Payment 
+/*----------------------------------------*/
+
+/* Billing Details */
+.checkout-billing {
+    border: 1px solid var(--at-neutral-100, #dfdfdf);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--at-neutral-0, #fefefe);
+    padding: 46px 62px 52px;
+    font-family: var(--at-ff-body);
+    margin-bottom: 32px;
+
+    &__title {
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -1.8px;
+        line-height: 1;
+        color: var(--at-neutral-900, #1d1d1d);
+        margin: 0 0 11px;
+    }
+
+    &__desc {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: var(--at-neutral-700, #303030);
+        margin: 0 0 38px;
+        max-width: 584px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 38px;
+    }
+
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px 26px;
+        width: 100%;
+
+        &--half {
+            .checkout-billing__field {
+                flex: 1 1 calc(50% - 13px);
+                min-width: 0;
+            }
+        }
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 0;
+
+        &--full {
+            flex: 1 1 100%;
+        }
+    }
+
+    &__label {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.32px;
+        color: var(--at-neutral-900, #1d1d1d);
+        line-height: normal;
+    }
+
+    &__input {
+        height: 52px;
+        padding: 0 24px;
+        border: 1px solid var(--at-neutral-100, #dfdfdf);
+        border-radius: 50px;
+        background: var(--at-neutral-0, #fefefe);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.28px;
+        color: var(--at-neutral-900, #1d1d1d);
+        width: 100%;
+        transition: border-color 0.2s ease;
+
+        &::placeholder {
+            color: var(--at-neutral-500, #585959);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--at-neutral-300, #a3a3a3);
+        }
+
+        &--full {
+            max-width: 100%;
+        }
+
+        &--phone {
+            max-width: 100%;
+            padding-left: 120px;
+        }
+    }
+
+    &__phone-wrap {
+        position: relative;
+        max-width: 493px;
+        width: 100%;
+        height: 52px;
+        border: 1px solid var(--at-neutral-100, #dfdfdf);
+        border-radius: 50px;
+        background: var(--at-neutral-0, #fefefe);
+        display: flex;
+        align-items: center;
+    }
+
+    &__country-select {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        min-width: 100px;
+        padding: 0 36px 0 26px;
+        border: none;
+        border-radius: 50px 0 0 50px;
+        background: transparent;
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.28px;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M7.81864 8.58158L11.0436 5.35669L11.965 6.27809L7.81864 10.4244L3.67236 6.27809L4.59376 5.35669L7.81864 8.58158Z' fill='%231d1d1d'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+
+        &:focus {
+            outline: none;
+        }
+
+        option {
+            padding: 8px 12px;
+            background: var(--at-neutral-0, #fefefe);
+            color: var(--at-neutral-900, #1d1d1d);
+        }
+    }
+
+    @media (max-width: 991px) {
+        padding: 40px 24px 48px;
+
+        &__row--half .checkout-billing__field {
+            flex: 1 1 100%;
+        }
+
+        &__input {
+            max-width: 100%;
+        }
+
+        &__phone-wrap {
+            max-width: 100%;
+        }
+    }
+
+    @media #{$xs} {
+        padding: 32px 20px 40px;
+
+        &__title {
+            font-size: 28px;
+            letter-spacing: -1.4px;
+        }
+
+        &__desc {
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        &__form {
+            gap: 28px;
+        }
+    }
+}
+
+/* Payment */
+.checkout-payment {
+    border: 1px solid var(--at-neutral-100, #dfdfdf);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--at-neutral-0, #fefefe);
+    padding: 47px 62px 52px;
+    font-family: var(--at-ff-body);
+
+    &__title {
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -1.8px;
+        line-height: 1;
+        color: var(--at-neutral-900, #1d1d1d);
+        margin: 0 0 11px;
+    }
+
+    &__desc {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: var(--at-neutral-700, #303030);
+        margin: 0 0 38px;
+        max-width: 584px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 38px;
+    }
+
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px 20px;
+        width: 100%;
+        align-items: flex-end;
+
+        &--cards {
+            .checkout-payment__field--card-number {
+                flex: 1 1 369px;
+                min-width: 0;
+            }
+
+            .checkout-payment__field:not(.checkout-payment__field--card-number) {
+                flex: 0 1 299px;
+                min-width: 200px;
+            }
+        }
+
+        &--half {
+            .checkout-payment__field {
+                flex: 1 1 calc(50% - 13px);
+                min-width: 0;
+            }
+        }
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 0;
+    }
+
+    &__label {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.32px;
+        color: var(--at-neutral-900, #1d1d1d);
+        line-height: normal;
+    }
+
+    &__input {
+        height: 52px;
+        padding: 0 24px;
+        border: 1px solid var(--at-neutral-100, #dfdfdf);
+        border-radius: 50px;
+        background: var(--at-neutral-0, #fefefe);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: -0.28px;
+        color: var(--at-neutral-900, #1d1d1d);
+        width: 100%;
+        transition: border-color 0.2s ease;
+
+        &::placeholder {
+            color: var(--at-neutral-500, #585959);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--at-neutral-300, #a3a3a3);
+        }
+
+        &--card {
+            max-width: 100%;
+            padding-right: 160px;
+        }
+    }
+
+    &__card-input-wrap {
+        position: relative;
+        max-width: 369px;
+        width: 100%;
+    }
+
+    &__card-icons {
+        position: absolute;
+        right: 21px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        pointer-events: none;
+    }
+
+    &__card-icon {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--at-neutral-500, #585959);
+        line-height: 1;
+    }
+
+    @media (max-width: 991px) {
+        padding: 40px 24px 48px;
+
+        &__row--cards {
+
+            .checkout-payment__field--card-number,
+            .checkout-payment__field:not(.checkout-payment__field--card-number) {
+                flex: 1 1 100%;
+            }
+        }
+
+        &__row--half .checkout-payment__field {
+            flex: 1 1 100%;
+        }
+
+        &__input {
+            max-width: 100%;
+        }
+
+        &__card-input-wrap {
+            max-width: 100%;
+        }
+
+        &__input--card {
+            padding-right: 24px;
+        }
+
+    }
+
+    @media #{$xs} {
+        padding: 32px 20px 40px;
+
+        &__title {
+            font-size: 28px;
+            letter-spacing: -1.4px;
+        }
+
+        &__desc {
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        &__form {
+            gap: 28px;
+        }
+    }
+}
