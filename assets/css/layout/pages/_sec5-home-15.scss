@@ -1,0 +1,326 @@
+@use '../../utils' as *;
+
+/* ===========================================================
+   Section 5 — Home 15 (From idea to final project)
+   =========================================================== */
+
+.sec-5-home-15 {
+    background-color: var(--at-neutral-950);
+    color: var(--at-common-white);
+    padding-top: 140px;
+    padding-bottom: 140px;
+
+    @media #{$xl} {
+        padding-top: 110px;
+        padding-bottom: 110px;
+    }
+
+    @media #{$lg}, #{$md} {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    @media #{$sm}, #{$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    /* ---- Eyebrow ---- */
+    &__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 28px;
+        font-family: var(--at-ff-body);
+        font-size: 11px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    &__eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background-color: var(--at-common-white);
+        flex-shrink: 0;
+    }
+
+    &__eyebrow-key {
+        font-weight: 600;
+        color: var(--at-common-white);
+        letter-spacing: 2px;
+    }
+
+    &__eyebrow-meta {
+        font-weight: 400;
+        color: var(--at-neutral-500);
+        letter-spacing: 1.2px;
+    }
+
+    /* ---- Heading ---- */
+    &__heading {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 84px;
+        line-height: 1;
+        letter-spacing: -0.025em;
+        color: var(--at-common-white);
+        margin: 0;
+        max-width: 1100px;
+
+        @media #{$xl} {
+            font-size: 72px;
+        }
+
+        @media #{$lg} {
+            font-size: 60px;
+        }
+
+        @media #{$md} {
+            font-size: 52px;
+        }
+
+        @media #{$sm} {
+            font-size: 42px;
+        }
+
+        @media #{$xs} {
+            font-size: 34px;
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+    /* ---- Right column: copy + CTA ---- */
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            align-items: flex-start;
+        }
+    }
+
+    &__copy {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--at-neutral-50);
+        text-align: right;
+        max-width: 446px;
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            text-align: left;
+            max-width: none;
+        }
+    }
+
+    /* Orange-themed CTA group — uses theme primary instead of neutral-900 */
+    &__cta.at-btn-group {
+
+        .at-btn-circle,
+        .at-btn {
+            background-color: var(--at-theme-primary);
+            color: var(--at-common-white);
+            border-color: var(--at-theme-primary);
+        }
+
+        .at-btn:hover,
+        .at-btn:focus-visible,
+        .at-btn-circle:hover,
+        .at-btn-circle:focus-visible {
+            background-color: var(--at-theme-primary);
+            color: var(--at-common-white);
+            opacity: 0.92;
+        }
+    }
+
+    /* ---- Phases row ---- */
+    &__phases {
+        --bs-gutter-x: 0;
+    }
+
+    /* Vertical separators between phases (skip first column at the active breakpoint). */
+    &__phase {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        height: 100%;
+        padding: 40px 32px;
+        color: var(--at-common-white);
+        border-left: 1px solid var(--at-neutral-800);
+        transition:
+            background-color 0.4s ease,
+            transform 0.4s ease;
+
+        @media #{$sm}, #{$xs} {
+            padding: 32px 24px;
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.025);
+            transform: translateY(-5px);
+        }
+    }
+
+    /* Drop the left border on the first phase per row at each breakpoint */
+    .row-cols-xxl-5 > .col:nth-child(5n+1) .sec-5-home-15__phase {
+        @media #{$x4l}, #{$x3l}, #{$xxl} {
+            border-left: 0;
+        }
+    }
+
+    .row-cols-xl-5 > .col:nth-child(5n+1) .sec-5-home-15__phase {
+        @media #{$xl} {
+            border-left: 0;
+        }
+    }
+
+    .row-cols-lg-3 > .col:nth-child(3n+1) .sec-5-home-15__phase {
+        @media #{$lg} {
+            border-left: 0;
+        }
+    }
+
+    .row-cols-md-2 > .col:nth-child(2n+1) .sec-5-home-15__phase {
+        @media #{$md}, #{$sm} {
+            border-left: 0;
+        }
+    }
+
+    .row-cols-1 > .col .sec-5-home-15__phase {
+        @media #{$xs} {
+            border-left: 0;
+            border-top: 1px solid var(--at-neutral-800);
+        }
+    }
+
+    .row-cols-1 > .col:first-child .sec-5-home-15__phase {
+        @media #{$xs} {
+            border-top: 0;
+        }
+    }
+
+    /* Phase dot — default = white circle; on phase hover or via --active modifier
+       it morphs into an orange square (process "active" indicator). */
+    &__phase-dot {
+        width: 12px;
+        height: 12px;
+        background-color: var(--at-common-white);
+        border-radius: 50%;
+        margin-bottom: 32px;
+        flex-shrink: 0;
+        transition:
+            background-color 0.4s ease,
+            border-radius 0.4s ease,
+            transform 0.4s ease;
+
+        &--active {
+            border-radius: 0;
+            background-color: var(--at-theme-primary);
+        }
+    }
+
+    &__phase:hover &__phase-dot {
+        background-color: var(--at-theme-primary);
+        border-radius: 0;
+        transform: scale(1.1);
+    }
+
+    &__phase-num {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 64px;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: var(--at-common-white);
+        margin-bottom: 20px;
+
+        @media #{$xl} {
+            font-size: 56px;
+        }
+
+        @media #{$lg}, #{$md} {
+            font-size: 52px;
+        }
+    }
+
+    &__phase-title {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 1.2;
+        letter-spacing: -0.013em;
+        color: var(--at-common-white);
+        margin-bottom: 12px;
+
+        @media #{$xs} {
+            font-size: 20px;
+        }
+    }
+
+    &__phase-desc {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--at-common-white);
+        margin-bottom: 24px;
+        max-width: 280px;
+    }
+
+    &__phase-duration {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 1;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--at-theme-primary);
+        margin-bottom: 20px;
+    }
+
+    /* Hidden by default; revealed on phase card hover with a soft slide-up + fade. */
+    &__phase-thumb {
+        position: relative;
+        width: 100%;
+        max-width: 280px;
+        aspect-ratio: 280 / 84;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: var(--at-neutral-100);
+        margin-top: auto;
+        opacity: 0;
+        transform: translateY(10px);
+        transition:
+            opacity 0.45s ease,
+            transform 0.45s ease;
+    }
+
+    &__phase:hover &__phase-thumb {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &__phase-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.05);
+        transition: transform 0.6s ease;
+    }
+
+    &__phase:hover &__phase-img {
+        transform: scale(1);
+    }
+}

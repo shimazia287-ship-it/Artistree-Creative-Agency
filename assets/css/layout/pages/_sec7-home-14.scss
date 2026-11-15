@@ -1,0 +1,387 @@
+@use '../../utils' as *;
+
+/* ===========================================================
+   Section 7 — Home 14 (Client Stories / Testimonial)
+   =========================================================== */
+
+.sec-7-home-14 {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    background-color: var(--at-neutral-0);
+    border-top: 1px solid var(--at-neutral-200);
+
+    @media #{$xxl}, #{$xl} {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @media #{$lg}, #{$md} {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @media #{$sm}, #{$xs} {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+
+    &__inner {
+        max-width: 1920px;
+        margin: 0 auto;
+        padding-left: 100px;
+        padding-right: 100px;
+
+        @media #{$x4l}, #{$x3l}, #{$xxl} {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        @media #{$xl} {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @media #{$lg}, #{$md} {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        @media #{$sm}, #{$xs} {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+
+    /* Header */
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        margin-bottom: 64px;
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 28px;
+        }
+    }
+
+    &__head-left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__head-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+    }
+
+    &__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--at-ff-body);
+        font-size: 11px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    &__eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--at-neutral-950);
+    }
+
+    &__eyebrow-key {
+        font-weight: 600;
+        color: var(--at-neutral-950);
+        letter-spacing: 2px;
+    }
+
+    &__eyebrow-meta {
+        font-weight: 400;
+        color: var(--at-neutral-500);
+        letter-spacing: 1.2px;
+    }
+
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: clamp(36px, 4.8vw, 80px);
+        line-height: 1;
+        letter-spacing: -0.025em;
+        color: var(--at-neutral-950);
+
+        @media #{$xs} {
+            br {
+                display: none;
+            }
+        }
+    }
+
+    &__nav {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__nav-count {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 1.4px;
+        color: var(--at-neutral-950);
+    }
+
+    &__nav-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        background-color: var(--at-neutral-0);
+        border: 1px solid var(--at-neutral-950);
+        color: var(--at-neutral-950);
+
+        &--next {
+            background-color: var(--at-neutral-950);
+            color: var(--at-neutral-0);
+            border-color: var(--at-neutral-950);
+        }
+
+        &:hover {
+            background-color: var(--at-neutral-950);
+            color: var(--at-neutral-0);
+        }
+    }
+
+    &__head-link {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--at-neutral-950);
+        text-decoration: none;
+        transition: opacity 0.25s ease;
+
+        &:hover {
+            opacity: 0.7;
+            color: var(--at-neutral-950);
+        }
+    }
+
+    /* Main */
+    &__main {
+        display: grid;
+        grid-template-columns: 640px 1fr;
+        gap: 80px;
+        align-items: stretch;
+
+        @media #{$x3l}, #{$xxl} {
+            grid-template-columns: 520px 1fr;
+            gap: 60px;
+        }
+
+        @media #{$xl} {
+            grid-template-columns: 440px 1fr;
+            gap: 48px;
+        }
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
+    /* Portrait */
+    &__portrait {
+        position: relative;
+        aspect-ratio: 640 / 720;
+        overflow: hidden;
+        border-radius: 4px;
+        background-color: var(--at-neutral-900);
+    }
+
+    &__portrait-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+    }
+
+    &__portrait-overlay {
+        position: absolute;
+        inset: 0;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--at-common-white);
+        pointer-events: none;
+
+        @media #{$sm}, #{$xs} {
+            padding: 20px;
+        }
+    }
+
+    &__portrait-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 10px;
+        color: var(--at-common-white);
+    }
+
+    &__portrait-tag {
+        letter-spacing: 2px;
+    }
+
+    &__portrait-counter {
+        letter-spacing: 0.4px;
+    }
+
+    &__portrait-bot {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        color: var(--at-common-white);
+    }
+
+    &__portrait-name {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -0.3px;
+        line-height: 1.1;
+    }
+
+    &__portrait-role {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        opacity: 0.7;
+    }
+
+    /* Quote */
+    &__quote {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__quote-mark {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 200px;
+        line-height: 0.8;
+        color: var(--at-neutral-950);
+        margin-bottom: 16px;
+
+        @media #{$md}, #{$sm}, #{$xs} {
+            font-size: 140px;
+        }
+    }
+
+    &__stars {
+        display: inline-flex;
+        gap: 4px;
+        margin-bottom: 28px;
+    }
+
+    &__star {
+        width: 18px;
+        height: 18px;
+        background-color: var(--at-neutral-950);
+        border-radius: 3px;
+        clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    &__quote-text {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 34px;
+        line-height: 1.35;
+        letter-spacing: -0.5px;
+        color: var(--at-neutral-950);
+        padding: 0;
+        border: 0;
+        margin-bottom: 40px;
+
+        @media #{$lg} {
+            font-size: 28px;
+        }
+
+        @media #{$md} {
+            font-size: 24px;
+        }
+
+        @media #{$sm}, #{$xs} {
+            font-size: 20px;
+        }
+    }
+
+    &__project {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--at-neutral-200);
+        width: 100%;
+
+        @media #{$sm}, #{$xs} {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+    }
+
+    &__project-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__project-title {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+        color: var(--at-neutral-950);
+    }
+
+    &__project-sub {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 11px;
+        letter-spacing: 0.4px;
+        color: var(--at-neutral-500);
+    }
+
+    &__project-link {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--at-neutral-950);
+        text-decoration: none;
+        transition: opacity 0.25s ease;
+
+        &:hover {
+            opacity: 0.7;
+            color: var(--at-neutral-950);
+        }
+    }
+}

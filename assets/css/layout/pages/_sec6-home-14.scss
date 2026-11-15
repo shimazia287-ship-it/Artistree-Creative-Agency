@@ -1,0 +1,308 @@
+@use '../../utils' as *;
+
+/* ===========================================================
+   Section 6 — Home 14 (Our Process)
+   =========================================================== */
+
+.sec-6-home-14 {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    background-color: var(--at-neutral-0);
+
+    @media #{$xxl}, #{$xl} {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @media #{$lg}, #{$md} {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @media #{$sm}, #{$xs} {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+
+    &__inner {
+        max-width: 1920px;
+        margin: 0 auto;
+        padding-left: 100px;
+        padding-right: 100px;
+
+        @media #{$x4l}, #{$x3l}, #{$xxl} {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        @media #{$xl} {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        @media #{$lg}, #{$md} {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        @media #{$sm}, #{$xs} {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+    }
+
+    /* Header */
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        margin-bottom: 64px;
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 28px;
+        }
+    }
+
+    &__head-left {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &__head-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 16px;
+        max-width: 380px;
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            align-items: flex-start;
+            max-width: none;
+        }
+    }
+
+    &__head-copy {
+        font-family: var(--at-ff-body);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--at-neutral-500);
+        text-align: right;
+
+        @media #{$lg}, #{$md}, #{$sm}, #{$xs} {
+            text-align: left;
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+    &__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--at-ff-body);
+        font-size: 11px;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    &__eyebrow-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--at-neutral-950);
+    }
+
+    &__eyebrow-key {
+        font-weight: 600;
+        color: var(--at-neutral-950);
+        letter-spacing: 2px;
+    }
+
+    &__eyebrow-meta {
+        font-weight: 400;
+        color: var(--at-neutral-500);
+        letter-spacing: 1.2px;
+    }
+
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: clamp(40px, 5vw, 84px);
+        line-height: 1;
+        letter-spacing: -0.025em;
+        color: var(--at-neutral-950);
+
+        @media #{$xs} {
+            br {
+                display: none;
+            }
+        }
+    }
+
+    &__btn-primary {
+        display: inline-flex;
+        align-items: stretch;
+        color: var(--at-neutral-0);
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+
+        .sec-6-home-14__btn-label {
+            display: inline-flex;
+            align-items: center;
+            background: var(--at-neutral-900);
+            color: var(--at-neutral-0);
+            padding: 14px 27px;
+            border-radius: 50px 0 0 50px;
+            font-family: var(--at-ff-body);
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .sec-6-home-14__btn-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--at-neutral-900);
+            color: var(--at-neutral-0);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 2px;
+        }
+
+        &:hover {
+            opacity: 0.85;
+            color: var(--at-neutral-0);
+        }
+    }
+
+    /* Phases */
+    &__phases {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        counter-reset: phase;
+
+        @media #{$xl}, #{$lg} {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        @media #{$md} {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @media #{$sm}, #{$xs} {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__phase {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 40px 32px;
+        border-left: 1px solid var(--at-neutral-200);
+        min-height: 420px;
+
+        &:first-child {
+            border-left: 0;
+        }
+
+        &:hover .sec-6-home-14__phase-dot {
+            border-radius: 0;
+            background-color: var(--at-theme-primary);
+        }
+
+        @media #{$xl}, #{$lg} {
+            padding: 32px 24px;
+            gap: 16px;
+            min-height: 360px;
+        }
+
+        @media #{$md} {
+            min-height: 0;
+            padding: 28px 20px;
+
+            &:nth-child(odd) {
+                border-left: 0;
+            }
+
+            &:nth-child(n+3) {
+                border-top: 1px solid var(--at-neutral-200);
+            }
+        }
+
+        @media #{$sm}, #{$xs} {
+            min-height: 0;
+            padding: 24px 0;
+            border-left: 0;
+            border-top: 1px solid var(--at-neutral-200);
+
+            &:first-child {
+                border-top: 0;
+                padding-top: 0;
+            }
+        }
+    }
+
+    &__phase-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--at-neutral-950);
+        transition: border-radius 0.3s ease, background-color 0.3s ease;
+    }
+
+    &__phase-num {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 64px;
+        line-height: 1;
+        letter-spacing: -2px;
+        color: var(--at-neutral-950);
+
+        @media #{$xl}, #{$lg} {
+            font-size: 52px;
+        }
+
+        @media #{$sm}, #{$xs} {
+            font-size: 44px;
+        }
+    }
+
+    &__phase-name {
+        font-family: var(--at-ff-heading);
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -0.3px;
+        line-height: 1.1;
+        color: var(--at-neutral-950);
+        margin-top: -8px;
+    }
+
+    &__phase-desc {
+        font-family: var(--at-ff-body);
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--at-neutral-500);
+    }
+
+    &__phase-time {
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 11px;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+        color: var(--at-neutral-500);
+        margin-top: auto;
+    }
+}

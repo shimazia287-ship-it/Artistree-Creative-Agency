@@ -1,0 +1,1482 @@
+/* Slideshow — 6 layout variants in one partial.
+   Wrapper: .slideshow
+     - default (no modifier)        → Horizontal Cinema
+     - .is-split                    → Editorial Split + Orbital
+     - .is-stack                    → Typographic Stack + bottom progress bar
+     - .is-curtain                  → Diagonal Curtain Reveal
+     - .is-zstack                   → 3D Z-Stack Reveal
+     - .is-vista                    → Slideshow-faithful vertical scroll + central minimap
+   All rules scoped under the wrapper to avoid global pollution.
+*/
+
+.slideshow {
+   /* Common shell --------------------------------------------------------- */
+   position: fixed;
+   inset: 0;
+   width: 100%;
+   height: 100svh;
+   overflow: hidden;
+   font-family: inherit;
+
+   *,
+   *::before,
+   *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+   }
+
+   button {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+   }
+
+   a {
+      color: inherit;
+      text-decoration: none;
+   }
+
+   .project-list {
+      position: relative;
+      width: 100%;
+      height: 100%;
+   }
+
+   /* Cinema — wrapper-level palette (only when no other variant active).
+      Uses Orisa's themed CSS vars so colors invert with the dark-mode toggle. */
+   &:not(.is-split):not(.is-stack):not(.is-horizontal) {
+      background-color: var(--at-neutral-50);
+      color: var(--at-neutral-950);
+   }
+
+   /* ===================================================================== *
+    * CINEMA (default) — horizontal slides + side rail
+    * ===================================================================== */
+
+   .project {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 4rem;
+      padding: 7rem 8rem 4rem 6rem;
+      will-change: transform;
+   }
+
+   .project-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-height: calc(100svh - 11rem);
+      overflow: hidden;
+   }
+
+   .project-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.5);
+      will-change: transform;
+   }
+
+   .project-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+   }
+
+   .project-num {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(var(--at-common-white-rgb), 0.4);
+   }
+
+   .project-title {
+      font-size: clamp(2.75rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 12ch;
+   }
+
+   .project-meta-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      gap: 1rem;
+   }
+
+   .rail {
+      position: absolute;
+      top: 50%;
+      right: 1.5rem;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 360px;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+      z-index: 5;
+   }
+
+   .rail-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+   }
+
+   .rail-item {
+      position: absolute;
+      top: calc(50% - 30px);
+      left: 0;
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0 0.5rem;
+      will-change: transform;
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+   }
+
+   .rail-item.is-active {
+      opacity: 1;
+   }
+
+   .rail-thumb {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(var(--at-common-white-rgb), 0.2);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+   }
+
+   .rail-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+   }
+
+   .rail-item.is-active .rail-thumb {
+      border-color: var(--at-common-white);
+      transform: scale(1.06);
+   }
+
+   .rail-index {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      opacity: 0.8;
+   }
+
+   .rail-item.is-active .rail-index {
+      opacity: 1;
+   }
+
+   /* Cinema responsive */
+   @media (max-width: 991px) {
+      .project {
+         grid-template-columns: 1fr;
+         grid-template-rows: minmax(0, 1fr) auto;
+         gap: 1.5rem;
+         padding: 5rem 5rem 2rem 1.25rem;
+      }
+
+      .project-frame {
+         max-height: 55vh;
+      }
+
+      .project-title {
+         font-size: clamp(2rem, 11vw, 3.5rem);
+      }
+
+      .rail {
+         right: 0.5rem;
+         width: 56px;
+         height: 280px;
+      }
+
+      .rail-thumb {
+         width: 34px;
+         height: 34px;
+      }
+   }
+
+   @media (max-width: 575px) {
+      .project {
+         padding: 4.5rem 4rem 1.5rem 1rem;
+         gap: 1rem;
+      }
+
+      .project-frame {
+         max-height: 50vh;
+      }
+
+      .project-title {
+         font-size: clamp(1.75rem, 12vw, 2.75rem);
+      }
+
+      .project-num,
+      .project-meta-bottom {
+         font-size: 0.65rem;
+      }
+
+      .rail {
+         right: 0.25rem;
+         width: 48px;
+         height: 240px;
+      }
+
+      .rail-thumb {
+         width: 30px;
+         height: 30px;
+      }
+
+      .rail-index {
+         font-size: 0.6rem;
+      }
+   }
+
+   /* ===================================================================== *
+    * SPLIT — editorial 35/65, orbital nav corner
+    * ===================================================================== */
+   &.is-split {
+      background-color: var(--at-neutral-50);
+      color: var(--at-neutral-950);
+
+      .split-project {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100svh;
+         display: grid;
+         grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+         gap: 4rem;
+         padding: 6rem 6rem 4rem;
+         will-change: transform;
+      }
+
+      .split-frame {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         max-height: calc(100svh - 10rem);
+         overflow: hidden;
+      }
+
+      .split-frame img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transform: scale(1.5);
+         will-change: transform;
+      }
+
+      .split-meta {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         gap: 1.5rem;
+         max-width: 640px;
+         padding-right: 7rem;
+      }
+
+      .split-num {
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.25em;
+         text-transform: uppercase;
+         opacity: 0.6;
+      }
+
+      .split-title {
+         font-size: clamp(2.5rem, 6vw, 5.5rem);
+         line-height: 0.95;
+         font-weight: 600;
+         letter-spacing: -0.03em;
+         text-transform: uppercase;
+      }
+
+      .split-info {
+         display: flex;
+         gap: 2rem;
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.2em;
+         text-transform: uppercase;
+         opacity: 0.7;
+         padding-top: 0.75rem;
+         border-top: 1px solid rgba(var(--at-common-black-rgb), 0.2);
+      }
+
+      .split-desc {
+         font-size: 1rem;
+         line-height: 1.55;
+         max-width: 520px;
+         color: rgba(var(--at-common-black-rgb), 0.75);
+      }
+
+      /* Orbital corner navigator */
+      .orbital {
+         position: absolute;
+         top: 6rem;
+         right: 2.5rem;
+         width: 140px;
+         height: 140px;
+         z-index: 5;
+      }
+
+      .orbital-ring {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 110px;
+         height: 110px;
+         border: 1px solid rgba(var(--at-common-black-rgb), 0.3);
+         border-radius: 50%;
+         transform: translate(-50%, -50%);
+      }
+
+      .orbital-dot {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 10px;
+         height: 10px;
+         border-radius: 50%;
+         background-color: rgba(var(--at-common-black-rgb), 0.4);
+         transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .orbital-dot.is-active {
+         background-color: var(--at-neutral-950);
+      }
+
+      .orbital-indicator {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         width: 55px;
+         height: 1px;
+         background-color: var(--at-neutral-950);
+         transform-origin: 0 50%;
+         transform: translateY(-50%) rotate(-90deg);
+         pointer-events: none;
+      }
+
+      .orbital-indicator::after {
+         content: "";
+         position: absolute;
+         right: -4px;
+         top: 50%;
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background-color: var(--at-neutral-950);
+         transform: translateY(-50%);
+      }
+
+      .orbital-label {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         display: flex;
+         gap: 0.25rem;
+         font-size: 0.7rem;
+         font-weight: 600;
+         letter-spacing: 0.15em;
+         text-transform: uppercase;
+         pointer-events: none;
+      }
+
+      .orbital-current {
+         color: var(--at-neutral-950);
+      }
+
+      .orbital-total {
+         opacity: 0.45;
+      }
+
+      @media (max-width: 991px) {
+         .split-project {
+            grid-template-columns: 1fr;
+            grid-template-rows: 40vh auto;
+            gap: 1.5rem;
+            padding: 5rem 1.5rem 2rem;
+         }
+
+         .split-meta {
+            padding-right: 0;
+         }
+
+         .split-title {
+            font-size: clamp(2rem, 9vw, 3.25rem);
+         }
+
+         .orbital {
+            top: 4.5rem;
+            right: 1rem;
+            width: 100px;
+            height: 100px;
+         }
+
+         .orbital-ring {
+            width: 78px;
+            height: 78px;
+         }
+
+         .orbital-indicator {
+            width: 39px;
+         }
+      }
+
+      @media (max-width: 575px) {
+         .split-project {
+            padding: 4rem 1rem 1.5rem;
+         }
+
+         .split-title {
+            font-size: clamp(1.75rem, 10vw, 2.75rem);
+         }
+
+         .split-desc {
+            font-size: 0.9rem;
+         }
+
+         .orbital {
+            top: 4rem;
+            right: 0.5rem;
+            width: 80px;
+            height: 80px;
+         }
+
+         .orbital-ring {
+            width: 62px;
+            height: 62px;
+         }
+
+         .orbital-indicator {
+            width: 31px;
+         }
+
+         .orbital-dot {
+            width: 8px;
+            height: 8px;
+         }
+
+         .orbital-label {
+            font-size: 0.6rem;
+         }
+      }
+   }
+
+   /* ===================================================================== *
+    * STACK — typographic backdrop, image accent, bottom progress bar
+    * ===================================================================== */
+   &.is-stack {
+      background-color: var(--at-neutral-50);
+      color: var(--at-neutral-950);
+
+      .stack-project {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100svh;
+         will-change: transform;
+         overflow: hidden;
+      }
+
+      .stack-num-bg {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         font-size: clamp(20rem, 75vh, 75vh);
+         line-height: 0.85;
+         font-weight: 800;
+         color: transparent;
+         -webkit-text-stroke: 2px rgba(var(--at-common-black-rgb), 0.18);
+         letter-spacing: -0.05em;
+         pointer-events: none;
+         user-select: none;
+         white-space: nowrap;
+      }
+
+      .stack-frame {
+         position: absolute;
+         top: 50%;
+         right: 12vw;
+         transform: translateY(-50%);
+         width: 36vw;
+         height: 60vh;
+         max-width: 480px;
+         max-height: 600px;
+         overflow: hidden;
+      }
+
+      .stack-frame img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transform: scale(1.5);
+         will-change: transform;
+      }
+
+      .stack-overlay {
+         position: absolute;
+         left: 8vw;
+         bottom: 14vh;
+         display: flex;
+         flex-direction: column;
+         gap: 1rem;
+         max-width: 50vw;
+         z-index: 2;
+      }
+
+      .stack-title {
+         font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+         line-height: 0.95;
+         font-weight: 600;
+         letter-spacing: -0.03em;
+         text-transform: uppercase;
+      }
+
+      .stack-info {
+         display: flex;
+         gap: 1.5rem;
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.25em;
+         text-transform: uppercase;
+         opacity: 0.7;
+      }
+
+      /* Bottom progress bar */
+      .stack-progress {
+         position: absolute;
+         bottom: 4rem;
+         left: 50%;
+         transform: translateX(-50%);
+         width: 320px;
+         height: 1px;
+         background-color: rgba(var(--at-common-black-rgb), 0.2);
+         z-index: 5;
+      }
+
+      .stack-progress-fill {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 100%;
+         background-color: var(--at-neutral-950);
+      }
+
+      .stack-progress-dot {
+         position: absolute;
+         top: 50%;
+         transform: translate(-50%, -50%);
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background-color: rgba(var(--at-common-black-rgb), 0.35);
+         transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .stack-progress-dot.is-active {
+         background-color: var(--at-neutral-950);
+         transform: translate(-50%, -50%) scale(1.5);
+      }
+
+      .stack-progress-dot::before {
+         content: attr(data-num);
+         position: absolute;
+         top: -1.6rem;
+         left: 50%;
+         transform: translateX(-50%);
+         font-size: 0.65rem;
+         font-weight: 600;
+         letter-spacing: 0.15em;
+         opacity: 0;
+         transition: opacity 0.3s ease;
+         pointer-events: none;
+      }
+
+      .stack-progress-dot.is-active::before,
+      .stack-progress-dot:hover::before {
+         opacity: 0.8;
+      }
+
+      @media (max-width: 991px) {
+         .stack-num-bg {
+            font-size: clamp(14rem, 55vh, 55vh);
+         }
+
+         .stack-frame {
+            right: 6vw;
+            width: 50vw;
+            height: 50vh;
+         }
+
+         .stack-overlay {
+            left: 6vw;
+            bottom: 16vh;
+            max-width: 75vw;
+         }
+
+         .stack-title {
+            font-size: clamp(1.75rem, 8vw, 3rem);
+         }
+
+         .stack-progress {
+            width: 240px;
+            bottom: 3rem;
+         }
+      }
+
+      @media (max-width: 575px) {
+         .stack-num-bg {
+            font-size: clamp(10rem, 40vh, 40vh);
+            -webkit-text-stroke-width: 1.5px;
+         }
+
+         .stack-frame {
+            right: 50%;
+            top: 35vh;
+            transform: translate(50%, -50%);
+            width: 70vw;
+            height: 38vh;
+         }
+
+         .stack-overlay {
+            left: 1.25rem;
+            bottom: 8vh;
+            max-width: calc(100vw - 2.5rem);
+         }
+
+         .stack-title {
+            font-size: clamp(1.5rem, 9vw, 2.25rem);
+         }
+
+         .stack-progress {
+            width: 180px;
+            bottom: 2.5rem;
+         }
+
+         .stack-progress-dot {
+            width: 6px;
+            height: 6px;
+         }
+      }
+   }
+
+   /* ===================================================================== *
+    * CURTAIN — diagonal clip-path wipe, no slide translate
+    * ===================================================================== */
+   &.is-curtain {
+      background-color: var(--at-neutral-50);
+      color: var(--at-neutral-950);
+
+      .curtain-stage {
+         position: relative;
+         width: 100%;
+         height: 100%;
+      }
+
+      .curtain-slot {
+         position: absolute;
+         inset: 0;
+         will-change: clip-path;
+         overflow: hidden;
+      }
+
+      .curtain-img {
+         position: absolute;
+         inset: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+
+      .curtain-overlay {
+         position: absolute;
+         left: 8vw;
+         bottom: 12vh;
+         max-width: 50vw;
+         display: flex;
+         flex-direction: column;
+         gap: 1.25rem;
+         z-index: 2;
+      }
+
+      .curtain-num {
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.25em;
+         text-transform: uppercase;
+         opacity: 0.85;
+         color: #fff;
+      }
+
+      .curtain-title {
+         font-size: clamp(2.5rem, 7vw, 6rem);
+         line-height: 0.95;
+         font-weight: 700;
+         letter-spacing: -0.03em;
+         text-transform: uppercase;
+         max-width: 14ch;
+         color: #fff;
+      }
+
+      .curtain-meta {
+         display: flex;
+         gap: 2rem;
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.2em;
+         text-transform: uppercase;
+         opacity: 0.85;
+         color: #fff;
+      }
+
+      /* Diagonal slits — left edge */
+      .curtain-nav {
+         position: absolute;
+         left: 2.5rem;
+         top: 50%;
+         transform: translateY(-50%);
+         display: flex;
+         flex-direction: column;
+         gap: 0.75rem;
+         z-index: 5;
+         color: #fff;
+      }
+
+      .curtain-slit {
+         display: block;
+         width: 30px;
+         height: 3px;
+         background-color: rgba(var(--at-common-black-rgb), 0.4);
+         transform: skewX(-30deg);
+         transition: width 0.3s ease, background-color 0.3s ease;
+         padding: 0;
+      }
+
+      .curtain-slit.is-active {
+         width: 60px;
+         background-color: #fff;
+      }
+
+      @media (max-width: 991px) {
+         .curtain-overlay {
+            left: 1.5rem;
+            bottom: 6vh;
+            max-width: 80vw;
+         }
+
+         .curtain-title {
+            font-size: clamp(1.75rem, 9vw, 3.25rem);
+         }
+
+         .curtain-nav {
+            left: 1rem;
+            gap: 0.5rem;
+         }
+
+         .curtain-slit {
+            width: 24px;
+         }
+
+         .curtain-slit.is-active {
+            width: 48px;
+         }
+      }
+
+      @media (max-width: 575px) {
+         .curtain-overlay {
+            left: 1rem;
+            bottom: 4vh;
+            gap: 0.75rem;
+         }
+
+         .curtain-title {
+            font-size: clamp(1.5rem, 11vw, 2.5rem);
+         }
+
+         .curtain-meta {
+            gap: 1rem;
+            font-size: 0.65rem;
+         }
+      }
+   }
+
+   /* ===================================================================== *
+    * Z-STACK — 3D perspective stack reveal
+    * ===================================================================== */
+   &.is-zstack {
+      background-color: var(--at-neutral-50);
+      color: var(--at-neutral-950);
+
+      .project-list {
+         perspective: 1500px;
+         perspective-origin: center;
+         transform-style: preserve-3d;
+      }
+
+      .zstack-project {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         backface-visibility: hidden;
+         will-change: transform, opacity;
+      }
+
+      .zstack-card {
+         width: 70vw;
+         max-width: 1100px;
+         height: 75vh;
+         max-height: 720px;
+         display: flex;
+         flex-direction: column;
+         gap: 1.25rem;
+      }
+
+      .zstack-frame {
+         position: relative;
+         width: 100%;
+         flex: 1;
+         overflow: hidden;
+      }
+
+      .zstack-frame img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
+
+      .zstack-caption {
+         display: flex;
+         flex-direction: column;
+         gap: 0.5rem;
+      }
+
+      .zstack-caption-row {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.2em;
+         text-transform: uppercase;
+         opacity: 0.7;
+      }
+
+      .zstack-title {
+         font-size: clamp(1.5rem, 3vw, 2.5rem);
+         font-weight: 600;
+         line-height: 1;
+         letter-spacing: -0.02em;
+         text-transform: uppercase;
+      }
+
+      /* Right-side index navigator */
+      .zstack-index {
+         position: absolute;
+         right: 3rem;
+         top: 50%;
+         transform: translateY(-50%);
+         display: flex;
+         flex-direction: column;
+         gap: 0.6rem;
+         z-index: 10;
+      }
+
+      .zstack-index-btn {
+         font-size: 0.85rem;
+         font-weight: 600;
+         letter-spacing: 0.2em;
+         color: rgba(var(--at-common-black-rgb), 0.35);
+         transition: color 0.3s ease, transform 0.3s ease, font-size 0.3s ease;
+         text-align: right;
+         padding: 0.25rem 0;
+      }
+
+      .zstack-index-btn.is-active {
+         color: var(--at-neutral-950);
+         font-size: 1.05rem;
+         font-weight: 700;
+         transform: scale(1.1);
+      }
+
+      @media (max-width: 991px) {
+         .zstack-card {
+            width: 80vw;
+            height: 70vh;
+         }
+
+         .zstack-index {
+            right: 1rem;
+         }
+      }
+
+      @media (max-width: 575px) {
+         .zstack-card {
+            width: 88vw;
+            height: 65vh;
+            gap: 0.75rem;
+         }
+
+         .zstack-title {
+            font-size: clamp(1.25rem, 5vw, 1.75rem);
+         }
+
+         .zstack-index {
+            right: 0.5rem;
+            gap: 0.4rem;
+         }
+
+         .zstack-index-btn {
+            font-size: 0.7rem;
+         }
+
+         .zstack-index-btn.is-active {
+            font-size: 0.85rem;
+         }
+      }
+   }
+
+   /* ===================================================================== *
+    * VISTA — Slideshow-faithful vertical infinite parallax + central minimap
+    * ===================================================================== */
+   &.is-vista {
+      background-color: var(--at-neutral-50);
+      color: var(--at-neutral-950);
+
+      .vista-project {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100svh;
+         display: block;
+         padding: 0;
+         will-change: transform;
+         overflow: hidden;
+      }
+
+      .vista-project img {
+         position: relative;
+         display: block;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transform: scale(1.5);
+         will-change: transform;
+      }
+
+      /* Central minimap card */
+      .minimap {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 75%;
+         max-width: 720px;
+         height: calc(250px + 3rem);
+         background-color: var(--at-common-white);
+         color: var(--at-common-black);
+         padding: 1.5rem;
+         overflow: hidden;
+         z-index: 5;
+      }
+
+      .minimap-wrapper {
+         position: relative;
+         width: 100%;
+         height: 100%;
+      }
+
+      .minimap-img-preview {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         width: 35%;
+         height: 100%;
+         overflow: hidden;
+      }
+
+      .minimap-img-item {
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         will-change: transform;
+         overflow: hidden;
+      }
+
+      .minimap-img-item img {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transform: scale(1.5);
+         will-change: transform;
+      }
+
+      .minimap-info-list {
+         position: relative;
+         width: 100%;
+         height: 100%;
+         overflow: hidden;
+      }
+
+      .minimap-item-info {
+         position: absolute;
+         width: 100%;
+         height: 250px;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         will-change: transform;
+      }
+
+      .minimap-item-info-row {
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         padding: 0.5rem;
+      }
+
+      .minimap-item-info p {
+         margin: 0;
+         text-transform: uppercase;
+         font-size: 0.85rem;
+         font-weight: 600;
+         letter-spacing: -0.0125rem;
+      }
+
+      /* Bottom-center pagination dots */
+      .vista-nav {
+         position: absolute;
+         bottom: 2.5rem;
+         left: 50%;
+         transform: translateX(-50%);
+         display: flex;
+         gap: 0.75rem;
+         z-index: 6;
+      }
+
+      .vista-nav-dot {
+         width: 10px;
+         height: 10px;
+         border-radius: 50%;
+         border: 1px solid #ffffff;
+         background-color: transparent;
+         cursor: pointer;
+         padding: 0;
+         transition: background-color 0.3s ease, transform 0.3s ease;
+         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+      }
+
+      .vista-nav-dot.is-active {
+         background-color: #ffffff;
+         transform: scale(1.35);
+      }
+
+      /* Side buttons — Next (left) / Preview (right) */
+      .vista-next,
+      .vista-prev {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         display: flex;
+         align-items: center;
+         gap: 1.25rem;
+         background: transparent;
+         border: none;
+         padding: 1rem;
+         color: #ffffff;
+         font-size: 0.75rem;
+         font-weight: 600;
+         letter-spacing: 0.25em;
+         text-transform: uppercase;
+         cursor: pointer;
+         z-index: 6;
+         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+         transition: gap 0.3s ease, opacity 0.3s ease;
+      }
+
+      .vista-next {
+         left: 2.5rem;
+      }
+
+      .vista-prev {
+         right: 2.5rem;
+      }
+
+      .vista-next:hover,
+      .vista-prev:hover {
+         gap: 1.6rem;
+      }
+
+      .vista-arrow {
+         display: block;
+         width: 80px;
+         height: 10px;
+         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+         flex-shrink: 0;
+      }
+
+      @media (max-width: 991px) {
+         .minimap {
+            width: 90%;
+         }
+
+         .minimap-img-preview {
+            left: unset;
+            right: 0;
+            transform: translate(0, -50%);
+         }
+
+         .minimap-item-info-row {
+            flex-direction: column;
+            gap: 0.25rem;
+         }
+
+         .vista-next {
+            left: 1rem;
+         }
+
+         .vista-prev {
+            right: 1rem;
+         }
+
+         .vista-next,
+         .vista-prev {
+            gap: 0.6rem;
+            padding: 0.5rem;
+            font-size: 0.65rem;
+         }
+
+         .vista-arrow {
+            width: 40px;
+         }
+      }
+
+      @media (max-width: 575px) {
+         .minimap {
+            width: 92%;
+            padding: 1rem;
+         }
+
+         .minimap-item-info p {
+            font-size: 0.7rem;
+         }
+
+         .vista-next,
+         .vista-prev {
+            display: none;
+         }
+      }
+   }
+
+   /* ===================================================================== *
+    * HORIZONTAL — infinite ribbon of pre-scaled images, parallax follows
+    * each slide's distance from viewport center. Slides are JS-generated;
+    * .horizon-track is the single transformed element.
+    * ===================================================================== */
+   &.is-horizontal {
+      user-select: none;
+      cursor: grab;
+
+      &:active {
+         cursor: grabbing;
+      }
+
+      .horizon-track {
+         position: absolute;
+         inset: 0;
+         width: 100%;
+         height: 100%;
+         display: flex;
+         will-change: transform;
+      }
+
+      .horizon-slide {
+         flex-shrink: 0;
+         width: 350px;
+         height: 500px;
+         margin: 0 20px;
+         position: relative;
+         top: 50%;
+         transform: translateY(-50%);
+         display: flex;
+         flex-direction: column;
+         cursor: pointer;
+         overflow: visible;
+      }
+
+      .horizon-slide.is-mobile {
+         width: 175px;
+         height: 250px;
+      }
+
+      .horizon-frame {
+         width: 100%;
+         height: 100%;
+         flex: 1;
+         overflow: hidden;
+      }
+
+      .horizon-frame img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         transform: scale(2.25);
+         will-change: transform;
+         user-select: none;
+         pointer-events: none;
+      }
+
+      .horizon-overlay {
+         position: absolute;
+         left: 0;
+         right: 0;
+         bottom: -1.75rem;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         gap: 1rem;
+         opacity: 1;
+         pointer-events: none;
+         z-index: 10;
+      }
+
+      .horizon-title {
+         margin: 0;
+         font-size: 0.8rem;
+         font-weight: 500;
+         letter-spacing: 0.05em;
+         text-transform: uppercase;
+      }
+
+      .horizon-arrow {
+         flex-shrink: 0;
+         width: 16px;
+         height: 16px;
+         display: inline-flex;
+      }
+
+      .horizon-arrow svg {
+         width: 100%;
+         height: 100%;
+      }
+
+      /* Prev / Next circular buttons — vertically centered on the sides */
+      .horizon-nav {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         width: 56px;
+         height: 56px;
+         border-radius: 50%;
+         border: 1px solid rgba(var(--at-common-white-rgb), 0.35);
+         background-color: rgba(var(--at-common-black-rgb), 0.25);
+         backdrop-filter: blur(6px);
+         -webkit-backdrop-filter: blur(6px);
+         color: inherit;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         padding: 0;
+         cursor: pointer;
+         z-index: 6;
+         transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .horizon-nav:hover {
+         background-color: rgba(var(--at-common-white-rgb), 0.95);
+         border-color: rgba(var(--at-common-white-rgb), 0.95);
+         color: var(--at-neutral-950);
+      }
+
+      .horizon-nav:focus-visible {
+         outline: 2px solid currentColor;
+         outline-offset: 3px;
+      }
+
+      .horizon-nav svg {
+         width: 22px;
+         height: 22px;
+         display: block;
+      }
+
+      .horizon-nav-prev {
+         left: 2.5rem;
+      }
+
+      .horizon-nav-next {
+         right: 2.5rem;
+      }
+
+      /* Pagination — bottom-center row of dots, one per source project */
+      .horizon-pagination {
+         position: absolute;
+         left: 50%;
+         bottom: 2rem;
+         transform: translateX(-50%);
+         display: flex;
+         align-items: center;
+         gap: 0.75rem;
+         padding: 0.5rem 1rem;
+         z-index: 6;
+      }
+
+      .horizon-pagination-dot {
+         width: 10px;
+         height: 10px;
+         border-radius: 50%;
+         border: 1px solid rgba(var(--at-common-white-rgb), 0.7);
+         background-color: transparent;
+         padding: 0;
+         cursor: pointer;
+         transition: background-color 0.3s ease, transform 0.3s ease, width 0.3s ease;
+      }
+
+      .horizon-pagination-dot:hover {
+         background-color: rgba(var(--at-common-white-rgb), 0.5);
+      }
+
+      .horizon-pagination-dot.is-active {
+         background-color: var(--at-common-white);
+         border-color: var(--at-common-white);
+         width: 28px;
+         border-radius: 999px;
+      }
+
+      .horizon-pagination-dot:focus-visible {
+         outline: 2px solid currentColor;
+         outline-offset: 3px;
+      }
+
+      @media (max-width: 991px) {
+         .horizon-slide {
+            width: 175px;
+            height: 250px;
+            margin: 0 15px;
+         }
+
+         .horizon-overlay {
+            bottom: -1.5rem;
+         }
+
+         .horizon-title {
+            font-size: 0.7rem;
+         }
+
+         .horizon-nav {
+            width: 44px;
+            height: 44px;
+         }
+
+         .horizon-nav svg {
+            width: 18px;
+            height: 18px;
+         }
+
+         .horizon-nav-prev {
+            left: 1rem;
+         }
+
+         .horizon-nav-next {
+            right: 1rem;
+         }
+
+         .horizon-pagination {
+            bottom: 1.5rem;
+            gap: 0.5rem;
+         }
+      }
+
+      @media (max-width: 575px) {
+         .horizon-slide {
+            width: 160px;
+            height: 230px;
+            margin: 0 12px;
+         }
+
+         .horizon-overlay {
+            bottom: -1.25rem;
+         }
+
+         .horizon-title {
+            font-size: 0.65rem;
+         }
+
+         .horizon-arrow {
+            width: 14px;
+            height: 14px;
+         }
+
+         .horizon-nav {
+            width: 38px;
+            height: 38px;
+         }
+
+         .horizon-nav svg {
+            width: 16px;
+            height: 16px;
+         }
+
+         .horizon-nav-prev {
+            left: 0.5rem;
+         }
+
+         .horizon-nav-next {
+            right: 0.5rem;
+         }
+
+         .horizon-pagination {
+            bottom: 1rem;
+            gap: 0.4rem;
+            padding: 0.25rem 0.5rem;
+         }
+
+         .horizon-pagination-dot {
+            width: 8px;
+            height: 8px;
+         }
+
+         .horizon-pagination-dot.is-active {
+            width: 22px;
+         }
+      }
+   }
+}

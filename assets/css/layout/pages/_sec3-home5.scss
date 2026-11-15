@@ -1,0 +1,64 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  at-brand-scroll - Vertical random scroll of 3 logos in each brand cell
+/*----------------------------------------*/
+
+.at-brand-scroll {
+    .at-brand-item .brand {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+    }
+
+    /* Viewport: show only 1 logo, fixed height = 1 slide */
+    .brand-logo-viewport {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 70px;
+        flex-shrink: 0;
+        margin: auto;
+
+        @media #{$md,$xs} {
+            height: 50px;
+        }
+    }
+
+    .brand-logo-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        will-change: transform;
+    }
+
+    .brand-logo-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 70px;
+        min-height: 70px;
+        flex-shrink: 0;
+
+        @media #{$md,$xs} {
+            height: 60px;
+            min-height: 60px;
+        }
+    }
+
+    .brand-logo-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}

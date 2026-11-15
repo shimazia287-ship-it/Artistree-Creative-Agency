@@ -1,0 +1,117 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-10-home-7 (Insights for Founders — blog grid)
+/*----------------------------------------*/
+
+.sec-10-home-7 {
+    &__eyebrow {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+
+        svg {
+            transition: transform .35s ease;
+        }
+
+        &:hover {
+            color: var(--at-theme-primary);
+
+            svg {
+                transform: translate(2px, -2px);
+            }
+        }
+    }
+
+    &__title {
+        font-family: var(--at-heading-font);
+        font-size: clamp(2.5rem, 5vw, 4rem); // 40px → 64px
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-900, #1d1d1d);
+        max-width: 400px;
+    }
+
+    &__lead {
+        font-family: var(--at-heading-font);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-900, #1d1d1d);
+        max-width: 720px;
+
+        @media #{$sm,$xs} {
+            font-size: 18px;
+        }
+    }
+
+    &__btn-all {
+        height: 50px;
+        padding: 0 27px;
+        border-radius: 50px;
+        background: var(--at-neutral-900, #1d1d1d);
+        color: var(--at-neutral-0, #fefefe);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background .35s ease, color .35s ease, transform .35s ease;
+
+        &:hover {
+            background: var(--at-theme-primary);
+            color: var(--at-common-white);
+            transform: translateY(-2px);
+        }
+    }
+
+ // Staggered image heights (per column)
+    &__grid {
+        .blog-card__thumb {
+            overflow: hidden;
+        }
+
+        .blog-card__thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (min-width: 992px) {
+            > div:nth-child(1) .blog-card__thumb {
+                height: 360px;
+            }
+
+            > div:nth-child(2) .blog-card__thumb {
+                height: 298px;
+            }
+
+            > div:nth-child(3) .blog-card__thumb {
+                height: 396px;
+            }
+
+            > div:nth-child(4) .blog-card__thumb {
+                height: 329px;
+            }
+        }
+
+        @media #{$md,$sm,$xs} {
+            .blog-card__thumb {
+                height: 280px;
+            }
+        }
+    }
+
+    // Design: Lucas (4th card) — author name in brand primary
+    &__grid > div:nth-child(4) .blog-card__author {
+        color: var(--at-theme-primary);
+
+        &:hover {
+            color: var(--at-neutral-900);
+        }
+    }
+}

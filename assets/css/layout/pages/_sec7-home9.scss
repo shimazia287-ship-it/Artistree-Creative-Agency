@@ -1,0 +1,164 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-7-home-9 (Home 9 — Collective)
+/*----------------------------------------*/
+
+.sec-7-home-9 {
+    position: relative;
+    padding-top: clamp(56px, 7vw, 148px);
+    padding-bottom: clamp(64px, 8vw, 120px);
+    background: var(--at-neutral-900, #1d1d1d);
+    color: var(--at-neutral-0, #fefefe);
+
+    &__container {
+        max-width: 2200px;
+        margin: 0 auto;
+        padding-left: clamp(20px, 5.2vw, 105px);
+        padding-right: clamp(20px, 5.2vw, 105px);
+    }
+
+    &__lead {
+        margin: 0 0 clamp(40px, 5vw, 72px);
+        max-width: 1194px;
+        font-family: var(--at-ff-heading);
+        font-weight: 600;
+        font-size: clamp(28px, 4.2vw, 48px);
+        line-height: 1.08;
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-0, #fefefe);
+    }
+
+    &__main {
+        align-items: flex-start;
+    }
+
+    &__visual {
+        position: relative;
+        width: 100%;
+        max-width: 714px;
+        aspect-ratio: 714 / 438;
+        overflow: hidden;
+        background: var(--at-neutral-0, #fefefe);
+    }
+
+    &__visual-base {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 1;
+    }
+
+    &__visual-layer {
+        position: absolute;
+        z-index: 2;
+        left: -7%;
+        top: -12%;
+        width: 128%;
+        height: 139%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.88;
+        pointer-events: none;
+    }
+
+    &__aside {
+        position: relative;
+        padding-top: clamp(8px, 1.5vw, 24px);
+    }
+
+    &__deco {
+        display: none;
+        position: absolute;
+        right: clamp(-20px, -2vw, 0px);
+        top: clamp(-40px, -3vw, -20px);
+        width: 99px;
+        height: 99px;
+        pointer-events: none;
+        opacity: 0.45;
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transform-origin: center center;
+            animation: sec-7-home-9-deco-spin 14s linear infinite;
+        }
+
+        @media (min-width: 992px) {
+            display: block;
+        }
+    }
+
+    &__quote {
+        margin: 0 0 clamp(28px, 3.5vw, 40px);
+        padding: 0;
+        border: none;
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: clamp(17px, 1.56vw, 20px);
+        line-height: 1.45;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-0, #fefefe);
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 534px;
+    }
+
+    &__tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 19px;
+        border-radius: 32px;
+        text-decoration: none;
+        font-family: var(--at-ff-body);
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-0, #fefefe);
+        border: 1px solid color-mix(in srgb, var(--at-neutral-0, #fefefe) 30%, transparent);
+        background: color-mix(in srgb, var(--at-neutral-700, #303030) 35%, transparent);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        transition:
+            background 0.25s ease,
+            border-color 0.25s ease,
+            transform 0.25s ease;
+
+        img {
+            display: block;
+            flex-shrink: 0;
+            width: 9px;
+            height: 9px;
+        }
+
+        &:hover {
+            color: var(--at-neutral-0, #fefefe);
+            border-color: color-mix(in srgb, var(--at-neutral-0, #fefefe) 55%, transparent);
+            background: color-mix(in srgb, var(--at-neutral-700, #303030) 55%, transparent);
+            transform: translateY(-2px);
+        }
+    }
+}
+
+@keyframes sec-7-home-9-deco-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sec-7-home-9__deco img {
+        animation: none;
+    }
+}

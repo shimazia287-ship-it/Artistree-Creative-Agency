@@ -1,0 +1,241 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Team Card Styles
+/*----------------------------------------*/
+
+.team-grid-wrap {
+    position: relative;
+}
+
+.team-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &-image {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 12px;
+        background-color: #f5f5f5;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+    }
+
+    &-icon {
+        color: var(--at-common-black);
+        position: absolute;
+        top: 22px;
+        right: 20px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: var(--at-common-white);
+        display: flex;
+        justify-content: center;
+        transition: all 0.5s ease;
+        align-items: center;
+    }
+
+    &-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 12px;
+        background: linear-gradient(180deg, rgba(26, 26, 26, 0.00) 11.93%, #1A1A1A 100%);
+        backdrop-filter: blur(1.9500000476837158px);
+        padding: 25px 81px 33px 30px;
+        overflow: hidden;
+    }
+
+    &-name {
+
+        .h6 {
+            color: var(--at-common-white);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+            line-height: 24px;
+        }
+
+    }
+
+    &-position {
+        letter-spacing: -0.28px;
+        margin-top: 4px;
+    }
+
+}
+
+.team-card {
+    &:hover {
+        .team-card-image {
+            img {
+                transition: all 0.5s ease;
+                filter: blur(5px);
+                scale: 1.05;
+            }
+        }
+
+        .team-card-icon {
+            background: var(--at-common-black);
+            color: var(--at-common-white);
+        }
+    }
+
+}
+
+@media #{$md,$sm,$xs} {
+    .team-card {
+        &-content {
+            margin-top: 16px;
+        }
+    }
+}
+
+/*----------------------------------------*/
+/*  Team Card 2 (Home 4 Sec 6) - Social overlay on hover
+/*----------------------------------------*/
+
+.team-card-2 {
+
+    &__image {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+        border: 1px solid var(--at-neutral-100, #DFDFDF);
+        background: var(--at-neutral-100, #DFDFDF);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+    }
+
+    &__social {
+        position: absolute;
+        left: 50px;
+        right: 50px;
+        bottom: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+        z-index: 2;
+
+        @media #{$xl} {
+            left: 20px;
+            right: 20px;
+        }
+
+        @media #{$md} {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @media #{$xs} {
+            left: 20px;
+            right: 20px;
+            bottom: 10px;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    }
+
+    &:hover &__image img {
+        transform: scale(1.05);
+    }
+
+    &:hover &__social {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    &__social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 16px;
+        background: rgba(26, 26, 26, 0.1);
+        border: 1px solid rgba(254, 254, 254, 0.30);
+        border-radius: 100px;
+        color: #FEFEFE;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 0.25s ease, color 0.25s ease;
+
+        svg {
+            flex-shrink: 0;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1D1D1D;
+        }
+    }
+
+    &__content {
+        margin-top: 8px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 26px 45px;
+        min-height: 72px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+        background: var(--at-neutral-0, #FEFEFE);
+
+        @media #{$xs} {
+            padding: 20px;
+        }
+    }
+
+    &__name {
+        text-decoration: none;
+        color: var(--at-common-black);
+
+        .h6 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            transition: color 0.25s ease;
+        }
+
+        &:hover .h6 {
+            color: var(--at-theme-primary, #6366f1);
+        }
+    }
+
+    &__position {
+        flex-shrink: 0;
+        padding: 6px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        color: var(--at-common-black);
+        background: transparent;
+        border: 1px solid var(--at-common-black);
+        border-radius: 100px;
+    }
+}
