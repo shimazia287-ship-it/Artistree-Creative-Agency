@@ -1,0 +1,98 @@
+[data-bs-theme='dark'] {
+    //common
+    --at-common-white: var(--at-common-dark-white);
+    --at-common-white-rgb: var(--at-common-dark-white-rgb);
+    --at-common-black: var(--at-common-dark-black);
+    --at-common-black-rgb: var(--at-common-dark-black-rgb);
+    --at-common-bubbles: var(--at-common-dark-bubbles);
+    --at-neutral-0: var(--at-neutral-dark-0);
+    --at-neutral-0-rgb: var(--at-neutral-dark-0-rgb);
+    --at-neutral-50: var(--at-neutral-dark-50);
+    --at-neutral-50-rgb: var(--at-neutral-dark-50-rgb);
+    --at-neutral-100: var(--at-neutral-dark-100);
+    --at-neutral-200: var(--at-neutral-dark-200);
+    --at-neutral-300: var(--at-neutral-dark-300);
+    --at-neutral-500: var(--at-neutral-dark-500);
+    --at-neutral-700: var(--at-neutral-dark-700);
+    --at-neutral-800: var(--at-neutral-dark-800);
+    --at-neutral-900: var(--at-neutral-dark-900);
+    --at-neutral-950: var(--at-neutral-dark-950);
+
+    //CUSTOM CLASS
+    .invert-1 {
+        filter: invert(0);
+    }
+
+    .at-header-logo,
+    .at-offcanvas-logo {
+        img {
+            filter: invert(1);
+        }
+    }
+    .invert-0 {
+        filter: invert(0) !important;
+    }
+
+    .dark-mode-invert {
+        filter: invert(1);
+    }
+
+    .at-main-menu nav ul li.has-dropdown > a::after {
+        filter: invert(1);
+    }
+
+    .changeless {
+        --at-common-white: #ffffff;
+        --at-common-white-rgb: 255, 255, 255;
+        --at-common-black: #1e1e1e;
+        --at-common-bubbles: #e1eeb7;
+        --at-neutral-950: #0f0f0f;
+        --at-neutral-900: #1d1d1d;
+        --at-neutral-800: #212121;
+        --at-neutral-700: #303030;
+        --at-neutral-500: #585959;
+        --at-neutral-300: #b7b7b7;
+        --at-neutral-100: #dfdfdf;
+        --at-neutral-50: #f2f2f2;
+        --at-neutral-0: #fefefe;
+    }
+}
+
+.dark-light-mode .toggle {
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.dark-light-mode .input {
+    display: none;
+}
+
+.dark-light-mode label {
+    margin-bottom: 0 !important;
+}
+
+.dark-light-mode .icon {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    transition: transform 500ms;
+    line-height: 0.1;
+}
+
+.dark-light-mode .icon--moon {
+    transition-delay: 200ms;
+}
+
+.dark-light-mode .icon--sun {
+    transform: scale(0);
+}
+
+.dark-light-mode #switch:checked + .icon--moon {
+    transform: rotate(360deg) scale(0);
+}
+
+.dark-light-mode #switch:checked ~ .icon--sun {
+    transition-delay: 200ms;
+    transform: scale(1) rotate(360deg);
+}
