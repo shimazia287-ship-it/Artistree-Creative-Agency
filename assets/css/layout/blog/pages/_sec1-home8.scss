@@ -1,0 +1,368 @@
+@use '../../utils' as *;
+
+/*------------------------------------------------------------------
+  Home 8 — Section 1: Hero
+------------------------------------------------------------------*/
+
+.sec-1-home-8 {
+    background-color: var(--at-neutral-0);
+
+    // -------------------------------------------------------
+    // Decorative column guide lines (6 pairs, ~278 px apart)
+    // -------------------------------------------------------
+    .h8-grid-lines {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+
+        // Two hairlines 5 px apart, then a 273 px transparent gap
+        background-image: repeating-linear-gradient(to right,
+                var(--at-neutral-100) 0px,
+                var(--at-neutral-100) 1px,
+                transparent 1px,
+                transparent 5px,
+                var(--at-neutral-100) 5px,
+                var(--at-neutral-100) 6px,
+                transparent 6px,
+                transparent 278px);
+        background-size: 278px 100%;
+        // Offset so first pair aligns with the container's first column edge
+        background-position: 265px 0;
+    }
+
+    // -------------------------------------------------------
+ // Container — mirrors the 100 px horizontal padding
+    // -------------------------------------------------------
+    .h8-container {
+        padding-left: clamp(20px, 5.2vw, 100px);
+        padding-right: clamp(20px, 5.2vw, 100px);
+        position: relative;
+        z-index: 1;
+    }
+
+    // -------------------------------------------------------
+    // Row 1: headline + photos-top
+    // -------------------------------------------------------
+    .h8-row-1 {
+        padding-top: clamp(130px, 9.5vw, 185px); // clear the transparent header
+        padding-bottom: clamp(30px, 3vw, 55px);
+    }
+
+    .h8-col-left {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    // Badge + headline sit side-by-side on xl+
+    .h8-headline-group {
+        gap: clamp(20px, 2.9vw, 55px);
+        align-items: flex-start;
+    }
+
+    // -------------------------------------------------------
+    // "Let's Talk" blob badge
+    // -------------------------------------------------------
+    .h8-badge {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(80px, 7.34vw, 141px);
+        height: clamp(80px, 7.34vw, 141px);
+        flex-shrink: 0;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.06);
+        }
+
+        &__bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        &__inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            color: #fff;
+
+            span {
+                font-size: clamp(10px, 0.83vw, 16px);
+                font-weight: 700;
+                letter-spacing: -0.05em;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            svg {
+                width: clamp(10px, 0.73vw, 14px);
+                height: auto;
+            }
+        }
+    }
+
+    // -------------------------------------------------------
+    // Outline / stroke headline
+    // -------------------------------------------------------
+    .h8-headline {
+        font-size: clamp(32px, 3.33vw, 64px);
+        font-weight: 600;
+        line-height: 1.125;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: var(--at-neutral-0);
+        -webkit-text-stroke: 1.5px var(--at-neutral-950);
+        paint-order: stroke fill;
+        max-width: clamp(280px, 35.7vw, 686px);
+    }
+
+    // -------------------------------------------------------
+    // Right column (photos top set)
+    // -------------------------------------------------------
+    .h8-col-right {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
+    // -------------------------------------------------------
+    // Photo trios (shared styles for both rows)
+    // -------------------------------------------------------
+    .h8-photos {
+        gap: clamp(16px, 4.3vw, 82px);
+        align-items: flex-start;
+    }
+
+    .h8-photo-box {
+        width: clamp(100px, 10.1vw, 194px);
+        overflow: hidden;
+        flex-shrink: 0;
+        will-change: transform;
+
+        img {
+            width: 100%;
+            height: clamp(130px, 12.76vw, 245px);
+            object-fit: cover;
+            display: block;
+        }
+
+        // Middle photo in top set is slightly shorter and pushed down
+        &.h8-photo-down img {
+            height: clamp(112px, 11.2vw, 215px);
+            margin-top: clamp(8px, 0.78vw, 15px);
+        }
+    }
+
+    // -------------------------------------------------------
+    // Row 2: photos-bottom + stats
+    // -------------------------------------------------------
+    .h8-row-2 {
+        padding-bottom: clamp(50px, 5vw, 0px);
+    }
+
+    .h8-col-left-2 {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .h8-col-right-2 {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding-top: clamp(20px, 2vw, 30px);
+    }
+
+    // -------------------------------------------------------
+    // Statistics
+    // -------------------------------------------------------
+    .h8-stats {
+        gap: clamp(24px, 3.8vw, 73px);
+    }
+
+    .h8-stat {
+        &-num {
+            font-size: clamp(56px, 6.46vw, 124px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            color: var(--at-neutral-900);
+            margin-bottom: clamp(8px, 0.5vw, 12px);
+
+            // Override global .odometer letter-spacing from _custom.scss
+            .odometer {
+                letter-spacing: -0.05em;
+            }
+        }
+
+        &-desc {
+            font-size: clamp(14px, 1.25vw, 24px);
+            font-weight: 500;
+            letter-spacing: -0.05em;
+            line-height: 1.4;
+            color: var(--at-neutral-900);
+            max-width: clamp(180px, 17vw, 326px);
+            margin-bottom: 0;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Bottom band: oversized "ORISA® / STUDIO" type
+    // -------------------------------------------------------
+    .h8-bottom-band {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        padding-top: 70px;
+    }
+
+    .h8-big-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(6px, 1.5vw, 24px);
+        font-size: clamp(52px, 12.5vw, 240px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.07em;
+        text-transform: uppercase;
+        color: var(--at-theme-primary);
+        white-space: nowrap;
+        padding: clamp(8px, 1vw, 20px) 0 clamp(10px, 1.2vw, 24px);
+        margin-bottom: 0;
+    }
+
+    .h8-registered {
+        font-size: 0.22em;
+        vertical-align: super;
+        line-height: 1;
+        color: var(--at-theme-primary);
+        font-style: normal;
+    }
+
+    // Parallelogram-clipped portrait image
+    .h8-portrait-frame {
+        display: inline-block;
+        width: clamp(60px, 10.6vw, 204px);
+        height: clamp(55px, 9.74vw, 187px);
+        overflow: hidden;
+        flex-shrink: 0;
+ // Parallelogram shape vector
+        clip-path: polygon(25.35% 0%, 100% 0%, 74.65% 100%, 0% 100%);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            pointer-events: none;
+        }
+    }
+
+    // Bottom metadata bar (email | coordinates)
+    .h8-bottom-meta {
+        padding: clamp(8px, 0.8vw, 16px) clamp(20px, 5.2vw, 100px) clamp(24px, 2vw, 40px);
+
+        svg {
+            color: var(--at-neutral-900);
+            flex-shrink: 0;
+        }
+    }
+
+    .h8-meta-text {
+        font-size: clamp(12px, 1.46vw, 28px);
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: var(--at-neutral-900);
+        white-space: nowrap;
+    }
+
+    // -------------------------------------------------------
+    // Responsive: tablet & below
+    // -------------------------------------------------------
+    @media (max-width: 1199px) {
+
+        .h8-col-right,
+        .h8-col-right-2 {
+            justify-content: flex-start;
+            margin-top: 30px;
+        }
+
+        .h8-photos {
+            flex-wrap: wrap;
+            overflow: visible;
+        }
+
+        .h8-big-title {
+            flex-wrap: wrap;
+            white-space: normal;
+            text-align: center;
+            justify-content: center;
+        }
+    }
+
+    // Tablet (iPad ~820px): prevent horizontal scrolling photo strip,
+    // use a tidy 3-column grid for each photo trio.
+    @media (min-width: 768px) and (max-width: 1199px) {
+        .h8-photos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            width: 100%;
+        }
+
+        .h8-photo-box {
+            width: auto;
+        }
+
+        .h8-photo-box img {
+            height: clamp(160px, 22vw, 210px);
+        }
+
+        .h8-photo-box.h8-photo-down img {
+            height: clamp(150px, 20vw, 198px);
+            margin-top: 0;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .h8-headline-group {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .h8-stats {
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .h8-photos {
+            gap: 12px;
+        }
+
+        .h8-big-title {
+            font-size: clamp(40px, 10vw, 80px);
+            letter-spacing: -0.05em;
+        }
+
+        .h8-portrait-frame {
+            display: none;
+        }
+
+        .h8-bottom-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+    }
+}

@@ -1,0 +1,994 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Portfolio Details 6 — Editorial + Marquee + Accordion
+/*  Brand accent: var(--at-theme-primary)
+/*----------------------------------------*/
+
+/* JS injects `.anim-zoomin-wrap` — fit aspect-ratio hosts */
+.sec-2-portfolio-details-6__media,
+.sec-3-portfolio-details-6__cell,
+.sec-5-portfolio-details-6__media,
+.sec-7-portfolio-details-6__media {
+    .anim-zoomin-wrap {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+}
+
+/* =========================================================
+   SEC 1 — Hero + marquee strip
+   ========================================================= */
+.sec-1-portfolio-details-6 {
+    background: var(--at-neutral-50);
+
+    &__byline {
+        letter-spacing: 0.15em;
+    }
+
+    &__title {
+        font-size: 240px;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        justify-content: center;
+
+        sup {
+            margin-left: 4px;
+            line-height: 1;
+        }
+    }
+
+    &__tagline {
+        letter-spacing: -0.03em;
+    }
+
+    &__credits {
+        margin: 0;
+    }
+
+    &__credit-cell {
+        padding: 22px 24px;
+        position: relative;
+
+        & + & {
+            border-left: 1px solid var(--at-neutral-200);
+        }
+    }
+
+    /* Marquee strip */
+    &__marquee {
+        background: var(--at-neutral-950);
+        overflow: hidden;
+        padding: 24px 0;
+    }
+
+    &__marquee-track {
+        display: inline-flex;
+        white-space: nowrap;
+        animation: pd6-marquee 28s linear infinite;
+        will-change: transform;
+    }
+
+    &__marquee-text {
+        display: inline-block;
+        color: var(--at-neutral-0);
+        font-family: var(--at-ff-heading);
+        font-size: 44px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        padding-right: 60px;
+        flex-shrink: 0;
+    }
+
+    &__marquee-dot {
+        color: var(--at-theme-primary);
+        margin: 0 18px;
+        font-size: 0.4em;
+        vertical-align: middle;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__marquee-track {
+            animation: none;
+        }
+    }
+
+    @media #{$lg} {
+        &__title {
+            font-size: 180px;
+        }
+    }
+
+    @media #{$md} {
+        &__title {
+            font-size: 140px;
+        }
+
+        &__marquee-text {
+            font-size: 36px;
+        }
+
+        &__credit-cell {
+            padding: 18px 16px;
+
+            &:nth-child(3) {
+                border-left: 0;
+                border-top: 1px solid var(--at-neutral-200);
+            }
+            &:nth-child(4) {
+                border-top: 1px solid var(--at-neutral-200);
+            }
+        }
+    }
+
+    @media #{$sm,$xs} {
+        &__title {
+            font-size: 96px;
+        }
+
+        &__tagline {
+            font-size: 22px !important;
+        }
+
+        &__marquee-text {
+            font-size: 28px;
+        }
+
+        &__credit-cell {
+            padding: 14px 12px;
+
+            &:nth-child(2) {
+                border-left: 1px solid var(--at-neutral-200);
+            }
+            &:nth-child(3),
+            &:nth-child(4) {
+                border-top: 1px solid var(--at-neutral-200);
+            }
+            &:nth-child(4) {
+                border-left: 1px solid var(--at-neutral-200);
+            }
+        }
+    }
+
+    @media #{$xs} {
+        &__title {
+            font-size: 72px;
+        }
+    }
+}
+
+@keyframes pd6-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.3333%); }
+}
+
+/* =========================================================
+   SEC 2 — Magazine 2-col + drop cap
+   ========================================================= */
+.sec-2-portfolio-details-6 {
+    background: var(--at-neutral-0);
+
+    &__eyebrow {
+        color: var(--at-theme-primary);
+        letter-spacing: 0.1em;
+    }
+
+    &__lead {
+        font-size: 18px;
+        line-height: 1.65;
+        letter-spacing: -0.01em;
+    }
+
+    &__dropcap {
+        float: left;
+        font-family: var(--at-ff-heading);
+        font-size: 124px;
+        font-weight: 500;
+        line-height: 0.85;
+        letter-spacing: -0.06em;
+        color: var(--at-theme-primary);
+        margin: 6px 16px 0 0;
+        padding: 0;
+    }
+
+    &__two-col {
+        column-count: 2;
+        column-gap: 32px;
+
+        p {
+            font-size: 16px;
+            line-height: 1.65;
+            letter-spacing: -0.01em;
+            break-inside: avoid-column;
+        }
+
+        p + p {
+            margin-top: 18px;
+        }
+    }
+
+    &__pullout {
+        letter-spacing: -0.02em;
+    }
+
+    &__media {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        border-radius: 8px;
+        background: var(--at-neutral-100);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.04);
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        &__dropcap {
+            font-size: 96px;
+        }
+    }
+
+    @media #{$sm,$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__dropcap {
+            font-size: 80px;
+            margin-right: 12px;
+        }
+
+        &__two-col {
+            column-count: 1;
+            column-gap: 0;
+        }
+    }
+
+    @media #{$xs} {
+        &__dropcap {
+            font-size: 64px;
+        }
+    }
+}
+
+/* =========================================================
+   SEC 3 — Horizontal scroll Swiper gallery
+   ========================================================= */
+.sec-3-portfolio-details-6 {
+    background: var(--at-neutral-0);
+
+    &__eyebrow {
+        color: var(--at-theme-primary);
+        letter-spacing: 0.1em;
+    }
+
+    &__heading {
+        font-size: 42px;
+        letter-spacing: -0.05em;
+        line-height: 1.15;
+    }
+
+    &__hint {
+        letter-spacing: 0.1em;
+    }
+
+    &__slider {
+        padding-left: max(calc((100vw - 1320px) / 2 + 12px), 12px);
+        padding-right: max(calc((100vw - 1320px) / 2 + 12px), 12px);
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        @media (min-width: 1400px) {
+            padding-left: max(calc((100vw - 1320px) / 2), 12px);
+            padding-right: max(calc((100vw - 1320px) / 2), 12px);
+        }
+    }
+
+    &__slide {
+        width: 60%;
+    }
+
+    &__cell {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 7 / 5;
+        overflow: hidden;
+        border-radius: 6px;
+        background: var(--at-neutral-100);
+        margin: 0;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.04);
+        }
+    }
+
+    &__caption {
+        letter-spacing: -0.02em;
+    }
+
+    &__caption-num {
+        margin-right: 8px;
+    }
+
+    &__nav {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid var(--at-neutral-900);
+        background: transparent;
+        color: var(--at-neutral-900);
+        cursor: pointer;
+        transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            background: var(--at-neutral-950);
+            color: var(--at-neutral-0);
+        }
+
+        &--next {
+            background: var(--at-neutral-950);
+            color: var(--at-neutral-0);
+
+            &:hover {
+                background: var(--at-theme-primary);
+                border-color: var(--at-theme-primary);
+            }
+        }
+    }
+
+    .mt-40 {
+        margin-top: 40px;
+    }
+
+    @media #{$lg} {
+        &__heading {
+            font-size: 36px;
+        }
+
+        &__slide {
+            width: 70%;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        &__heading {
+            font-size: 30px;
+        }
+
+        &__slide {
+            width: 80%;
+        }
+    }
+
+    @media #{$sm,$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__heading {
+            font-size: 26px;
+        }
+
+        &__slide {
+            width: 90%;
+        }
+
+        &__nav {
+            width: 44px;
+            height: 44px;
+        }
+    }
+}
+
+/* =========================================================
+   SEC 4 — Stats grid (4 inline with dot dividers)
+   ========================================================= */
+.sec-4-portfolio-details-6 {
+    background: var(--at-neutral-50);
+
+    &__eyebrow {
+        color: var(--at-theme-primary);
+        letter-spacing: 0.1em;
+    }
+
+    &__heading {
+        font-size: 42px;
+        letter-spacing: -0.05em;
+        line-height: 1.15;
+    }
+
+    &__stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        align-items: start;
+        position: relative;
+    }
+
+    &__stat {
+        text-align: center;
+        position: relative;
+
+        &:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: -12px;
+            width: 6px;
+            height: 6px;
+            background: var(--at-neutral-950);
+            border-radius: 50%;
+        }
+    }
+
+    &__stat-num {
+        font-size: 84px;
+        color: var(--at-theme-primary);
+        letter-spacing: -0.05em;
+        margin-bottom: 16px;
+    }
+
+    &__stat-label {
+        line-height: 1.4;
+        letter-spacing: -0.02em;
+    }
+
+    @media #{$lg} {
+        &__heading {
+            font-size: 36px;
+        }
+
+        &__stat-num {
+            font-size: 64px;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        &__stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        &__stat:not(:last-child)::after {
+            display: none;
+        }
+
+        &__stat-num {
+            font-size: 64px;
+        }
+
+        &__heading {
+            font-size: 30px;
+        }
+    }
+
+    @media #{$sm,$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        &__stat:not(:last-child)::after {
+            display: none;
+        }
+
+        &__stat-num {
+            font-size: 52px;
+        }
+
+        &__heading {
+            font-size: 26px;
+        }
+    }
+}
+
+/* =========================================================
+   SEC 5 — Quote + portrait side-by-side
+   ========================================================= */
+.sec-5-portfolio-details-6 {
+    background: var(--at-neutral-0);
+
+    &__media {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 5 / 4;
+        overflow: hidden;
+        border-radius: 6px;
+        background: var(--at-neutral-100);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.04);
+        }
+    }
+
+    &__content {
+        padding-left: 20px;
+    }
+
+    &__mark {
+        display: inline-block;
+        font-family: var(--at-ff-heading);
+        font-size: 140px;
+        line-height: 0.8;
+        color: var(--at-theme-primary);
+        margin-bottom: -10px;
+    }
+
+    &__quote {
+        font-size: 28px;
+        line-height: 1.5;
+        letter-spacing: -0.03em;
+        padding: 0;
+        border: 0;
+    }
+
+    &__divider {
+        width: 60px;
+        height: 1px;
+        background: var(--at-neutral-950);
+    }
+
+    &__role {
+        letter-spacing: 0.1em;
+    }
+
+    @media #{$lg} {
+        &__quote {
+            font-size: 24px;
+        }
+
+        &__mark {
+            font-size: 120px;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        &__content {
+            padding-left: 0;
+        }
+
+        &__quote {
+            font-size: 22px;
+        }
+
+        &__mark {
+            font-size: 100px;
+        }
+    }
+
+    @media #{$sm,$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__content {
+            padding-left: 0;
+        }
+
+        &__quote {
+            font-size: 20px;
+        }
+
+        &__mark {
+            font-size: 80px;
+        }
+    }
+}
+
+/* =========================================================
+   SEC 6 — Accordion FAQ "Project details"
+   ========================================================= */
+.sec-6-portfolio-details-6 {
+    background: var(--at-neutral-0);
+
+    &__eyebrow {
+        color: var(--at-theme-primary);
+        letter-spacing: 0.1em;
+    }
+
+    &__heading {
+        font-size: 48px;
+        letter-spacing: -0.05em;
+        line-height: 1.15;
+    }
+
+    &__list {
+        border-top: 1px solid var(--at-neutral-200);
+    }
+
+    &__row {
+        border-bottom: 1px solid var(--at-neutral-200);
+    }
+
+    &__item {
+        /* Native <details> element */
+        &[open] {
+            .sec-6-portfolio-details-6__icon-bar--v {
+                transform: scaleY(0);
+            }
+
+            .sec-6-portfolio-details-6__icon-bar:not(.sec-6-portfolio-details-6__icon-bar--v) {
+                background: var(--at-theme-primary);
+            }
+
+            .sec-6-portfolio-details-6__q {
+                color: var(--at-theme-primary);
+            }
+        }
+    }
+
+    &__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 26px 0;
+        cursor: pointer;
+        list-style: none;
+        transition: padding 0.3s ease;
+
+        /* Remove default arrow on details/summary */
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::marker {
+            display: none;
+            content: '';
+        }
+
+        &:hover {
+            padding-left: 12px;
+
+            .sec-6-portfolio-details-6__q {
+                color: var(--at-theme-primary);
+            }
+        }
+    }
+
+    &__q {
+        font-size: 24px;
+        letter-spacing: -0.03em;
+        transition: color 0.3s ease;
+    }
+
+    &__icon {
+        position: relative;
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__icon-bar {
+        position: absolute;
+        background: var(--at-neutral-950);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+
+        &:not(.sec-6-portfolio-details-6__icon-bar--v) {
+            width: 22px;
+            height: 2px;
+        }
+
+        &--v {
+            width: 2px;
+            height: 22px;
+        }
+    }
+
+    &__body {
+        padding: 0 0 30px 0;
+        max-width: 1100px;
+
+        p {
+            line-height: 1.65;
+            letter-spacing: -0.01em;
+        }
+    }
+
+    @media #{$lg} {
+        &__heading {
+            font-size: 40px;
+        }
+
+        &__q {
+            font-size: 22px;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        &__heading {
+            font-size: 34px;
+        }
+
+        &__q {
+            font-size: 20px;
+        }
+
+        &__head {
+            padding: 22px 0;
+        }
+    }
+
+    @media #{$sm,$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__heading {
+            font-size: 28px;
+        }
+
+        &__q {
+            font-size: 18px;
+        }
+
+        &__head {
+            padding: 18px 0;
+            gap: 16px;
+        }
+
+        &__head:hover {
+            padding-left: 0;
+        }
+    }
+
+    @media #{$xs} {
+        &__heading {
+            font-size: 24px;
+        }
+
+        &__q {
+            font-size: 16px;
+        }
+
+        &__icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        &__icon-bar {
+            &:not(.sec-6-portfolio-details-6__icon-bar--v) {
+                width: 18px;
+            }
+            &--v {
+                height: 18px;
+            }
+        }
+    }
+}
+
+/* =========================================================
+   SEC 7 — Next project compact dark card
+   ========================================================= */
+.sec-7-portfolio-details-6 {
+    background: var(--at-neutral-0);
+
+    &__eyebrow {
+        color: var(--at-theme-primary);
+        letter-spacing: 0.15em;
+    }
+
+    &__heading {
+        color: var(--at-neutral-950);
+        font-size: 36px;
+        letter-spacing: -0.04em;
+    }
+
+    &__card {
+        display: block;
+        text-decoration: none;
+        color: var(--at-neutral-0);
+        background: var(--at-neutral-950);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.4s ease;
+
+        &:hover {
+            color: var(--at-neutral-0);
+            transform: translateY(-4px);
+
+            .sec-7-portfolio-details-6__media img {
+                transform: scale(1.04);
+            }
+
+            .sec-7-portfolio-details-6__cta span {
+                transform: translate(3px, -3px);
+            }
+        }
+    }
+
+    &__media {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 560px;
+        overflow: hidden;
+        background: var(--at-neutral-800);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+    }
+
+    &__content {
+        padding: 60px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__num {
+        color: var(--at-theme-primary);
+        letter-spacing: 0.15em;
+    }
+
+    &__name {
+        color: var(--at-neutral-0);
+        font-size: 140px;
+        letter-spacing: -0.05em;
+        line-height: 0.95;
+    }
+
+    &__tagline {
+        color: var(--at-neutral-100);
+        letter-spacing: -0.03em;
+        line-height: 1.4;
+    }
+
+    &__meta {
+        color: var(--at-neutral-300);
+        letter-spacing: 0.1em;
+    }
+
+    &__tags {
+        gap: 8px;
+    }
+
+    &__tag {
+        padding: 8px 16px;
+        border: 1px solid var(--at-neutral-700);
+        border-radius: 25px;
+        color: var(--at-neutral-0);
+        letter-spacing: 0.05em;
+    }
+
+    &__cta {
+        color: var(--at-theme-primary);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--at-theme-primary);
+        align-self: flex-start;
+
+        span {
+            display: inline-block;
+            transition: transform 0.35s ease;
+        }
+    }
+
+    @media #{$lg} {
+        &__name {
+            font-size: 96px;
+        }
+
+        &__content {
+            padding: 50px 40px;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        &__heading {
+            font-size: 30px;
+        }
+
+        &__name {
+            font-size: 84px;
+        }
+
+        &__media {
+            min-height: 380px;
+            aspect-ratio: 4 / 3;
+        }
+
+        &__content {
+            padding: 40px 32px;
+        }
+    }
+
+    @media #{$sm,$xs} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__heading {
+            font-size: 26px;
+        }
+
+        &__name {
+            font-size: 64px;
+        }
+
+        &__media {
+            min-height: 300px;
+            aspect-ratio: 4 / 3;
+        }
+
+        &__content {
+            padding: 36px 24px;
+        }
+
+        &__tagline {
+            font-size: 18px;
+        }
+    }
+
+    @media #{$xs} {
+        &__name {
+            font-size: 48px;
+        }
+    }
+}

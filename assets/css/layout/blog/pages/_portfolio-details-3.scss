@@ -1,0 +1,935 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Portfolio Details 3 — Editorial Split
+/*----------------------------------------*/
+
+/* JS injects `.anim-zoomin-wrap` around every `.anim-zoomin` <img>.
+   Our image hosts position the <img> as absolute fill inside an
+   aspect-ratio box — make the injected wrap fill the same box. */
+.sec-1-portfolio-details-3__portrait,
+.sec-3-portfolio-details-3__cell,
+.sec-5-portfolio-details-3__media,
+.sec-7-portfolio-details-3__media,
+.sec-8-portfolio-details-3__thumb {
+    .anim-zoomin-wrap {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+    }
+}
+
+/* ---------- shared plus glyph ---------- */
+%pd3-plus {
+    width: 14px;
+    height: 14px;
+    position: relative;
+    display: inline-block;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        background: currentColor;
+    }
+
+    &::before {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1.5px;
+        transform: translateY(-50%);
+    }
+
+    &::after {
+        left: 50%;
+        top: 0;
+        width: 1.5px;
+        height: 100%;
+        transform: translateX(-50%);
+    }
+}
+
+/* ===========================================
+   SEC 1 — Hero split
+   =========================================== */
+.sec-1-portfolio-details-3 {
+    background-color: var(--at-neutral-0);
+
+    &__title {
+        letter-spacing: -0.05em;
+        color: var(--at-neutral-950);
+
+        sup {
+            margin-left: 4px;
+            line-height: 1;
+        }
+    }
+
+    &__tagline {
+        letter-spacing: -0.04em;
+    }
+
+    &__demo {
+        padding: 14px 26px;
+        color: var(--at-neutral-0);
+        transition: transform 0.35s ease, background-color 0.35s ease;
+
+        svg {
+            transition: transform 0.35s ease;
+        }
+
+        &:hover {
+            background-color: var(--at-neutral-900);
+            color: var(--at-neutral-0);
+            transform: translateY(-2px);
+
+            svg {
+                transform: translate(3px, -3px);
+            }
+        }
+    }
+
+    &__portrait {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: var(--at-neutral-100);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.04);
+        }
+    }
+
+    &__meta {
+        .col-md-3,
+        .col-sm-6 {
+            position: relative;
+        }
+    }
+
+    @media #{$xl} {
+        &__portrait {
+            aspect-ratio: 4 / 5;
+        }
+    }
+
+    @media #{$lg} {
+        &__portrait {
+            aspect-ratio: 4 / 5;
+            max-width: 480px;
+            margin-left: auto;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 100px;
+        padding-bottom: 80px;
+
+        &__portrait {
+            aspect-ratio: 16 / 11;
+            margin-top: 30px;
+        }
+
+        &__tagline {
+            margin-bottom: 30px !important;
+        }
+    }
+
+    @media #{$sm} {
+        padding-top: 90px;
+        padding-bottom: 70px;
+
+        &__portrait {
+            aspect-ratio: 16 / 11;
+            margin-top: 20px;
+        }
+
+        &__demo {
+            padding: 12px 22px;
+        }
+    }
+
+    @media #{$xs} {
+        padding-top: 80px;
+        padding-bottom: 60px;
+
+        &__title {
+            font-size: 54px !important;
+            margin-bottom: 16px !important;
+        }
+
+        &__tagline {
+            margin-bottom: 24px !important;
+        }
+
+        &__portrait {
+            aspect-ratio: 4 / 5;
+            margin-top: 16px;
+        }
+
+        &__demo {
+            padding: 12px 20px;
+
+            span {
+                font-size: 14px;
+            }
+        }
+
+        &__meta {
+            margin-top: 40px !important;
+            padding-top: 30px !important;
+        }
+    }
+}
+
+/* ===========================================
+   SEC 2 — 3-col Intro
+   =========================================== */
+.sec-2-portfolio-details-3 {
+    background-color: var(--at-neutral-0);
+
+    &__plus {
+        @extend %pd3-plus;
+        color: var(--at-neutral-950);
+    }
+
+    &__headline {
+        letter-spacing: -0.04em;
+        line-height: 1.15;
+    }
+
+    &__paragraph {
+        line-height: 1.6;
+        letter-spacing: -0.02em;
+    }
+
+    &__stats {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    &__stat {
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--at-neutral-100);
+
+        &:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        &-number {
+            font-size: 48px;
+            letter-spacing: -0.05em;
+            margin-bottom: 8px;
+        }
+    }
+
+    @media #{$lg} {
+        &__stat-number {
+            font-size: 40px;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__stat-number {
+            font-size: 40px;
+        }
+    }
+
+    @media #{$sm} {
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        &__stat-number {
+            font-size: 38px;
+        }
+    }
+
+    @media #{$xs} {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        &__headline {
+            font-size: 24px !important;
+        }
+
+        &__stat-number {
+            font-size: 36px;
+        }
+    }
+}
+
+/* ===========================================
+   SEC 3 — Bento Gallery
+   =========================================== */
+.sec-3-portfolio-details-3 {
+    background-color: var(--at-neutral-0);
+
+    &__plus {
+        @extend %pd3-plus;
+        color: var(--at-neutral-950);
+    }
+
+    &__bento {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        aspect-ratio: 16 / 9;
+    }
+
+    &__cell {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: var(--at-neutral-100);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.05);
+        }
+
+        &--large {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 2;
+        }
+
+        &--small {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__bento {
+            aspect-ratio: 16 / 11;
+            gap: 12px;
+        }
+    }
+
+    @media #{$sm} {
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        &__bento {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, minmax(0, 1fr));
+            aspect-ratio: 4 / 5;
+            gap: 12px;
+        }
+
+        &__cell--large {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+        }
+
+        &__cell--small {
+            grid-column: span 1;
+            grid-row: span 1;
+        }
+    }
+
+    @media #{$xs} {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        &__bento {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, minmax(0, 1fr));
+            aspect-ratio: 3 / 5;
+            gap: 10px;
+        }
+
+        &__cell--large {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+        }
+    }
+}
+
+/* ===========================================
+   SEC 4 — Process timeline (dark)
+   =========================================== */
+.sec-4-portfolio-details-3 {
+    background-color: var(--at-neutral-950);
+    color: var(--at-neutral-0);
+
+    &__plus {
+        @extend %pd3-plus;
+        color: var(--at-neutral-0);
+    }
+
+    &__title {
+        letter-spacing: -0.04em;
+        line-height: 1.15;
+    }
+
+    &__steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--at-neutral-500);
+            opacity: 0.5;
+        }
+    }
+
+    &__step {
+        position: relative;
+        padding-top: 36px;
+    }
+
+    &__marker {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &__dot {
+        display: block;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--at-neutral-0);
+    }
+
+    &__num {
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        opacity: 0.8;
+    }
+
+    &__heading {
+        letter-spacing: -0.04em;
+        margin-bottom: 12px;
+    }
+
+    &__desc {
+        color: var(--at-neutral-100);
+        line-height: 1.55;
+        letter-spacing: -0.02em;
+        opacity: 0.85;
+    }
+
+    @media #{$md} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__steps {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 40px;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        &__step {
+            padding-top: 28px;
+        }
+    }
+
+    @media #{$sm} {
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        &__steps {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 36px;
+            gap: 18px;
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    @media #{$xs} {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        &__title {
+            font-size: 26px !important;
+        }
+
+        &__steps {
+            grid-template-columns: 1fr;
+            row-gap: 32px;
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
+
+/* ===========================================
+   SEC 5 — Quote overlay
+   =========================================== */
+.sec-5-portfolio-details-3 {
+    position: relative;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--at-neutral-0);
+
+    &__media {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        z-index: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__veil {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 15, 15, 0.55);
+    }
+
+    &__content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 120px 0;
+    }
+
+    &__mark {
+        font-family: var(--at-ff-heading);
+        font-size: 120px;
+        line-height: 1;
+        display: inline-block;
+        opacity: 0.85;
+        margin-bottom: -20px;
+    }
+
+    &__quote {
+        font-size: 36px;
+        line-height: 1.4;
+        letter-spacing: -0.03em;
+        font-style: normal;
+        padding: 0;
+        border: 0;
+    }
+
+    &__author {
+        letter-spacing: -0.02em;
+    }
+
+    &__role {
+        color: var(--at-neutral-100);
+        opacity: 0.8;
+    }
+
+    @media #{$lg} {
+        min-height: 600px;
+
+        &__quote {
+            font-size: 30px;
+        }
+
+        &__mark {
+            font-size: 100px;
+        }
+    }
+
+    @media #{$md} {
+        min-height: 520px;
+
+        &__content {
+            padding: 90px 0;
+        }
+
+        &__quote {
+            font-size: 26px;
+        }
+
+        &__mark {
+            font-size: 88px;
+        }
+    }
+
+    @media #{$sm} {
+        min-height: 460px;
+
+        &__content {
+            padding: 70px 0;
+        }
+
+        &__quote {
+            font-size: 22px;
+        }
+
+        &__mark {
+            font-size: 72px;
+        }
+    }
+
+    @media #{$xs} {
+        min-height: 420px;
+
+        &__content {
+            padding: 60px 0;
+        }
+
+        &__quote {
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
+        &__mark {
+            font-size: 60px;
+            margin-bottom: -10px;
+        }
+    }
+}
+
+/* ===========================================
+   SEC 6 — Solution + Outcome (2-col w/ divider)
+   =========================================== */
+.sec-6-portfolio-details-3 {
+    background-color: var(--at-neutral-0);
+
+    &__plus {
+        @extend %pd3-plus;
+        color: var(--at-neutral-950);
+    }
+
+    &__col--right {
+        position: relative;
+    }
+
+    &__pair {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            bottom: 12px;
+            left: 50%;
+            width: 1px;
+            background: var(--at-neutral-100);
+            transform: translateX(-50%);
+        }
+    }
+
+    &__list {
+        list-style: none;
+
+        li {
+            position: relative;
+            padding-left: 22px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: var(--at-neutral-900);
+            font-size: var(--at-fz-font-md);
+            border-top: 1px solid var(--at-neutral-100);
+
+            &:last-child {
+                border-bottom: 1px solid var(--at-neutral-100);
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 8px;
+                height: 8px;
+                background: var(--at-neutral-950);
+                border-radius: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    @media #{$lg} {
+        &__pair::before {
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 60px;
+        padding-bottom: 60px;
+
+        &__pair::before {
+            display: none;
+        }
+
+        &__col {
+            padding-bottom: 30px;
+        }
+
+        &__col + &__col--right {
+            border-top: 1px solid var(--at-neutral-100);
+            padding-top: 40px;
+        }
+    }
+
+    @media #{$sm} {
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        &__pair::before {
+            display: none;
+        }
+
+        &__col + &__col--right {
+            border-top: 1px solid var(--at-neutral-100);
+            padding-top: 40px;
+        }
+    }
+
+    @media #{$xs} {
+        padding-top: 40px;
+        padding-bottom: 40px;
+
+        &__pair::before {
+            display: none;
+        }
+
+        &__col + &__col--right {
+            border-top: 1px solid var(--at-neutral-100);
+            padding-top: 30px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 24px !important;
+        }
+    }
+}
+
+/* ===========================================
+   SEC 7 — Big image strip
+   =========================================== */
+.sec-7-portfolio-details-3 {
+    &__media {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    @media #{$md} {
+        &__media {
+            aspect-ratio: 16 / 10;
+        }
+    }
+
+    @media #{$sm} {
+        &__media {
+            aspect-ratio: 4 / 3;
+        }
+    }
+
+    @media #{$xs} {
+        &__media {
+            aspect-ratio: 4 / 3;
+        }
+    }
+}
+
+/* ===========================================
+   SEC 8 — Related projects (2 large cards)
+   =========================================== */
+.sec-8-portfolio-details-3 {
+    background-color: var(--at-neutral-0);
+
+    &__plus {
+        @extend %pd3-plus;
+        color: var(--at-neutral-950);
+    }
+
+    &__title {
+        letter-spacing: -0.04em;
+        line-height: 1.15;
+    }
+
+    &__card {
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.4s ease;
+
+        &:hover {
+            color: inherit;
+            transform: translateY(-4px);
+
+            .sec-8-portfolio-details-3__thumb img {
+                transform: scale(1.04);
+            }
+
+            .sec-8-portfolio-details-3__arrow {
+                transform: translate(3px, -3px);
+            }
+        }
+    }
+
+    &__thumb {
+        position: relative;
+        margin: 0 0 26px 0;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: var(--at-neutral-100);
+
+        img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    &__tag {
+        align-self: flex-start;
+        padding: 8px 16px;
+        background: var(--at-neutral-50);
+        border-radius: 25px;
+        color: var(--at-neutral-900);
+        letter-spacing: 0.05em;
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__name {
+        color: var(--at-neutral-950);
+    }
+
+    &__arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--at-neutral-950);
+        color: var(--at-neutral-0);
+        transition: transform 0.35s ease;
+        flex-shrink: 0;
+    }
+
+    &__desc {
+        line-height: 1.55;
+        letter-spacing: -0.02em;
+    }
+
+    @media #{$md} {
+        padding-top: 60px;
+        padding-bottom: 100px;
+
+        &__thumb {
+            aspect-ratio: 5 / 4;
+        }
+    }
+
+    @media #{$sm} {
+        padding-top: 50px;
+        padding-bottom: 80px;
+
+        &__thumb {
+            aspect-ratio: 4 / 3;
+            margin-bottom: 20px;
+        }
+
+        &__arrow {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    @media #{$xs} {
+        padding-top: 40px;
+        padding-bottom: 70px;
+
+        &__title {
+            font-size: 24px !important;
+        }
+
+        &__thumb {
+            aspect-ratio: 4 / 3;
+            margin-bottom: 18px;
+        }
+
+        &__name {
+            font-size: 26px !important;
+        }
+
+        &__arrow {
+            width: 38px;
+            height: 38px;
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+}
