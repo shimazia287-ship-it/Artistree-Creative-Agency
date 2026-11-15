@@ -1,0 +1,280 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 Mobile Menu
+/*----------------------------------------*/
+
+.at-main {
+    &-menu {
+        padding: 5px 8px;
+
+        &.menu-light {
+            &.style-1 {
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                background: rgba(255, 255, 255, 0.25);
+                backdrop-filter: blur(2px);
+                height: 48px;
+            }
+
+            & nav {
+                & ul {
+                    & li {
+                        &:hover {
+                            &>.submenu {
+                                visibility: visible;
+                                opacity: 1;
+                                transform: scale(1);
+                            }
+
+                            &.has-dropdown {
+                                &>a {
+                                    color: #fff;
+                                    background: rgba(255, 255, 255, 0.2);
+                                }
+                            }
+                        }
+
+                        &.has-dropdown {
+                            &>a {
+                                color: #fff;
+
+                                &::after {
+                                    filter: invert(1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & nav {
+            & ul {
+                & li {
+                    list-style: none;
+                    display: inline-block;
+                    position: relative;
+
+                    &.has-dropdown {
+                        &>a {
+                            color: var(--at-common-black);
+                            position: relative;
+                            @include at-transition(all 0.4s ease);
+
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                bottom: 12px;
+                                right: 12px;
+                                width: 8px;
+                                height: 8px;
+                                background-size: auto;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                z-index: 0;
+                                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="5" height="5" viewBox="0 0 5 5" fill="none"><path d="M0.119881 4.0916L3.76201 0.14603C3.8265 0.0762058 3.912 0.0286966 4.00771 0.00950819C4.10343 -0.00968026 4.20505 0.000313791 4.29974 0.0382265C4.39443 0.0761392 4.47794 0.140268 4.5397 0.222507C4.60146 0.304746 4.63871 0.401402 4.64673 0.500256L4.96657 4.4493C4.97728 4.58185 4.93474 4.70892 4.8483 4.80257C4.76185 4.89622 4.63858 4.94877 4.50559 4.94867L0.543624 4.94521C0.444446 4.94511 0.345125 4.9157 0.258216 4.8607C0.171308 4.8057 0.100716 4.72759 0.0553628 4.63623C0.0100097 4.54486 -0.00806781 4.44436 0.00341617 4.34742C0.0149001 4.25048 0.0554298 4.16146 0.119881 4.0916Z" fill="%230F0F0F"/></svg>');
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        &>.submenu {
+                            visibility: visible;
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+
+                        &.has-dropdown {
+                            &>a {
+                                @include at-transition(all 0.4s ease);
+                            }
+                        }
+                    }
+
+                    & a {
+                        font-family: var(--at-ff-body);
+                        font-size: 16px;
+                        font-weight: 600;
+                        letter-spacing: -0.02em;
+                        color: var(--at-common-black);
+                        padding: 10px 24px;
+                        display: inline-block;
+                        line-height: 1;
+
+                        &:hover {
+                            color: var(--at-common-black);
+                        }
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            bottom: -20px;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: -1;
+                        }
+                    }
+
+                    & .submenu {
+                        position: absolute;
+                        top: 120%;
+                        left: 0;
+                        width: 260px;
+                        z-index: 99;
+                        opacity: 0;
+                        padding: 12px 0;
+                        transition: 0.5s;
+                        text-align: start;
+                        visibility: hidden;
+                        transform-origin: 0 0;
+                        transform: scale(1, 0);
+                        backdrop-filter: blur(20px);
+                        background: rgba(var(--at-neutral-0-rgb), 0.9);
+                        box-shadow: 0 20px 30px -8px rgba(19, 19, 22, 0.1);
+
+                        & li {
+                            width: 100%;
+                            padding: 0 12px;
+                            border-radius: 8px;
+                            margin: 0;
+
+                            & a {
+                                position: relative;
+                                font-weight: 500;
+                                font-size: 16px;
+                                line-height: 1;
+                                color: var(--at-neutral-500);
+                                padding: 12px 18px;
+                                display: inline-block;
+                                letter-spacing: -0.01em;
+                                text-align: start;
+                                width: 100%;
+                                font-family: var(--at-ff-body);
+                                transition:
+                                    padding-left 0.35s cubic-bezier(.65, 0, .35, 1),
+                                    background 0.3s ease,
+                                    color 0.3s ease;
+                            }
+
+                            & .submenu {
+                                top: 0;
+                                left: 100%;
+                            }
+
+                            &:hover {
+                                &>a {
+                                    background: var(--at-neutral-50);
+                                    color: var(--at-neutral-900) !important;
+                                    padding-left: 23px;
+                                }
+                            }
+                        }
+                    }
+
+                    & .at-megamenu {
+                        width: 720px;
+                        padding: 30px 30px;
+
+                        & li {
+                            padding: 0;
+                        }
+
+                        .at-megamenu-box + .at-megamenu-box {
+                            margin-top: 22px;
+                        }
+
+                        &-title {
+                            font-size: 20px;
+                            font-weight: 600;
+                            padding-left: 18px;
+                            padding-right: 6px;
+                            color: var(--at-common-black);
+                            font-family: var(--at-ff-body);
+
+                            &-wrap {
+                                display: block;
+                                padding-bottom: 10px;
+                                margin-bottom: 10px;
+                                border-bottom: 1px solid rgba($color: #000000, $alpha: 0.08);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.at-megamenu-title {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--at-common-black);
+    font-family: var(--at-ff-body);
+}
+
+.at-megamenu-title-wrap {
+    display: block;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--at-neutral-100);
+}
+
+/*----------------------------------------*/
+/*  4.x Main menu — text swap hover animation
+/*  Wrapper .at-link-swap is injected by main.js (section 47c)
+/*----------------------------------------*/
+.at-main-menu>nav>ul>li>a {
+    /* Descender room: wrapper has 4px padding-bottom for "g","p" tails;
+       compensate link's bottom padding so total height stays 36px. */
+    --link-desc-room: 4px;
+    padding-bottom: calc(10px - var(--link-desc-room));
+
+    .at-link-swap {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        vertical-align: top;
+        line-height: inherit;
+        padding-bottom: var(--link-desc-room);
+
+        .text-1,
+        .text-2 {
+            display: block;
+            line-height: inherit;
+            /* Wavy easing: cubic-bezier with overshoot creates a bounce/settle
+               feel that reads as a subtle wave during the swap. */
+            transition: transform 0.45s cubic-bezier(.5, 1.5, .35, 1);
+        }
+
+        .text-1 {
+            position: relative;
+        }
+
+        .text-2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            /* Park text-2 fully below the wrapper's padding-box
+               (own height + descender room) so it never leaks at rest. */
+            transform: translateY(calc(100% + var(--link-desc-room)));
+        }
+    }
+
+}
+
+/* Trigger swap on the parent <li>:hover so the hit area covers the
+   entire menu item (incl. empty space inside .menu-light.style-1
+   where <a> is shorter than the 48px container). */
+.at-main-menu>nav>ul>li:hover>a {
+    .at-link-swap .text-1 {
+        /* Push text-1 up enough to clear both content + padding-bottom area. */
+        transform: translateY(calc(-100% - var(--link-desc-room)));
+    }
+
+    .at-link-swap .text-2 {
+        transform: translateY(0);
+    }
+}
