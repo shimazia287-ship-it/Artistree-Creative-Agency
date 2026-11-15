@@ -1,0 +1,22 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  Home 10 — placeholder section spacing
+/*----------------------------------------*/
+
+.home-10-sec {
+    padding-top: clamp(72px, 10vw, 120px);
+    padding-bottom: clamp(72px, 10vw, 120px);
+
+    &__label {
+        font-family: var(--at-ff-body);
+        font-size: clamp(16px, 1.2vw, 18px);
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--at-neutral-600, #6b6b6b);
+    }
+
+    &--alt {
+        background: var(--at-neutral-50, #f2f2f2);
+    }
+}

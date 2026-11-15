@@ -1,0 +1,118 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.11 faq css
+/*----------------------------------------*/
+
+.at-faq {
+    @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+        margin-left: 0;
+    }
+
+    &-dec {
+        font-weight: 500;
+        font-size: 22px;
+        letter-spacing: -0.04em;
+    }
+
+    &-item {
+        border-radius: 0;
+        box-shadow: 0 0 2px 0 rgba(39, 39, 46, 0.04);
+        background: var(--at-neutral-50);
+        padding: 10px 30px 10px 30px;
+        margin-bottom: 16px;
+    }
+
+    &-body {
+        font-size: 16px;
+        line-height: 26px;
+        padding-bottom: 14px;
+        padding-right: 112px;
+        padding-left: 45px;
+
+        @media #{$sm,$xs} {
+            padding-right: 0;
+        }
+
+        & p {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 167%;
+            color: var(--at-neutral-700);
+
+            @media #{$xxl,$xl,$lg,$md,$sm,$xs} {
+                & br {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &-number {
+        font-size: 16px;
+        font-weight: 600;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 42px;
+        background: var(--at-neutral-900);
+        color: var(--at-common-white);
+    }
+
+    &-header {
+        padding: 15px 0;
+    }
+
+    &-button {
+        background: transparent;
+        font-weight: 600;
+        font-size: 24px;
+        color: var(--at-common-black);
+        font-family: var(--at-ff-body);
+        position: relative;
+        width: 100%;
+        text-align: left;
+        padding-right: 50px;
+
+        @media #{$xs} {
+            font-size: 18px;
+        }
+
+        & span {
+            font-weight: 500;
+            margin-right: 70px;
+
+            @media #{$sm,$xs} {
+                margin-right: 30px;
+            }
+        }
+
+        &::before,
+        &:after {
+            content: "\f068";
+            font-family: "Font Awesome 6 Pro";
+            position: absolute;
+            right: 0;
+            top: -3px;
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            border-radius: 30px;
+            line-height: 35px;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--at-common-black);
+            transition: all .5s ease;
+        }
+
+        &.collapsed {
+
+
+            &:after {
+                content: "\f067";
+            }
+        }
+    }
+}

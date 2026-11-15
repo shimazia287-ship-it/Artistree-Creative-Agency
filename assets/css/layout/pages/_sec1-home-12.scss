@@ -1,0 +1,313 @@
+@use '../../utils' as *;
+
+/* Home 12 / Section 1 — Hero (Pure Design. Potent Storytelling) */
+.sec-1-home-12 {
+    --sec1h12-brand-2: #7f0b01;
+    --sec1h12-tile-w: 370px;
+    --sec1h12-tile-h: 360px;
+    --sec1h12-tile-gap: 16px;
+
+    background-color: var(--at-neutral-50);
+    overflow: hidden;
+    position: relative;
+}
+
+.sec-1-home-12__hero {
+    padding-top: 56px;
+    padding-bottom: 64px;
+}
+
+.sec-1-home-12__hero-inner {
+    row-gap: 24px;
+}
+
+/* ── Social proof pill ───────────────────────────── */
+.sec-1-home-12__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px 6px 8px;
+    background-color: var(--at-neutral-0);
+    border-radius: 999px;
+}
+
+.sec-1-home-12__avatars {
+    display: inline-flex;
+    align-items: center;
+}
+
+.sec-1-home-12__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 2px var(--at-neutral-0);
+
+    &+& {
+        margin-left: -10px;
+    }
+}
+
+.sec-1-home-12__pill-text {
+    font-family: var(--at-ff-heading);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.28px;
+    color: var(--at-neutral-700);
+    white-space: nowrap;
+}
+
+/* ── Headline ────────────────────────────────────── */
+.sec-1-home-12__title {
+    font-family: var(--at-ff-heading);
+    font-weight: 600;
+    font-size: clamp(40px, 6.5vw, 84px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--at-neutral-950);
+
+    /* SplitText line wrappers — clip overflow so chars rise from below */
+    .split-line {
+        overflow: hidden;
+        padding-bottom: 0.12em;
+    }
+}
+
+/* ── Subline ─────────────────────────────────────── */
+.sec-1-home-12__sub {
+    font-family: var(--at-ff-heading);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--at-neutral-500);
+    max-width: 540px;
+}
+
+/* ── CTAs ────────────────────────────────────────── */
+.sec-1-home-12__ctas {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.sec-1-home-12__btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 50px;
+    padding: 0;
+    background: transparent;
+    color: var(--at-neutral-0);
+    text-decoration: none;
+    font-family: var(--at-ff-heading);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.05em;
+    transition: opacity 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--at-neutral-0);
+        opacity: 0.9;
+    }
+
+    &:hover .sec-1-home-12__btn-primary-icon svg,
+    &:focus-visible .sec-1-home-12__btn-primary-icon svg {
+        transform: translate(2px, -2px);
+    }
+}
+
+.sec-1-home-12__btn-primary-label {
+    display: inline-flex;
+    align-items: center;
+    height: 50px;
+    padding: 14px 27px;
+    background-color: var(--at-neutral-900);
+    color: var(--at-neutral-0);
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.sec-1-home-12__btn-primary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--at-neutral-900);
+    color: var(--at-neutral-0);
+    border-radius: 50%;
+
+    svg {
+        transition: transform 0.3s ease;
+    }
+}
+
+.sec-1-home-12__btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    height: 50px;
+    padding: 14px 28px;
+    border-radius: 999px;
+    color: var(--at-neutral-950);
+    font-family: var(--at-ff-heading);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.05em;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: opacity 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--at-neutral-950);
+        opacity: 0.7;
+    }
+}
+
+/* ── Image strip — Swiper marquee ────────────────── */
+.sec-1-home-12__strip {
+    position: relative;
+    overflow: hidden;
+    padding-inline: 24px;
+}
+
+.sec-1-home-12-slider {
+    overflow: visible;
+
+    .swiper-wrapper {
+        /* Linear timing for continuous marquee feel */
+        transition-timing-function: linear !important;
+    }
+}
+
+.sec-1-home-12__tile {
+    flex-shrink: 0;
+    height: var(--sec1h12-tile-h);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+.sec-1-home-12__tile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.sec-1-home-12__tile:hover .sec-1-home-12__tile-img,
+.sec-1-home-12__tile:focus-visible .sec-1-home-12__tile-img {
+    transform: scale(1.05);
+}
+
+.sec-1-home-12__tile--brand-1 {
+    background-color: var(--at-theme-primary);
+}
+
+.sec-1-home-12__tile--brand-2 {
+    background-color: var(--sec1h12-brand-2);
+}
+
+.sec-1-home-12__tile--neutral-100 {
+    background-color: var(--at-neutral-100);
+}
+
+.sec-1-home-12__tile--neutral-300 {
+    background-color: var(--at-neutral-300);
+}
+
+.sec-1-home-12__tile--neutral-800 {
+    background-color: var(--at-neutral-800);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media #{$xxl} {
+    .sec-1-home-12 {
+        --sec1h12-tile-w: 320px;
+        --sec1h12-tile-h: 320px;
+    }
+}
+
+@media #{$xl} {
+    .sec-1-home-12 {
+        --sec1h12-tile-w: 280px;
+        --sec1h12-tile-h: 280px;
+    }
+}
+
+@media #{$lg} {
+    .sec-1-home-12 {
+        --sec1h12-tile-w: 240px;
+        --sec1h12-tile-h: 240px;
+    }
+    .sec-1-home-12__hero {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+}
+
+@media #{$md} {
+    .sec-1-home-12 {
+        --sec1h12-tile-w: 220px;
+        --sec1h12-tile-h: 220px;
+        --sec1h12-tile-gap: 12px;
+    }
+    .sec-1-home-12__hero {
+        padding-top: 40px;
+        padding-bottom: 48px;
+    }
+}
+
+@media #{$sm} {
+    .sec-1-home-12 {
+        --sec1h12-tile-w: 220px;
+        --sec1h12-tile-h: 220px;
+        --sec1h12-tile-gap: 12px;
+    }
+    .sec-1-home-12__hero {
+        padding-top: 32px;
+        padding-bottom: 40px;
+    }
+    .sec-1-home-12__hero-inner {
+        row-gap: 18px;
+    }
+    .sec-1-home-12__sub {
+        max-width: 100%;
+    }
+}
+
+@media #{$xs} {
+    .sec-1-home-12 {
+        --sec1h12-tile-w: 200px;
+        --sec1h12-tile-h: 200px;
+        --sec1h12-tile-gap: 10px;
+    }
+    .sec-1-home-12__hero {
+        padding-top: 28px;
+        padding-bottom: 32px;
+    }
+    .sec-1-home-12__hero-inner {
+        row-gap: 16px;
+    }
+    .sec-1-home-12__pill-text {
+        font-size: 13px;
+    }
+    .sec-1-home-12__btn-primary-label {
+        padding: 14px 20px;
+    }
+    .sec-1-home-12__btn-secondary {
+        padding: 14px 18px;
+    }
+    .sec-1-home-12__strip {
+        padding-inline: 16px;
+    }
+}

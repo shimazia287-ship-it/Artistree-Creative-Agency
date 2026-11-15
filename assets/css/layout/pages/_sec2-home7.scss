@@ -1,0 +1,308 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-2-home-7 (We Power the World's Fastest Growing Startups)
+/*----------------------------------------*/
+
+.sec-2-home-7 {
+    position: relative;
+    border-bottom: 1px solid var(--at-neutral-100, #dfdfdf);
+    overflow: hidden;
+
+    // --- Intro row ---------------------------------------------------------
+    &__eyebrow {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.05em;
+
+        svg {
+            transition: transform .35s ease;
+        }
+
+        &:hover {
+            color: var(--at-theme-primary);
+
+            svg {
+                transform: translate(2px, -2px);
+            }
+        }
+    }
+
+    &__headline {
+        font-family: var(--at-heading-font);
+        color: var(--at-neutral-950, #0f0f0f);
+        font-size: clamp(2.25rem, 5vw, 4.5rem); // 36px -> 72px
+        font-weight: 600;
+        line-height: 1.05;
+        letter-spacing: -0.05em;
+
+        &-strong {
+            color: var(--at-neutral-950, #0f0f0f);
+        }
+
+        &-muted {
+            color: var(--at-neutral-300, #b7b7b7);
+        }
+    }
+
+    &__desc {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: -0.025em;
+
+        strong {
+            font-weight: 700;
+        }
+
+        @media #{$lg,$md,$sm,$xs} {
+            font-size: 18px;
+        }
+    }
+
+    // --- Staircase grid ----------------------------------------------------
+    &__grid {
+        border-top: 1px solid var(--at-neutral-100, #dfdfdf);
+
+        // Vertical guide lines (5 columns) using a repeating linear-gradient.
+        // We start the first line at 20% so it lives between col-1 and col-2.
+        background-image: linear-gradient(to right,
+                transparent 0,
+                transparent calc(20% - 1px),
+                var(--at-neutral-100, #dfdfdf) calc(20% - 1px),
+                var(--at-neutral-100, #dfdfdf) 20%,
+                transparent 20%,
+                transparent calc(40% - 1px),
+                var(--at-neutral-100, #dfdfdf) calc(40% - 1px),
+                var(--at-neutral-100, #dfdfdf) 40%,
+                transparent 40%,
+                transparent calc(60% - 1px),
+                var(--at-neutral-100, #dfdfdf) calc(60% - 1px),
+                var(--at-neutral-100, #dfdfdf) 60%,
+                transparent 60%,
+                transparent calc(80% - 1px),
+                var(--at-neutral-100, #dfdfdf) calc(80% - 1px),
+                var(--at-neutral-100, #dfdfdf) 80%,
+                transparent 80%);
+
+        @media #{$md,$sm,$xs} {
+            background-image: none;
+            border-top: 0;
+        }
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        column-gap: 30px;
+        align-items: center;
+        padding: 40px 0;
+        border-bottom: 1px solid var(--at-neutral-100, #dfdfdf);
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        @media #{$xl} {
+            column-gap: 24px;
+            padding: 32px 0;
+        }
+
+        @media #{$lg} {
+            column-gap: 20px;
+            padding: 28px 0;
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        @media #{$md,$sm,$xs} {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 28px;
+            padding: 40px 0;
+        }
+    }
+
+    // Column placement modifiers (desktop-only; stacked on mobile)
+    &__col-1 {
+        grid-column: 1 / span 1;
+    }
+
+    &__col-2 {
+        grid-column: 2 / span 1;
+    }
+
+    &__col-3 {
+        grid-column: 3 / span 1;
+    }
+
+    &__col-4 {
+        grid-column: 4 / span 1;
+    }
+
+    &__col-5 {
+        grid-column: 5 / span 1;
+    }
+
+    @media #{$md,$sm,$xs} {
+
+        &__col-1,
+        &__col-2,
+        &__col-3,
+        &__col-4,
+        &__col-5 {
+            grid-column: auto;
+            width: 100%;
+        }
+    }
+
+    // --- Cells -------------------------------------------------------------
+    &__cell {
+        min-width: 0;
+
+        &--img {
+            .sec-2-home-7__img-wrap {
+                position: relative;
+                width: 100%;
+                max-width: 270px;
+                aspect-ratio: 270 / 329;
+                border-radius: 16px;
+                overflow: hidden;
+                background: var(--at-neutral-0, #fefefe);
+
+                .thumb {
+                    height: 330px;
+                }
+
+                img {
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform .6s ease;
+                    border-radius: 16px;
+                }
+
+                &:hover img {
+                    transform: scale(1.05);
+                }
+            }
+
+            @media #{$md,$sm,$xs} {
+                .sec-2-home-7__img-wrap {
+                    max-width: 100%;
+                    aspect-ratio: 16 / 10;
+                }
+            }
+        }
+
+        &--feature {
+            max-width: 260px;
+
+            @media #{$md,$sm,$xs} {
+                max-width: 100%;
+            }
+        }
+
+        &--stat {
+            max-width: 320px;
+
+            @media #{$md,$sm,$xs} {
+                max-width: 100%;
+            }
+        }
+    }
+
+    // --- Feature block -----------------------------------------------------
+    &__feature-icon {
+        width: 40px;
+        height: 40px;
+        color: var(--at-neutral-900, #1d1d1d);
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+
+    &__feature-title {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-family: var(--at-heading-font);
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+        margin-bottom: 16px;
+
+        @media #{$xl,$lg} {
+            font-size: 30px;
+        }
+
+        @media #{$md,$sm,$xs} {
+            font-size: 28px;
+        }
+    }
+
+    &__feature-desc {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: -0.02em;
+    }
+
+    // --- Stat block --------------------------------------------------------
+    &__stat-value {
+        color: var(--at-neutral-900, #1d1d1d);
+        font-family: var(--at-heading-font);
+        font-size: 84px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.05em;
+
+        @media #{$xxl} {
+            font-size: 76px;
+        }
+
+        @media #{$xl} {
+            font-size: 64px;
+        }
+
+        @media #{$lg} {
+            font-size: 54px;
+        }
+
+        @media #{$md,$sm,$xs} {
+            font-size: 64px;
+        }
+    }
+
+    &__stat-label {
+        color: var(--at-neutral-500, #585959);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: -0.02em;
+    }
+}
+
+.at-item-anime.marque {
+    overflow: hidden;
+    border-radius: 16px;
+
+    img {
+        transition: transform .6s ease;
+    }
+
+    &:hover {
+        img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+            transition: transform .6s ease;
+        }
+    }
+}

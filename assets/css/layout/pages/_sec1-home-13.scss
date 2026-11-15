@@ -1,0 +1,446 @@
+@use '../../utils' as *;
+
+/* Home 13 / Section 1 — Hero (Orisa® Architecture) */
+.sec-1-home-13 {
+    background-color: var(--at-neutral-50);
+    padding: 160px 32px 32px;
+}
+
+.sec-1-home-13__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    margin-inline: auto;
+}
+
+/* ── Top row ─────────────────────────────────── */
+.sec-1-home-13__top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+}
+
+.sec-1-home-13__brand {
+    font-family: var(--at-ff-heading);
+    font-weight: 600;
+    font-size: clamp(48px, 11vw, 188px);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--at-neutral-950);
+    white-space: nowrap;
+
+    sup {
+        font-size: 0.5em;
+        top: -0.55em;
+        font-weight: 600;
+    }
+}
+
+.sec-1-home-13__since {
+    font-family: var(--at-ff-heading);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--at-neutral-900);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--at-neutral-900);
+        opacity: 0.7;
+    }
+}
+
+/* ── Hero card ───────────────────────────────── */
+.sec-1-home-13__card {
+    position: relative;
+    width: 100%;
+    height: 760px;
+    border-radius: 32px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* ── Main slider ─────────────────────────────── */
+.sec-1-home-13__main {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    .swiper-wrapper,
+    .swiper-slide {
+        height: 100%;
+    }
+}
+
+.sec-1-home-13__slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.sec-1-home-13__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+.sec-1-home-13__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.55) 100%);
+    z-index: 1;
+}
+
+.sec-1-home-13__content {
+    position: absolute;
+    inset: 0;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 19px;
+    z-index: 2;
+
+    /* leave room for the thumbs strip */
+    padding-bottom: 200px;
+}
+
+.sec-1-home-13__tagline {
+    font-family: var(--at-ff-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+    color: var(--at-common-white);
+    letter-spacing: 0;
+
+    span {
+        display: inline-block;
+    }
+}
+
+.sec-1-home-13__headline {
+    font-family: var(--at-ff-heading);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 64px);
+    line-height: 1.125;
+    letter-spacing: -0.05em;
+    color: var(--at-common-white);
+    max-width: 871px;
+}
+
+/* ── Vertical nav buttons ────────────────────── */
+.sec-1-home-13__nav {
+    position: absolute;
+    top: 50%;
+    right: 48px;
+    transform: translateY(-50%);
+    z-index: 4;
+    flex-direction: column;
+    gap: 12px;
+
+    /* prev arrow points up, next arrow points down */
+    .swiper-btn-prev svg,
+    .swiper-btn-next svg {
+        transform: rotate(90deg);
+    }
+}
+
+/* ── Thumbs slider ───────────────────────────── */
+.sec-1-home-13__thumbs {
+    position: absolute;
+    left: 48px;
+    right: 48px;
+    bottom: 48px;
+    z-index: 3;
+
+    .swiper-slide {
+        height: auto;
+    }
+}
+
+.sec-1-home-13__service {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 20px 12px 12px;
+    background-color: var(--at-common-white);
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1);
+    min-width: 0;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--at-theme-primary);
+        opacity: 0;
+        transform: scale(0.4);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.14);
+    }
+
+    &.swiper-slide-thumb-active {
+        box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.18);
+
+        &::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .sec-1-home-13__service-img {
+            border-radius: 16px;
+        }
+    }
+}
+
+.sec-1-home-13__service-img {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    transition: border-radius 0.3s ease;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.sec-1-home-13__service-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.sec-1-home-13__service-num {
+    font-family: var(--at-ff-body);
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--at-neutral-500);
+}
+
+.sec-1-home-13__service-name {
+    font-family: var(--at-ff-heading);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--at-neutral-950);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media #{$xxl} {
+    .sec-1-home-13__card {
+        height: 680px;
+    }
+
+    .sec-1-home-13__content {
+        padding: 40px;
+        padding-bottom: 180px;
+    }
+
+    .sec-1-home-13__thumbs {
+        left: 40px;
+        right: 40px;
+        bottom: 40px;
+    }
+
+    .sec-1-home-13__nav {
+        right: 40px;
+    }
+}
+
+@media #{$xl} {
+    .sec-1-home-13 {
+        padding: 48px 24px 24px;
+    }
+
+    .sec-1-home-13__card {
+        height: 620px;
+    }
+
+    .sec-1-home-13__content {
+        padding: 32px;
+        padding-bottom: 200px;
+    }
+
+    .sec-1-home-13__thumbs {
+        left: 32px;
+        right: 32px;
+        bottom: 32px;
+    }
+
+    .sec-1-home-13__nav {
+        right: 32px;
+        gap: 10px;
+    }
+
+    .sec-1-home-13__service {
+        padding: 10px 14px 10px 10px;
+        gap: 10px;
+    }
+
+    .sec-1-home-13__service-img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .sec-1-home-13__service-name {
+        font-size: 16px;
+    }
+}
+
+@media #{$lg} {
+    .sec-1-home-13 {
+        padding: 36px 20px 20px;
+    }
+
+    .sec-1-home-13__card {
+        height: 560px;
+    }
+
+    .sec-1-home-13__content {
+        padding: 28px;
+        padding-bottom: 180px;
+    }
+
+    .sec-1-home-13__thumbs {
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+    }
+
+    .sec-1-home-13__nav {
+        right: 24px;
+    }
+}
+
+@media #{$md} {
+    .sec-1-home-13 {
+        padding: 128px 16px 16px;
+    }
+
+    .sec-1-home-13__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .sec-1-home-13__brand {
+        white-space: normal;
+    }
+
+    .sec-1-home-13__card {
+        height: 540px;
+        border-radius: 24px;
+    }
+
+    .sec-1-home-13__content {
+        padding: 24px;
+        padding-bottom: 220px;
+    }
+
+    .sec-1-home-13__thumbs {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .sec-1-home-13__nav {
+        right: 16px;
+        gap: 8px;
+    }
+}
+
+@media #{$sm} {
+    .sec-1-home-13__card {
+        height: 520px;
+    }
+
+    .sec-1-home-13__content {
+        padding-bottom: 200px;
+    }
+
+    .sec-1-home-13__service-name {
+        font-size: 14px;
+    }
+}
+
+@media #{$xs} {
+    .sec-1-home-13 {
+        padding: 100px 12px 12px;
+    }
+
+    .sec-1-home-13__card {
+        height: 500px;
+        border-radius: 20px;
+    }
+
+    .sec-1-home-13__content {
+        padding: 18px;
+        padding-bottom: 180px;
+    }
+
+    .sec-1-home-13__headline {
+        font-size: 26px;
+    }
+
+    .sec-1-home-13__thumbs {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .sec-1-home-13__nav {
+        right: 12px;
+    }
+}
+
+/* Cascading mobile pivot: stack top row + wrap brand from tablet down */
+@media (max-width: 991.98px) {
+    .sec-1-home-13__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .sec-1-home-13__brand {
+        white-space: normal;
+    }
+}

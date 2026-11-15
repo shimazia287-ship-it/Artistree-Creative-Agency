@@ -1,0 +1,392 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  sec-1-home-9 (Modern Agency Hero)
+/*----------------------------------------*/
+
+// Design reference: frame 1920x1066 with 100px horizontal padding.
+// Everything here scales fluidly from the desktop design down via clamp().
+
+.sec-1-home-9 {
+    position: relative;
+    background: var(--at-neutral-900);
+    color: var(--at-common-white);
+    padding-top: clamp(110px, 9.9vw, 190px);
+    padding-bottom: clamp(50px, 4.95vw, 95px);
+    overflow: hidden;
+
+    @media #{$md,$sm,$xs} {
+        padding-top: 140px;
+        padding-bottom: 70px;
+    }
+
+    .text-theme {
+        color: var(--at-theme-primary);
+    }
+
+    // -------------------------------------------------------
+ // Container mirrors the 100 px horizontal padding
+    // -------------------------------------------------------
+    &__container {
+        max-width: 2200px;
+        margin: 0 auto;
+        padding-left: clamp(20px, 5.2vw, 100px);
+        padding-right: clamp(20px, 5.2vw, 100px);
+    }
+
+    // -------------------------------------------------------
+ // Row layout — 3 stacked rows row 1/row 2/row 3
+    // -------------------------------------------------------
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: clamp(16px, 1.56vw, 30px);
+
+        @media #{$md,$sm,$xs} {
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+    }
+
+    &__row--top {
+        @media #{$md,$sm,$xs} {
+            gap: 30px;
+        }
+    }
+
+    &__row--middle {
+        @media #{$md,$sm,$xs} {
+            gap: 30px;
+            margin-top: 10px;
+        }
+    }
+
+    &__row--bottom {
+        align-items: flex-end;
+        margin-top: clamp(60px, 6.15vw, 118px);
+
+        @media #{$md,$sm,$xs} {
+            margin-top: 50px;
+            gap: 40px;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Giant display headings "Modern" / "Agency"
+    // -------------------------------------------------------
+    &__title {
+        font-family: var(--at-ff-heading);
+        font-weight: 600;
+        font-size: clamp(52px, 10.3vw, 198px);
+        line-height: 0.93;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: var(--at-common-white);
+        margin: 0;
+        white-space: nowrap;
+
+        @media #{$md,$sm} {
+            font-size: clamp(64px, 13vw, 120px);
+        }
+
+        @media #{$xs} {
+            font-size: clamp(44px, 18vw, 84px);
+        }
+    }
+
+    &__title--modern {
+        flex: 0 0 auto;
+    }
+
+    &__title--agency {
+        flex: 0 0 auto;
+
+        @media #{$md,$sm,$xs} {
+            order: -1; // Show Agency above kicker column on mobile for better flow
+        }
+    }
+
+    // -------------------------------------------------------
+    // Row 1 : small intro block on the right (globe + paragraph)
+    // -------------------------------------------------------
+    &__intro {
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(8px, 0.78vw, 15px);
+        flex: 0 1 auto;
+        max-width: clamp(300px, 35vw, 678px);
+        padding-bottom: clamp(14px, 1.5vw, 28px); // Baseline align with Modern heading
+        font-family: var(--at-ff-body);
+        font-weight: 600;
+        font-size: clamp(13px, 1.25vw, 24px);
+        line-height: 1.5;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: var(--at-common-white);
+
+        @media #{$md,$sm,$xs} {
+            max-width: 100%;
+            font-size: 16px;
+            padding-bottom: 0;
+            flex-basis: 100%;
+        }
+
+        p {
+            margin: 0;
+            max-width: 450px;
+        }
+    }
+
+    &__intro-icon {
+        flex: 0 0 auto;
+        width: clamp(16px, 1.6vw, 31px);
+        line-height: 0;
+        margin-top: clamp(4px, 0.4vw, 8px);
+        color: var(--at-common-white);
+
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Row 2 : left column — kicker + CTA button
+    // -------------------------------------------------------
+    &__left {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(12px, 1.1vw, 21px);
+        width: clamp(210px, 16.3vw, 313px);
+        padding-bottom: clamp(18px, 2.25vw, 43px);
+
+        @media #{$md,$sm,$xs} {
+            width: 100%;
+            max-width: 420px;
+            padding-bottom: 0;
+            gap: 18px;
+        }
+    }
+
+    &__kicker {
+        font-family: var(--at-ff-heading);
+        font-weight: 600;
+        font-size: clamp(14px, 1.25vw, 24px);
+        line-height: 1.5;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: var(--at-common-white);
+        margin: 0;
+
+        @media #{$md,$sm,$xs} {
+            font-size: 20px;
+        }
+    }
+
+    // `.at-btn` is defined in components (loaded after layout) with `background-color: #1D1D1D`.
+ // Double class bumps specificity so neutral-700 wins over the default button fill.
+    &__btn.at-btn {
+        width: 100%;
+        max-width: clamp(200px, 15.9vw, 305px);
+        padding: clamp(10px, 0.73vw, 14px) clamp(16px, 1.4vw, 27px);
+        justify-content: center;
+        gap: 12px;
+        background-color: var(--at-neutral-700);
+        color: var(--at-neutral-50);
+        border-radius: 0;
+        font-weight: 600;
+        font-size: clamp(12px, 0.83vw, 16px);
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        line-height: 1;
+
+        @media #{$md,$sm,$xs} {
+            max-width: 260px;
+            padding: 14px 22px;
+            font-size: 14px;
+        }
+
+        &:hover {
+            background-color: var(--at-theme-primary);
+            color: var(--at-common-white);
+        }
+    }
+
+    // -------------------------------------------------------
+    // Row 2 : right column — 3 thumbnails
+    // -------------------------------------------------------
+    &__thumbs {
+        display: flex;
+        align-items: center;
+        gap: clamp(10px, 0.94vw, 18px);
+        flex: 0 0 auto;
+        padding-bottom: clamp(0px, 0vw, 0px); // kept consistent with bottom-aligned middle row
+
+        // Percent widths on children need a definite parent width; otherwise one thumb can
+        // expand to ~100% (circular % resolution). Full row + equal flex children fixes mobile.
+        @media #{$md,$sm,$xs} {
+            width: 100%;
+            flex-basis: 100%;
+            justify-content: flex-start;
+            gap: 12px;
+        }
+    }
+
+    &__thumb {
+        width: clamp(86px, 7.55vw, 145px);
+        height: clamp(60px, 5.2vw, 100px);
+        background: var(--at-common-white);
+        border-radius: 4px;
+        overflow: hidden;
+        flex: 0 0 auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        &:hover img {
+            transform: scale(1.04);
+        }
+
+        @media #{$md,$sm,$xs} {
+            flex: 1 1 0;
+            min-width: 0;
+            width: auto;
+            height: auto;
+            aspect-ratio: 145 / 100;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Divider — 2 hairlines stacked 4px apart, 1124px wide
+    // -------------------------------------------------------
+    &__divider {
+        position: relative;
+        width: clamp(360px, 58.6vw, 1124px); // 1124/1920 ≈ 58.6%
+        max-width: 100%;
+        margin-top: clamp(14px, 1.5vw, 29px);
+        height: 4px;
+
+        @media #{$md,$sm,$xs} {
+            width: 100%;
+            margin-top: 40px;
+        }
+    }
+
+    &__divider-line {
+        position: absolute;
+        left: 0;
+        right: auto;
+        width: 0;
+        max-width: 100%;
+        height: 1px;
+        background: color-mix(in srgb, var(--at-neutral-0) 28%, transparent);
+        will-change: width;
+
+        &:nth-child(1) {
+            top: 0;
+        }
+
+        &:nth-child(2) {
+            top: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            width: 100%;
+            will-change: auto;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Row 3 : partners (left)
+    // -------------------------------------------------------
+    &__partners {
+        flex: 0 1 auto;
+        max-width: clamp(360px, 41.5vw, 797px);
+
+        @media #{$md,$sm,$xs} {
+            max-width: 100%;
+            flex-basis: 100%;
+        }
+    }
+
+    &__brands-title {
+        font-family: var(--at-ff-body);
+        font-weight: 600;
+        font-size: clamp(10px, 0.83vw, 16px);
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+        color: var(--at-neutral-50);
+        text-decoration: underline;
+        margin: 0 0 clamp(16px, 1.4vw, 27px);
+    }
+
+    &__brands-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(14px, 1.56vw, 30px) clamp(24px, 2.7vw, 52px);
+        align-items: center;
+    }
+
+    &__brand {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        height: clamp(28px, 2.5vw, 48px);
+
+        img {
+            display: block;
+            height: 100%;
+            width: auto;
+            max-width: none;
+            object-fit: contain;
+        }
+
+        @media #{$xs} {
+            height: 26px;
+        }
+    }
+
+    // -------------------------------------------------------
+    // Row 3 : services wrap (right) — asterisk + services list
+    // -------------------------------------------------------
+    &__services-wrap {
+        flex: 0 1 auto;
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(22px, 2.65vw, 51px);
+
+        @media #{$md,$sm,$xs} {
+            flex-basis: 100%;
+            gap: 28px;
+        }
+    }
+
+    &__star {
+        flex: 0 0 auto;
+        width: clamp(48px, 5.16vw, 99px);
+        height: clamp(48px, 5.16vw, 99px);
+        object-fit: contain;
+
+        @media #{$xs} {
+            display: none;
+        }
+    }
+
+    &__services {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: clamp(280px, 24.1vw, 462px);
+
+        @media #{$md,$sm,$xs} {
+            max-width: 100%;
+        }
+    }
+
+}
