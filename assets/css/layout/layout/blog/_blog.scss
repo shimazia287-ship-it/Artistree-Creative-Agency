@@ -1,0 +1,410 @@
+@use '../../utils' as *;
+/*----------------------------------------*/
+/*  5.1 Blog css
+/*----------------------------------------*/
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    &__thumb {
+        position: relative;
+        width: 100%;
+    }
+
+    &__img-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+    }
+
+    &__title {
+        font-weight: 600;
+        color: var(--at-neutral-900);
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 4.5em;
+    }
+
+    &__title-link {
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-theme-primary);
+        }
+    }
+
+    &__meta {
+        font-family: var(--at-ff-body);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 100%;
+        color: #585959;
+        margin: 0;
+    }
+
+    &__meta-text {
+        color: #585959;
+    }
+
+    &__author {
+        color: var(--at-neutral-900);
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-theme-primary, var(--at-neutral-900));
+        }
+    }
+}
+
+/* Blog card 2 – horizontal 3-column layout  */
+.blog-card-2 {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.08);
+
+    .blog-card-2-wrap:last-child & {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    @media #{$md,$sm,$xs} {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    &__left {
+        flex: 0 1 40%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+
+        @media #{$md,$sm,$xs} {
+            flex: none;
+            order: 1;
+        }
+    }
+
+    &__category {
+        display: inline-block;
+        font-family: var(--at-ff-body);
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--at-neutral-900);
+        padding: 8px 16px;
+        background: var(--at-common-white);
+        border: 1px solid var(--at-neutral-100);
+        border-radius: 50px;
+        width: fit-content;
+    }
+
+    &__title {
+        margin: 0;
+
+        @media #{$xs} {
+            font-size: 18px;
+        }
+    }
+
+    &__title-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-theme-primary);
+        }
+    }
+
+    &__thumb {
+        flex: 0 0 340px;
+        width: 340px;
+        height: 210px;
+        overflow: hidden;
+        border-radius: 12px;
+        flex-shrink: 0;
+
+        @media #{$md,$sm,$xs} {
+            flex: none;
+            width: 100%;
+            height: 220px;
+            order: 2;
+        }
+    }
+
+    &__img-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        transition: transform 0.5s ease;
+
+        .blog-card-2:hover & {
+            transform: scale(1.05);
+        }
+    }
+
+    &__right {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        justify-content: center;
+
+        @media #{$md,$sm,$xs} {
+            gap: 26px;
+            flex: none;
+            order: 3;
+        }
+    }
+
+    &__excerpt {
+        font-family: var(--at-ff-body);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #585959;
+        margin: 0;
+    }
+
+    &__meta {
+        font-family: var(--at-ff-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        color: #585959;
+        margin: 0;
+    }
+
+    &__meta-text {
+        color: #585959;
+    }
+
+    &__author {
+        color: var(--at-theme-primary, #c94b2a);
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-common-black);
+        }
+    }
+}
+
+/* Blog card 3 – sidebar Flash news (compact horizontal) */
+.blog-card-3-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+
+    .blog-card-3:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.blog-card-3 {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(30, 30, 30, 0.08);
+
+    &__thumb {
+        flex: 0 0 115px;
+        width: 115px;
+        height: 115px;
+    }
+
+    &__img-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+
+        .blog-card-3:hover & {
+            transform: scale(1.05);
+        }
+    }
+
+    &__content {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__title {
+        font-family: var(--at-ff-body);
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -1.2px;
+        color: var(--at-neutral-900);
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__title-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-theme-primary);
+        }
+    }
+
+    &__meta {
+        color: var(--at-neutral-500);
+    }
+
+
+    &__author {
+        color: var(--at-theme-primary, #c94b2a);
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-common-black);
+        }
+    }
+}
+
+/* Product card – shop archive */
+.product-card {
+    display: flex;
+    flex-direction: column;
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 0;
+    }
+
+    &__thumb {
+        position: relative;
+        background-color: var(--at-neutral-50, #f2f2f2);
+        overflow: hidden;
+        border-radius: 16px;
+        width: 100%;
+        height: 490px;
+        flex-shrink: 0;
+    }
+
+    &__img-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 24px 24px;
+        width: 100%;
+    }
+
+    &__brand {
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 100%;
+        letter-spacing: -0.24px;
+        text-transform: uppercase;
+        color: var(--at-neutral-500, #585959);
+        margin: 0;
+    }
+
+    &__row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
+    }
+
+    &__title {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.9px;
+        color: var(--at-neutral-900, #1d1d1d);
+        margin: 0;
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title-link {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--at-theme-primary);
+        }
+    }
+
+    &__price {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: normal;
+        letter-spacing: -0.9px;
+        color: var(--at-neutral-900, #1d1d1d);
+        text-align: right;
+        margin: 0;
+        flex-shrink: 0;
+    }
+}
