@@ -1,0 +1,272 @@
+@use '../utils' as *;
+@use '../utils/breakpoints' as *;
+
+@media #{$xl,$lg} {
+
+	/* Font size */
+	@each $size, $shades in $font-size-lg {
+		@each $key, $value in $shades {
+			.#{$size}-#{$key} {
+				font-size: #{$value} !important;
+			}
+		}
+	}
+
+	h1,
+	.h1 {
+		font-size: 58px;
+	}
+
+	h2,
+	.h2 {
+		font-size: 50px;
+	}
+
+	h3,
+	.h3 {
+		font-size: 42px;
+	}
+
+	h4,
+	.h4 {
+		font-size: 30px;
+	}
+
+	h5,
+	.h5 {
+		font-size: 28px;
+	}
+
+	h6,
+	.h6 {
+		font-size: 20px;
+	}
+
+
+	.fz-150 {
+		font-size: 100px;
+	}
+
+	.fz-170 {
+		font-size: 100px;
+	}
+
+	.fz-180 {
+		font-size: 140px;
+	}
+
+	.fz-200 {
+		font-size: 120px;
+	}
+
+	.fz-290 {
+		font-size: 180px;
+	}
+
+	.fz-120 {
+		font-size: 84px;
+	}
+
+	.fz-60 {
+		font-size: 60px;
+	}
+
+	.scroll-section {
+		.pb-80 {
+			padding-bottom: 0;
+		}
+	}
+
+	.d-md-none {
+		display: none;
+	}
+}
+
+@media #{$md} {
+
+	/* Font size */
+	@each $size, $shades in $font-size-md {
+		@each $key, $value in $shades {
+			.#{$size}-#{$key} {
+				font-size: #{$value} !important;
+			}
+		}
+	}
+
+	h1,
+	.h1 {
+		font-size: 54px;
+	}
+
+	h2,
+	.h2 {
+		font-size: 52px;
+	}
+
+	h3,
+	.h3 {
+		font-size: 40px;
+	}
+
+	h4,
+	.h4 {
+		font-size: 36px;
+	}
+
+	h5,
+	.h5 {
+		font-size: 24px;
+	}
+
+	h6,
+	.h6 {
+		font-size: 20px;
+	}
+
+
+	.fz-150 {
+		font-size: 110px;
+	}
+
+	.fz-170 {
+		font-size: 70px;
+	}
+
+	.fz-180 {
+		font-size: 70px;
+	}
+
+	.fz-200 {
+		font-size: 80px;
+	}
+
+	.fz-240 {
+		font-size: 100px;
+	}
+
+	.fz-290 {
+		font-size: 180px;
+	}
+
+	.fz-120 {
+		font-size: 100px;
+	}
+
+	.fz-60 {
+		font-size: 60px;
+	}
+
+	.scroll-section {
+		.pb-80 {
+			padding-bottom: 0;
+		}
+	}
+
+	br {
+		display: none;
+	}
+
+	.d-md-none {
+		display: none;
+	}
+}
+
+@media #{$xs} {
+	/* Font size */
+
+	@each $size, $shades in $font-size-xs {
+		@each $key, $value in $shades {
+			.#{$size}-#{$key} {
+				font-size: #{$value} !important;
+			}
+		}
+	}
+
+	h1,
+	.h1 {
+		font-size: 50px;
+	}
+
+	h2,
+	.h2 {
+		font-size: 42px;
+	}
+
+	h3,
+	.h3 {
+		font-size: 36px;
+	}
+
+	h4,
+	.h4 {
+		font-size: 30px;
+	}
+
+	h5,
+	.h5 {
+		font-size: 20px;
+	}
+
+	h6,
+	.h6 {
+		font-size: 16px;
+	}
+
+
+	.fz-150 {
+		font-size: 52px;
+	}
+
+	.fz-170 {
+		font-size: 30px;
+	}
+
+	.fz-180 {
+		font-size: 38px;
+	}
+
+	.fz-200 {
+		font-size: 38px;
+	}
+
+	.fz-240 {
+		font-size: 100px;
+	}
+
+	.fz-290 {
+		font-size: 100px;
+	}
+
+	.fz-120 {
+		font-size: 90px;
+	}
+
+	.fz-60 {
+		font-size: 60px;
+	}
+
+	.w-75 {
+		width: 100% !important;
+	}
+
+	br {
+		display: none;
+	}
+
+	.scroll-section {
+		.pb-80 {
+			padding-bottom: 0;
+		}
+	}
+
+
+	.d-xs-none {
+		display: none;
+	}
+}
+
+@media (min-width: 1400px) {
+	.container {
+		max-width: 1750px;
+	}
+}

@@ -1,0 +1,282 @@
+@use '../utils' as *;
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Orisa - Creative Portfolio Agency HTML Template
+    Author: AliThemes
+    Support: https://alithemes.ticksy.com/
+    Description: Orisa - Creative Portfolio Agency HTML Template
+    Version: 5.0.0
+
+
+
+**********************************************/
+
+
+/*----------------------------------------*/
+/*  1.1 Default
+/*----------------------------------------*/
+
+@import url($font-url);
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/*---------------------------------
+	typography css start 
+---------------------------------*/
+body {
+	font-size: 16px;
+	line-height: 1.2;
+	font-weight: normal;
+	color: var(--at-neutral-900);
+	background-color: var(--at-neutral-0);
+	font-family: var(--at-ff-body);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -5%;
+	@include at-transition(color);
+	color: var(--at-neutral-900);
+	font-family: var(--at-ff-body);
+}
+
+h1,
+.h1 {
+	font-size: 70px;
+}
+
+h2,
+.h2 {
+	font-size: 60px;
+}
+
+h3,
+.h3 {
+	font-size: 52px;
+}
+
+h4,
+.h4 {
+	font-size: 38px;
+}
+
+h5,
+.h5 {
+	font-size: 26px;
+}
+
+h6,
+.h6 {
+	font-size: 20px;
+}
+
+.fz-font-lg {
+	font-size: 18px !important;
+}
+
+@media screen and (min-width: 1401px) {
+
+	h1,
+	.h1 {
+		font-size: 84px;
+	}
+
+	h2,
+	.h2 {
+		font-size: 72px;
+	}
+
+	h3,
+	.h3 {
+		font-size: 64px;
+	}
+
+	h4,
+	.h4 {
+		font-size: 48px;
+	}
+
+	h5,
+	.h5 {
+		font-size: 34px;
+	}
+
+	h6,
+	.h6 {
+		font-size: 24px;
+	}
+
+	.fz-font-lg {
+		font-size: 20px !important;
+	}
+
+	.col-3xl-6 {
+		width: 50% !important;
+	}
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+p {
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 15px;
+	letter-spacing: -2%;
+	line-height: 1.2;
+	font-family: var(--at-ff-body);
+	color: var(--at-neutral-500);
+}
+
+
+a,
+button,
+p,
+input,
+select,
+textarea,
+li,
+.transition-3 {
+	@extend %transition;
+}
+
+a:not([href]):not([class]),
+a:not([href]):not([class]):hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:focus,
+.button:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus,
+a:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+a,
+button {
+	color: inherit;
+	outline: none;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button:focus {
+	outline: 0;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+textarea {
+	outline: none;
+	height: 56px;
+	width: 100%;
+	line-height: 56px;
+	font-size: 14px;
+	color: var(--at-neutral-900);
+
+	@include at-placeholder {
+		color: var(--at-neutral-500);
+	}
+
+	&:focus {
+		border-color: var(--at-neutral-900);
+
+		&::placeholder {
+			opacity: 0;
+		}
+	}
+
+}
+
+textarea {
+	line-height: 1.4;
+	padding-top: 17px;
+	padding-bottom: 17px;
+}
+
+input[type="color"] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: none;
+	border: 0;
+	cursor: pointer;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	border-radius: 50%;
+}
+
+*::-moz-selection {
+	background: var(--at-neutral-900);
+	color: var(--at-neutral-0);
+	text-shadow: none;
+}
+
+::-moz-selection {
+	background: var(--at-neutral-900);
+	color: var(--at-neutral-0);
+	text-shadow: none;
+}
+
+::selection {
+	background: var(--at-neutral-900);
+	color: var(--at-neutral-0);
+	text-shadow: none;
+}
+
+*::-moz-placeholder {
+	color: var(--at-neutral-900);
+	font-size: 14px;
+	opacity: 1;
+}
+
+*::placeholder {
+	color: var(--at-neutral-900);
+	font-size: 14px;
+	opacity: 1;
+}

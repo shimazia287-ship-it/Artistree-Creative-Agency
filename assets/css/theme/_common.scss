@@ -1,0 +1,329 @@
+@use '../utils' as *;
+
+/*---------------------------------
+    1.1 Common Classes
+---------------------------------*/
+.overflow-unset {
+	overflow: unset !important;
+}
+
+.w-img {
+	& img {
+		width: 100%;
+	}
+}
+
+.m-img {
+	& img {
+		max-width: 100%;
+	}
+}
+
+.fix {
+	overflow: hidden
+}
+
+.clear {
+	clear: both;
+}
+
+.z-n1 {
+	position: relative;
+	z-index: -1;
+}
+
+.z-index-1 {
+	position: relative;
+	z-index: 1;
+}
+
+.z-index-2 {
+	position: relative;
+	z-index: 2;
+}
+
+.z-index-3 {
+	position: relative;
+	z-index: 3;
+}
+
+.z-index-4 {
+	position: relative;
+	z-index: 4;
+}
+
+.z-index-5 {
+	position: relative;
+	z-index: 5;
+}
+
+.z-index-6 {
+	position: relative;
+	z-index: 6;
+}
+
+.z-index-7 {
+	position: relative;
+	z-index: 7;
+}
+
+.z-index-8 {
+	position: relative;
+	z-index: 8;
+}
+
+.z-index-9 {
+	position: relative;
+	z-index: 9;
+}
+
+.z-index-10 {
+	position: relative;
+	z-index: 10;
+}
+
+.gx-5 {
+	--bs-gutter-x: 5px;
+}
+
+.gx-10 {
+	--bs-gutter-x: 10px;
+}
+
+.gx-20 {
+	--bs-gutter-x: 20px;
+}
+
+.gx-30 {
+	--bs-gutter-x: 30px;
+}
+
+.gx-40 {
+	--bs-gutter-x: 40px;
+}
+
+.gx-45 {
+	--bs-gutter-x: 45px;
+}
+
+.gx-50 {
+	--bs-gutter-x: 50px;
+
+	@media #{$xl,$lg,$md,$sm,$xs} {
+		--bs-gutter-x: 30px;
+	}
+}
+
+.gx-60 {
+	--bs-gutter-x: 60px;
+
+	@media #{$xl,$lg,$md,$sm,$xs} {
+		--bs-gutter-x: 30px;
+	}
+}
+
+.gx-70 {
+	--bs-gutter-x: 70px;
+
+	@media #{$xl,$lg,$md,$sm,$xs} {
+		--bs-gutter-x: 30px;
+	}
+}
+
+.gx-80 {
+	--bs-gutter-x: 80px;
+
+	@media #{$xl,$lg,$md,$sm,$xs} {
+		--bs-gutter-x: 30px;
+	}
+}
+
+.gx-90 {
+	--bs-gutter-x: 90px;
+
+	@media #{$xl,$lg,$md,$sm,$xs} {
+		--bs-gutter-x: 30px;
+	}
+}
+
+.gx-100 {
+	--bs-gutter-x: 100px;
+
+	@media #{$xl,$lg,$md,$sm,$xs} {
+		--bs-gutter-x: 30px;
+	}
+}
+
+.overflow-y-visible {
+	overflow-x: hidden;
+	overflow-y: visible;
+}
+
+.p-relative {
+	position: relative;
+}
+
+.p-absolute {
+	position: absolute;
+}
+
+.bg-position {
+	background-position: bottom center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.slide-transtion {
+	-webkit-transition-timing-function: linear;
+	transition-timing-function: linear;
+
+	& .swiper-slide {
+		width: auto;
+	}
+}
+
+.common-underline {
+	@include bgborder(currentColor, 0, 0);
+	@include at-transition(all .4s ease);
+
+	&:hover {
+		@include bgborder(currentColor, 0, 100%);
+		@include at-transition(all .4s ease);
+	}
+}
+
+.img-cover {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.bg-cover {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.text-red {
+	color: var(--at-theme-primary);
+}
+
+$container: (
+	1136,
+	2200
+);
+
+@each $number in $container {
+	@media (min-width:1400px) {
+		.container-#{$number} {
+			max-width: #{$number}px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+
+// at-font-famely-variables
+@each $font, $famely in $font-family {
+	@each $key, $value in $famely {
+		.at-#{$font}-#{$key} {
+			font-family: var(--at-#{$font}-#{$key});
+		}
+	}
+}
+
+/* Font weight */
+$font-weight: 100;
+
+@while $font-weight < 1000 {
+	.fw-#{$font-weight} {
+		font-weight: (#{$font-weight});
+	}
+
+	$font-weight: $font-weight + 100;
+}
+
+/* Font size */
+@each $size, $shades in $font-size {
+	@each $key, $value in $shades {
+		.#{$size}-#{$key} {
+			font-size: var(--at-#{$size}-#{$key});
+		}
+	}
+}
+
+/* Color */
+@each $color, $shades in $colors {
+	@each $shade, $value in $shades {
+		.#{$color}-#{$shade} {
+			color: var(--at-#{$color}-#{$shade}) !important;
+		}
+	}
+}
+
+/* Background Color */
+@each $color, $shades in $colors {
+	@each $shade, $value in $shades {
+		.bg-#{$color}-#{$shade} {
+			background-color: var(--at-#{$color}-#{$shade}) !important;
+		}
+	}
+}
+
+/*---------------------------------
+    Footer Fixed Bottom Effect (Kanso Style)
+---------------------------------*/
+#smooth-content {
+	// Allow clicks to pass through to footer underneath
+	pointer-events: none;
+
+	// Re-enable pointer events for all children
+	>* {
+		pointer-events: auto;
+	}
+
+	main {
+		position: relative;
+		z-index: 2;
+		will-change: transform;
+		min-height: 100vh;
+	}
+
+
+	// Placeholder should not block clicks
+	.footer-placeholder {
+		pointer-events: none;
+	}
+}
+
+// Footer will be moved outside smooth-content via JS and fixed to bottom
+.footer-fixed-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 1;
+	transform-origin: center bottom;
+	will-change: transform;
+
+	// Ensure footer has solid background
+	.at-footer-area {
+		position: relative;
+		z-index: 1;
+	}
+}
+
+// Placeholder to maintain scroll height
+.footer-placeholder {
+	width: 100%;
+	pointer-events: none;
+}
+
+.bg-primary-1 {
+	background-color: var(--at-theme-primary);
+}
+
+.text-dark {
+	color: var(--at-neutral-950) !important;
+}
